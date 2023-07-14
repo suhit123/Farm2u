@@ -1,0 +1,21 @@
+import dbConnect from '@/utils/dbConnect';
+import Videos from '@/models/Videos';
+dbConnect();
+export default async (req:any,res:any)=>{
+    const videoId=req.query.videoId;
+    const {method}=req;
+    switch(method){
+
+        case 'DELETE':
+            try{
+                await Videos.findByIdAndDelete(videoId);
+                res.status(200).send('delted');
+            }
+            catch(err){
+                res.status(401).send("iderror");
+            }
+            break;
+        default:
+            res.status(400).json({success:false});
+    }
+}

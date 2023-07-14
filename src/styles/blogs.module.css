@@ -1,0 +1,115 @@
+.blogbox_container{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    overflow: hidden;
+    grid-template-columns: auto auto auto;
+}
+.blognotification_container{
+    width: 70%;
+    margin: 30px auto;
+    background-color: rgb(243, 243, 243);
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 5vw;
+}
+.blognotification_box1 h3{
+    font-size: 40px;
+    color: rgb(75, 75, 75);
+}
+.blognotification_box2{
+    margin: auto 0px;
+}
+.blognotification_box2 form{
+    display: flex;
+}
+.blognotification_box2 input{
+    height: 50px;
+    width: 300px;
+    border: none;
+    padding: 0px 30px;
+    outline: none;
+    font-size: 14px;
+}
+.blognotification_box2 button{
+    border: none;
+    height: 50px;
+    background-color:#29395A;
+    display: flex;
+    padding: 10px 20px;
+    color: white;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 14px;
+}
+.blognotification_box2 button:hover{
+    background-color:#05430e;
+}
+.blogs_loadmore_btn{
+    margin: 0px auto;
+    width: max-content;
+    font-size: 14px;
+}
+.blogs_loadmore_btn button{
+    background-color: white;
+    color: #29395A;
+    padding: 10px 15px;
+    border: 1px solid #29395A;
+    border-radius: 5px;
+    transition: 0.3s all ease-in-out;
+}
+.blogs_loadmore_btn button:hover{
+    background-color: #1f2c45;
+    color: white;
+}
+
+@media screen and (max-width:950px){
+    .blogbox_container{
+        width: max-content;
+        grid-template-columns: auto auto;
+    }
+    .blognotification_container{
+        display: block;
+        width: 80vw;
+        margin: 10px auto;
+        padding: 20px;
+    }
+    .blognotification_box1 h4{
+        font-size: 15px;
+    }
+    .blognotification_box1 p{
+        font-size: 13px;
+    }
+    .blognotification_box2 input{
+        height: 40px;
+        width: 80%;
+        font-size: 13px;
+    }
+    .blognotification_box2 button{
+        height: 40px;
+        font-size: 13px;
+        padding: 10px 20px;
+    }
+    .blogs_loadmore_btn button{
+        font-size: 13px;
+        padding: 10px;
+        margin: 10px;
+    }
+}
+
+@media screen and (max-width:550px){
+    .blogbox_container{
+        width: 85%;
+        grid-template-columns: auto ;
+    }
+    .blognotification_container{
+        width: 100vw;
+    }
+    .blognotification_box1 h4{
+        font-size: 15px;
+    }
+    .blognotification_box1 p{
+        font-size: 12px;
+    }
+}

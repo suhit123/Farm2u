@@ -1,0 +1,278 @@
+.landing_content{
+    height: 70vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('../resources/DNAGenetics.gif');
+    background-color: rgb(79, 79, 79);
+    background-blend-mode: multiply;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-attachment: fixed;
+}
+.landing_content_block{
+    width: 70%;
+}
+.landing_content_block h2{
+    font-size: 25px;
+    color: white;
+}
+.landing_content_block h3{
+    font-size: 45px;
+    color: white;
+    display: inline-block;
+    position: relative;
+}
+ 
+.landing_content_block p{
+    font-size: 18px;
+    color: white;
+}
+.landingpage_blogs{
+    width: 75%;
+    margin: 2vw auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.blogbox_container{
+    width: max-content;
+    margin: 0px auto;
+    display: flex;
+}
+.blogbox_container_blocks{
+    margin:1vw;
+}
+.landing_blog_seemore{
+    border: 1px solid #29395A;
+    background-color:white ;
+    color: #29395A;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.3s all ease-in-out;
+    font-size: 15px;
+}
+.landing_blog_seemore:hover{
+    background-color: #29395A;
+    color: white;
+}
+.company_certifications{
+    width: 75%;
+    margin: 2vw auto;
+}
+.company_certifications_images{
+    margin: 0px auto;
+    width: max-content;
+}
+.company_certifications_images img{
+    width: 150px;
+    height: auto;
+    margin: 1vw;
+}
+.company_certifications_top,.blogs_top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0px;
+    width: 100%;
+}
+.company_certifications_top h4,.blogs_top h4{
+    font-weight: 700;
+    color: #29395A;
+    font-size: 18px;
+}
+.company_certifications_line,.blogs_line{
+    height: 2px;
+    width: 25%;
+    background-color: rgba(128, 128, 128, 0.366);
+    margin: 0px 1vw;
+}
+.contact_us_banner{
+    width: 100%;
+    height: 30vh;
+    background-image: url("../resources/contactusbanner.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 33%;
+    background-color: rgb(89, 89, 89);
+    background-blend-mode: multiply;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contact_us_banner_block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.contact_us_banner_block h3{
+    color: white;
+    text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.424);
+    font-size: 20px;
+    font-weight: 700;
+}
+.contact_us_banner_block p{
+    width: 80%;
+    font-size: 15px;
+    margin: 10px;
+    color: white;
+    text-align: center;
+    text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.424);
+}
+.contact_us_banner_block button{
+    margin: 10px 0px;
+    padding:10px 15px;
+    background-color: #151e31;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.424);
+
+}
+.contact_us_banner_block button:hover{
+    background-color: #29395A;
+}
+
+@media screen and (max-width:950px){
+    .landing_content{
+        height: 70vh;
+    }
+    .landing_content_block{
+        width: 80%;
+    }
+    .landing_content_block h2{
+        font-size: 16px;
+    }
+    .landing_content_block h3{
+        font-size: 20px;
+    }
+     
+    .landing_content_block p{
+        font-size: 12px;
+    }
+    .landingpage_blogs{
+        width: 100vw;
+    }
+    .blogbox_container{
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+    .blogbox_container_blocks{
+        margin:20px;
+    }
+    .company_certifications{
+        width: 80vw;
+        margin-top: 50px;
+    }
+    .company_certifications_images{
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+    .company_certifications_images img{
+        width: 14vw;
+        margin: 10px;
+    }
+    
+    .company_certifications_top h4,.blogs_top h4{
+        font-size: 16px;
+        color: #29395A;
+    }
+    .company_certifications_line,.blogs_line{
+        width: 15%;
+        margin: 0px 10px;
+        display: none;
+    }
+    .contact_us_banner{
+        height: 28vw;
+    }
+    .contact_us_banner_block h3{
+        font-weight: 500;
+        font-size: 15px;
+    }
+    .contact_us_banner_block p{
+        width: 90%;
+        font-size: 13px;
+    }
+    .contact_us_banner_block button{
+        font-size:14px;
+    
+    }
+}
+@media screen and (max-width:550px){
+    .landing_content{
+        height: 40vh;
+        width: 100%;
+        background-position-y: 50%;
+        background-position-x: 30%;
+    }
+    .landing_content_block{
+        width: 80%;
+    }
+    .landing_content_block h2{
+        font-size: 17px;
+    }
+    .landing_content_block h3{
+        font-size: 28px;
+    }
+     
+    .landing_content_block p{
+        font-size: 14px;
+    }
+    .landingpage_blogs{
+        width: 100vw;
+    }
+    .landingpage_blogs button{
+        font-size: 13px;
+        padding: 10px;
+    }
+    .blogbox_container{
+        display: block;
+    }
+    .blogbox_container_blocks{
+        margin:20px;
+    }
+    .company_certifications{
+        width: 80vw;
+        margin-top: 50px;
+    }
+    .company_certifications_images{
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+    .company_certifications_images img{
+        width: 20vw;
+        margin: 10px;
+    }
+    
+    .company_certifications_top h4,.blogs_top h4{
+        font-size: 13px;
+        color: #29395A;
+        margin: 0px;
+        margin-bottom: -10px;
+    }
+    .company_certifications_line,.blogs_line{
+        width: 15%;
+        margin: 0px 10px;
+        display: none;
+    }
+    .contact_us_banner{
+        height: 25vh;
+    }
+    .contact_us_banner_block h3{
+        font-weight: 500;
+        font-size: 15px;
+    }
+    .contact_us_banner_block p{
+        width: 90%;
+        font-size: 12px;
+    }
+    .contact_us_banner_block button{
+        font-size:13px;
+    
+    }
+}
