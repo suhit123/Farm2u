@@ -106,7 +106,7 @@ return(
   <div className={styles.entirenav}>
     {discountBarState?<div className={styles.discount_nav_bar}>
           <p>Get 10% Discount for Purchase above Rs. 1500/- Use Coupon : GMR1500</p>
-          <a href="javascript:void(0)" className={cartstyles.closebtn} onClick={()=>{setDiscountBarState(!discountBarState)}}>&times;</a>
+          <a className={cartstyles.closebtn} onClick={()=>{setDiscountBarState(!discountBarState)}}>&times;</a>
     </div>:<></>}
     <div className={styles.main_nav_bar_p}>
         <Image className={styles.logo} src={logo} alt=""/>

@@ -18,6 +18,7 @@ import Blogbox from './components/blogbox'
 import Blogad from './components/Blogad'
 import Video_slider from './components/Slider_video'
 import dynamic from 'next/dynamic';
+import Bloghome from './components/Bloghome'
 export default function Home() {
   const [blogdata,setBlogData]=useState([]);
     useEffect(()=>{
@@ -82,7 +83,13 @@ export default function Home() {
             <div className={styles.blogs_line}></div>
           </div>
          <div className={styles.blogbox_container}>
-         {blogdata.slice(0,4).map((blog)=>{return(<div className={styles.blogbox_container_blocks}><Blogad blogboxdata={blog}/></div>)})}
+         {blogdata.length!==0?blogdata.slice(0,4).map((blog)=>{return(<div className={styles.blogbox_container_blocks}><Bloghome blogboxdata={blog}/></div>)}):
+         [0,1,2].map(()=>{
+          return(<div className={styles.blogbox_con_empty}>
+         <div className={styles.blogbox_image_empty}></div>
+         <div className={styles.blogbox_heading_empty}></div>
+         <div className={styles.content_empty}></div>
+         </div>)})}
           </div>
           <Link href="/blogs"><button className={styles.landing_blog_seemore}>See More</button></Link>
           </div>

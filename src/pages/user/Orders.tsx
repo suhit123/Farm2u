@@ -19,7 +19,6 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [loader, setLoader] = useState(false);
   const [expandedOrders, setExpandedOrders] = useState<boolean[]>([]);
-
   const fetchData = () => {
     try {
       setLoader(true);

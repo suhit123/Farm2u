@@ -5,13 +5,9 @@ import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import styles from '@/styles/detailed_blog.module.css'
-import Loader from "../components/loader";
-import Blogbox from "../components/blogbox";
 import { RWebShare } from "react-web-share";
-import { useParams } from "next/navigation";
 import Blogad from "../components/Blogad";
 import sharepngpage from '@/resources/sharepngpage.png'
-import Loading from "./loading";
 import Custom404 from "../404";
 const Blogid=()=>{
     const router=useRouter()
@@ -127,7 +123,7 @@ const Blogid=()=>{
             <p>Share</p>
             </div>
             <div className={styles.detailed_blog_container_entire_box1}>
-            <div className={styles.detailed_blog_container} onLoad={()=>{return<Loading/>}}>
+            <div className={styles.detailed_blog_container} >
             <p className={styles.detailed_blog_container_date}>{Blogdata.publishDate} | Genmatrix Remedies</p>
             <h3>{Blogdata.title}</h3>
             <div className={styles.detailedblog_main_image_div}><Image src={Blogdata.image} className={styles.detailedblog_main_image} alt="" width={500} height={500}/></div>

@@ -13,6 +13,7 @@
     display: flex;
     justify-content: space-between;
     padding: 50px 5vw;
+    transition:0.3s all ease;
 }
 .blognotification_box1 h3{
     font-size: 40px;
@@ -63,7 +64,67 @@
     background-color: #1f2c45;
     color: white;
 }
-
+/*empty*/
+.blogbox_con_empty{
+    width: 21vw;
+    height: max-content;
+    margin: 20px;
+    padding: 5px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 11px rgba(155, 155, 155, 0.25);
+    transition: 0.3s all ease;
+    position: relative;
+    background-image: linear-gradient(
+		90deg,
+		#f1f1f13d 0px,
+		rgb(255, 255, 255) 40px,
+		#f1f1f13d 80px
+	);
+	background-size: 300%;
+	background-position: 100% 0;
+	border-radius: inherit;
+	animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+	to {
+		background-position: -100% 0;
+	}
+}
+.blogbox_image_empty{
+    width: 100%;
+    height: 14vw;
+    background-color: #e2e2e262;
+    margin: 5px 0px;
+}
+.blogbox_heading_empty{
+    height: 10px;
+    width: 100%;
+    margin: 5px 0px;
+    background-color: #e2e2e262;
+}
+.companyname_empty{
+    width: 100%;
+    margin: 5px 0px;
+    height: 10px;
+    background-color: #e2e2e262;
+}
+.content_empty{
+    margin: 5px 0px 0px 0px;
+    width: 100%;
+    height: 50px;
+    background-color: #e2e2e262;
+}
+@media screen and (max-width:1200px){
+    .blogbox_container{
+        width: 85vw;
+    }
+    .blogbox_con_empty{
+        width: 25vw;
+    }
+    .blogbox_image_empty{
+        height: 20vw;
+    }
+}
 @media screen and (max-width:950px){
     .blogbox_container{
         width: max-content;
@@ -71,7 +132,7 @@
     }
     .blognotification_container{
         display: block;
-        width: 80vw;
+        width: 70vw;
         margin: 10px auto;
         padding: 20px;
     }
@@ -96,11 +157,17 @@
         padding: 10px;
         margin: 10px;
     }
+    .blogbox_con_empty{
+        width: 30vw;
+    }
+    .blogbox_image_empty{
+        height: 24vw;
+    }
 }
 
 @media screen and (max-width:550px){
     .blogbox_container{
-        width: 85%;
+        max-width: 300px;
         grid-template-columns: auto ;
     }
     .blognotification_container{
@@ -111,5 +178,16 @@
     }
     .blognotification_box1 p{
         font-size: 12px;
+    }
+    .endofresults{
+        font-size: 13px;
+        margin: 15px 0px;
+    }
+    .blogbox_con_empty{
+        width: 280px;
+        margin:20px 0px;
+    }
+    .blogbox_image_empty{
+        height: 35vw;
     }
 }

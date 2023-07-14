@@ -10,7 +10,7 @@ const Usercheck=()=>{
       return;
     }
     if (!session) {
-      router.push('/');
+      router.push('/login');
     }
   }, [session, sessionStatus, router]);
 };

@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "ts-lint": "tsc — noEmit — incremental — watch",
+    "ts-lint-commit-hook": "tsc --noEmit --incremental"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -59,6 +61,7 @@
     "@types/nodemailer": "^6.4.8",
     "@types/react-places-autocomplete": "^7.2.9",
     "@types/react-stars": "^2.2.1",
-    "@types/styled-components": "^5.1.26"
+    "@types/styled-components": "^5.1.26",
+    "husky": "^8.0.3"
   }
 }

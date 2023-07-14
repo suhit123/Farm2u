@@ -6,11 +6,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 250px;
+    height: 14vw;
     overflow: hidden;
 }
 .blogbox_image img{
-    width: 100%;
+    width: 120%;
     height: auto;
 }
 .blogbox_details{
@@ -43,9 +43,9 @@
 .content{
     font-size: 14px;
 }
-@media screen and (max-width:950px){
+@media screen and (max-width:1200px){
     .blogbox_con{
-        width: 35vw;
+        width: 260px;
         margin: 5px;
     }
     .blogbox_con p{
@@ -71,6 +71,7 @@
         margin: 5px 0px;
     }
 }
+
 @media screen and (max-width:550px){
     .blogbox_con{
         width: 100%;
