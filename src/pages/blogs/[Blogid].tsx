@@ -6,10 +6,11 @@ import axios from "axios";
 import Image from "next/image";
 import styles from '@/styles/detailed_blog.module.css'
 import { RWebShare } from "react-web-share";
-import Blogad from "../components/Blogad";
+import blogadstyles from '@/styles/blogad.module.css'
 import sharepngpage from '@/resources/sharepngpage.png'
 import Custom404 from "../404";
 import React from 'react';
+import Link from "next/link";
 const Blogid=()=>{
     const router=useRouter()
     let Blogid=router.query.Blogid;
@@ -161,7 +162,13 @@ const Blogid=()=>{
             <div className={styles.blogbox_container_sticky}>
             <div className={styles.blogbox_container}>
                 <h5>Latest Posts</h5>
-                {data.slice(0,3).map((blog)=>{return(<div className={styles.blogbox_container_blocks}><Blogad blogboxdata={blog}/></div>)})}
+                {data.slice(0,3).map((blog:any)=>{return(<div className={styles.blogbox_container_blocks}>
+                    <div className={blogadstyles.blogbox_con}>
+                        <div className={blogadstyles.blogbox_image}><Image className={blogadstyles.blogbox_image} src={blog.image} alt="" width={500} height={500}/></div>
+                            <Link href={`/blogs/${blog._id}`} className={blogadstyles.blogbox_heading}><h3>{blog.title}</h3></Link>
+                            <p className={blogadstyles.content}>{blog.description.slice(0,150)}... <Link href={`/blogs/${blog._id}`} className={blogadstyles.blog_viewmore}>Continue reading</Link></p>
+                        </div>
+                </div>)})}
             </div>
             </div>
             </div>

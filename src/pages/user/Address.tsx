@@ -166,9 +166,9 @@ const Addresses = ({addressData}:any) => {
     </form>:<></>}
             <h5>ADDRESS BOOK</h5>     
             <div className={styles.address_blocks}>
-                {addressData.length===0?<p>Address not found ! Add New.</p>:addressData.map((item:any)=>{
+                {addressData.length===0?<p>Address not found ! Add New.</p>:addressData.map((item:any,index: number)=>{
                     return(
-                        <div className={styles.address_block}>
+                        <div className={styles.address_block} key={index}>
                         <button className={styles.closebtn} onClick={()=>handleDelete(item._id)}>&times;</button>
                         <p>{item.firstName} {item.lastName}</p>
                         <p>{item.phoneNumber}</p>

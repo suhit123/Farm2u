@@ -92,7 +92,7 @@ useEffect(()=>{
   let tp=0;
   let dp=0;
   if(cartData.length!==0 && cartDataContents.length!==0){
-    cartData.map((item:any)=>{
+    cartData.map((item:any,index: number)=>{
       const dataelement=cartDataContents.find((i:any)=>i._id===item.productId);
       
       if(dataelement){tp+=dataelement.price*item.quantity;
@@ -173,12 +173,12 @@ return(
   <div className={cartstyles.cart_items}><div className={cartstyles.cart_items_list}>
   {loading ? ( 
                 <Loader_colorring/>
-                ) : <p></p>}{cartData.map((item:any)=>{
+                ) : <p></p>}{cartData.map((item:any,index: number)=>{
       const dataelement=cartDataContents.find((i:any)=>i._id===item.productId)
       if(dataelement){
       return(
         <>
-          <div className={cartcomponentstyles.cart_products_list_item}>
+          <div className={cartcomponentstyles.cart_products_list_item} key={index}>
             <div className={cartcomponentstyles.cart_products_list_item_image}>
               <Image src={dataelement.image1} alt="" width={100} height={100}/>
             </div>

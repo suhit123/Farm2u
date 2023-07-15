@@ -170,9 +170,9 @@ const Editblog=()=>{
                 <th>Comment</th>
                 <th>Options</th>
               </thead>
-              <tbody>{formData.comments.map((item:any)=>{
+              <tbody>{formData.comments.map((item:any,index: number)=>{
           return(
-                <tr>
+                <tr key={index}>
                   <td>{item._id}</td>
                   <td>{item.name}</td>
                   <td>{item.publishDate.split('@')[0]}</td>

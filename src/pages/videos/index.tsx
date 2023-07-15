@@ -37,8 +37,8 @@ const Videos: React.FC<VideosProps> = ({ initialVideos }) => {
         <>
           <h5 className={styles.heading}></h5>
           <div className={styles.video_container}>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((videoId) => (
-              <div className={styles.video_block_empty} key={videoId}></div>
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((index: number) => (
+              <div className={styles.video_block_empty} key={index} ></div>
             ))}
           </div>
         </>

@@ -139,12 +139,11 @@ const Cart = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {cartData.map((item: any) => {
+                      {cartData.map((item: any, index: number) => {
                         const dataelement = cartDataContents.find((i: any) => i._id === item.productId);
                         if (dataelement) {
                           return (
-                            <>
-                              <tr>
+                              <tr key={index}>
                                 <td>
                                   <div className={styles.image_and_title}>
                                     <Image src={dataelement.image1} alt="" width={100} height={100} />
@@ -170,7 +169,6 @@ const Cart = () => {
                                 </td>
                                 <td className={styles.mobile}>Rs. {Math.floor(dataelement.price-((dataelement.discount * dataelement.price) / 100)) * item.quantity}</td>
                               </tr>
-                            </>
                           );
                         }
                       })}

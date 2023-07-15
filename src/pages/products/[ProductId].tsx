@@ -241,7 +241,7 @@ const DetailedProduct: React.FC = () => {
                 <></>
               )}
               {pageComments.length !== 0 ? (
-                pageComments.map((item: Comment) => {
+                pageComments.map((item: Comment,index: number) => {
                   return (
                     <div className={styles.comment_block} key={item.publishDate}>
                       <div className={styles.comment_block_upper}>

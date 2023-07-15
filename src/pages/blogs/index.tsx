@@ -1,13 +1,15 @@
 import styles from '@/styles/blogs.module.css';
 import Nav from '../components/nav';
 import Footer from '../components/footer';
-import Blogbox from '../components/blogbox';
 import {useState } from 'react';
 import axios from 'axios';
 import Loader from '../components/loader';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner} from "@fortawesome/free-solid-svg-icons";
 import React from 'react';
+import blogboxstyles from '@/styles/blogbox.module.css'
+import Image from 'next/image';
+import Link from 'next/link';
 interface Blog {
   // Define the properties of a single blog
   _id: number;
@@ -67,7 +69,17 @@ const [blogs, setBlogs] = useState<Blog[]>(initialData);
       <Nav />
       <div className={styles.blogbox_container}>
         {blogs.length!==0?blogs.map((blog) => {
-          return <Blogbox blogboxdata={blog} key={blog._id} />;
+          return (
+            <div className={blogboxstyles.blogbox_con}>
+              <div className={blogboxstyles.blogbox_image}><Image className={blogboxstyles.blogbox_image} src={blog.image} alt="" width={100} height={100}/></div>
+              <Link href={`/blogs/${blog._id}`} className={blogboxstyles.blogbox_heading}><h3>{blog.title}</h3></Link>
+              <div className={blogboxstyles.blogbox_details}>
+                <p className={blogboxstyles.companyname}>Genmatrix Remedies</p>
+                <p>{blog.publishDate}</p>
+              </div>
+            <p className={blogboxstyles.content}>{blog.description.slice(0,150)}... <Link href={`/blogs/${blog._id}`} className={blogboxstyles.blog_viewmore}>Continue reading</Link></p>
+            </div>
+          );
         }):[0, 1, 2].map((_, index) => {
             return (
               <div className={styles.blogbox_con_empty} key={index}>

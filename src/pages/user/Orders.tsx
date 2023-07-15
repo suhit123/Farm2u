@@ -43,7 +43,7 @@ const Orders = ({ orders }: { orders: Order[] }) => {
                         <p className={styles.order_date}>
                           Date : {item.createdAt.split("T")[0]}
                         </p>
-                        {item.products.map((i:any) => {
+                        {item.products.map((i:any,index: number) => {
                           console.log(i)
                           return (
                             <div

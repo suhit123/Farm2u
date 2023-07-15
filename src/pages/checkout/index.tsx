@@ -110,7 +110,7 @@ const CheckoutForm = () => {
     let tp = 0;
     let dp = 0;
     if (cartData.length !== 0 && cartDataContents.length !== 0) {
-      cartData.map((item:any) => {
+      cartData.map((item:any,index: number) => {
         const dataelement:any = cartDataContents.find((i:any) => i._id === item.productId);
 
         if (dataelement) {
@@ -324,9 +324,9 @@ const CheckoutForm = () => {
       </div>
       <div>
         <p className={styles.savedadress}>Select from saved</p>
-        {addressData.map((item:any)=>{
+        {addressData.map((item:any,index: number)=>{
           return(
-            <div className={styles.selectaddress}>
+            <div className={styles.selectaddress} key={index}>
               <p className={styles.shipto}>Ship to</p>
               <p className={styles.shiptoaddress}>{item.address}, {item.pincode} {item.city} {item.state} {item.country}</p>
               <input type='radio'  
@@ -364,12 +364,11 @@ const CheckoutForm = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {cartData.map((item:any) => {
+                      {cartData.map((item:any,index: number) => {
                         const dataelement:any = cartDataContents.find((i:any) => i._id === item.productId);
                         if (dataelement) {
                           return (
-                            <>
-                              <tr>
+                              <tr key={index}>
                                 <td>
                                   <div className={cartstyles.image_and_title}>
                                     <Image src={dataelement.image1} alt="" width={100} height={100} />
@@ -385,7 +384,6 @@ const CheckoutForm = () => {
                                 </td>
                                 <td>Rs. {Math.floor(dataelement.price-((dataelement.discount * dataelement.price) / 100)) * item.quantity}</td>
                               </tr>
-                            </>
                           );
                         }
                       })}

@@ -102,8 +102,8 @@ const Blogs=()=>{
         </tr>
       </thead>
       <tbody>
-        {!loader && data.length!==0?data.map((item:any) => (
-          <tr>
+        {!loader && data.length!==0?data.map((item:any,index: number) => (
+          <tr key={index}>
             <td>{key++}</td>
             <td>{item.media}</td>
             <td>

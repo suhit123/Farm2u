@@ -61,8 +61,8 @@ const Inventory = () => {
         </tr>
       </thead>
       <tbody>
-        {!loader && productsdata.length!==0? productsdata.map((item:any) => (
-          <tr>
+        {!loader && productsdata.length!==0? productsdata.map((item:any,index: number) => (
+          <tr key={index}>
             <td>{key++}</td>
             <td>{item.heading}</td>
             <td>{item.price}</td>

@@ -62,15 +62,15 @@ const Video_slider=()=>{
             <div className={styles.video_slider_line}></div>
           </div>
         <Slider {...settings} className={styles.slider}>
-          {videos.length!==0?videos.map((item:any)=>{
+          {videos.length!==0?videos.map((item:any,index: number)=>{
             return(
-                <div className={styles.video_curosel}>
+                <div className={styles.video_curosel} key={index}>
                     {<iframe src={`https://www.youtube.com/embed/${item.url}`} allowFullScreen></iframe>}
                 </div>
             );
-          }):[0,1,2].map((item:any)=>{
+          }):[0,1,2].map((item:any,index: number)=>{
             return(
-                <div className={styles.video_curosel}>
+                <div className={styles.video_curosel} key={index}>
                     <div className={styles.empty}></div>
                 </div>
             );

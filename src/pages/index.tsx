@@ -15,7 +15,7 @@ import Typewriter from 'typewriter-effect'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Video_slider from './components/Slider_video'
-import Bloghome from './components/Bloghome'
+import bloghomestyles from '@/styles/home.module.css'
 import React from 'react';
 export default function Home() {
   const [blogdata,setBlogData]=useState([]);
@@ -64,9 +64,15 @@ export default function Home() {
             <div className={styles.blogs_line}></div>
           </div>
          <div className={styles.blogbox_container}>
-         {blogdata.length!==0?blogdata.slice(0,4).map((blog)=>{return(<div className={styles.blogbox_container_blocks}><Bloghome blogboxdata={blog}/></div>)}):
-         [0,1,2].map(()=>{
-          return(<div className={styles.blogbox_con_empty}>
+         {blogdata.length!==0?blogdata.slice(0,4).map((blog:any,index: number)=>{return(<div className={styles.blogbox_container_blocks} key={index}>
+          <div className={bloghomestyles.blogbox_con}>
+        <div className={bloghomestyles.blogbox_image}><img className={bloghomestyles.blogbox_image} src={blog.image} alt=""/></div>
+        <Link href={`/blogs/${blog._id}`} className={bloghomestyles.blogbox_heading}><h3>{blog.title}</h3></Link>
+        <p className={bloghomestyles.content}>{blog.description.slice(0,150)}... <Link href={`/blogs/${blog._id}`} className={bloghomestyles.blog_viewmore}>Continue reading</Link></p>
+        </div>
+         </div>)}):
+         [0,1,2].map((index: number)=>{
+          return(<div className={styles.blogbox_con_empty} key={index}>
          <div className={styles.blogbox_image_empty}></div>
          <div className={styles.blogbox_heading_empty}></div>
          <div className={styles.content_empty}></div>

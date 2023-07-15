@@ -57,7 +57,7 @@ const Products = ({ productsData }: { productsData: Product[] }) => {
       <Nav />
       <div className={styles.products_container}>
         <div className={styles.products_page}>
-          {productsData.map((item:any) => {
+          {productsData.map((item:any,index: number) => {
             const reviews = item.comments;
             let ratingAddition = 0;
             reviews.forEach((comment:any) => {
