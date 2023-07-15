@@ -9,7 +9,8 @@ import { loginUser } from '../../../helpers';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import React, { useRef } from 'react';
-import { ColorRing } from 'react-loader-spinner';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner} from "@fortawesome/free-solid-svg-icons";
 const Forgotpassword=()=>{
     const router = useRouter()
     const {data:session,status}=useSession();
@@ -159,15 +160,7 @@ const Forgotpassword=()=>{
             <p>Email</p>
             <input type="email" name="email" placeholder="eg. Ravikumar@gmail.com" value={formData.email} onChange={handlechange} />
             <p>{errmsg.emailerr}</p>
-            <button  onClick={getOtp}>{otpLoad?<ColorRing
-                                            visible={true}
-                                            height="30"
-                                            width="30"
-                                            ariaLabel="blocks-loading"
-                                            wrapperStyle={{}}
-                                            wrapperClass="blocks-wrapper"
-                                            colors={['#ffffff','#ffffff','#ffffff','#ffffff','#ffffff']}
-                                            />:<>Get otp</>}</button>
+            <button  onClick={getOtp}>{otpLoad?<FontAwesomeIcon icon={faSpinner} className="fa-spin" />:<>Get otp</>}</button>
             <p>Enter OTP:</p>
             <div className={styles.otp}>
             {otp.map((digit, index) => (
@@ -207,15 +200,7 @@ const Forgotpassword=()=>{
                   />
                    <p>{errmsg.passerr}</p>
                    <button type='submit' disabled={!checkEmail}>
-                   {changeLoad?<ColorRing
-                                            visible={true}
-                                            height="30"
-                                            width="30"
-                                            ariaLabel="blocks-loading"
-                                            wrapperStyle={{}}
-                                            wrapperClass="blocks-wrapper"
-                                            colors={['#ffffff','#ffffff','#ffffff','#ffffff','#ffffff']}
-                                            />:<>Submit</>}
+                   {changeLoad?<FontAwesomeIcon icon={faSpinner} className="fa-spin" />:<>Submit</>}
                    </button>
            </form>
         <Footer/>

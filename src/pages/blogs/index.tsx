@@ -2,11 +2,11 @@ import styles from '@/styles/blogs.module.css';
 import Nav from '../components/nav';
 import Footer from '../components/footer';
 import Blogbox from '../components/blogbox';
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 import axios from 'axios';
 import Loader from '../components/loader';
-import { ColorRing } from 'react-loader-spinner';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner} from "@fortawesome/free-solid-svg-icons";
 interface Blog {
   // Define the properties of a single blog
   _id: number;
@@ -87,17 +87,7 @@ const [blogs, setBlogs] = useState<Blog[]>(initialData);
           <p className={styles.endofresults}>End of the results!</p>
         ) : (
           <button onClick={loadMoreBlogs} disabled={loader1}>
-            {loader1 ? (
-              <ColorRing
-                visible={true}
-                height="30"
-                width="30"
-                ariaLabel="blocks-loading"
-                wrapperStyle={{}}
-                wrapperClass="blocks-wrapper"
-                colors={['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff']}
-              />
-            ) : (
+            {loader1 ? (<FontAwesomeIcon icon={faSpinner} className="fa-spin" />) : (
               'Load more'
             )}
           </button>
@@ -120,17 +110,7 @@ const [blogs, setBlogs] = useState<Blog[]>(initialData);
               required
             />
             <button type="submit">
-              {loader2 ? (
-                <ColorRing
-                  visible={true}
-                  height="30"
-                  width="30"
-                  ariaLabel="blocks-loading"
-                  wrapperStyle={{}}
-                  wrapperClass="blocks-wrapper"
-                  colors={['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff']}
-                />
-              ) : (
+              {loader2 ? (<FontAwesomeIcon icon={faSpinner} className="fa-spin" />) : (
                 !loader2 && (emailSent ? <>Sent</> : <>Notify</>)
               )}
             </button>

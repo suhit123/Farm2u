@@ -5,7 +5,8 @@ import contactpageimage from '@/resources/contactpagebanner.png'
 import Nav from "../components/nav";
 import Footer from "../components/footer";
 import axios from "axios";
-import { ColorRing } from "react-loader-spinner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {  faSpinner} from "@fortawesome/free-solid-svg-icons";
 const Contactus=()=>{
     const [user,setUser]=useState({
         name:"",
@@ -54,15 +55,7 @@ const Contactus=()=>{
             <input type="text" name="subject" placeholder="subject" value={user.subject} onChange={handlechange} required/>
             <textarea name="message" placeholder="message"  value={user.message} onChange={handlechange}></textarea>
             {success?<p className={styles.successmsg}>✅ Successfully sent this message !</p>:<></>}
-            <button type="submit">{loading?<ColorRing
-                                            visible={true}
-                                            height="30"
-                                            width="30"
-                                            ariaLabel="blocks-loading"
-                                            wrapperStyle={{}}
-                                            wrapperClass="blocks-wrapper"
-                                            colors={['#ffffff','#ffffff','#ffffff','#ffffff','#ffffff']}
-                                            />:<p>Submit</p>}
+            <button type="submit">{loading?<FontAwesomeIcon icon={faSpinner} className="fa-spin" />:<p>Submit</p>}
             </button>
             </form>
             </div>

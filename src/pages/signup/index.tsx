@@ -10,7 +10,8 @@ import { useEffect, useState } from 'react'
 import Loader from '../components/loader';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
-import { ColorRing } from 'react-loader-spinner';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner} from "@fortawesome/free-solid-svg-icons";
 const Signup=()=>{
     const {data:session,status}=useSession()    
     const [changeLoad,setChangeLoad]=useState(false);
@@ -101,15 +102,7 @@ const Signup=()=>{
                 }}/>
                 <p>Show password</p>
             </div>
-            <button type='submit' >{changeLoad?<ColorRing
-                                            visible={true}
-                                            height="30"
-                                            width="30"
-                                            ariaLabel="blocks-loading"
-                                            wrapperStyle={{}}
-                                            wrapperClass="blocks-wrapper"
-                                            colors={['#ffffff','#ffffff','#ffffff','#ffffff','#ffffff']}
-                                            />:<>Submit</>}
+            <button type='submit' >{changeLoad?<FontAwesomeIcon icon={faSpinner} className="fa-spin" />:<>Submit</>}
             </button>
             <p className={styles.loginredirection}>Already have an account ? <Link href="/login">Log in</Link></p>
         </form>

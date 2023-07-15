@@ -6,7 +6,6 @@ import Nav from "./../components/nav";
 import Usernav from "./Usernav";
 import Footer from "./../components/footer";
 import styles from "@/styles/user/user.module.css";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown,faChevronUp } from "@fortawesome/free-solid-svg-icons";

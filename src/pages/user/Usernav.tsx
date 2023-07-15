@@ -1,6 +1,6 @@
 import { FaUser, FaMapMarker, FaClipboardList, FaLock, FaSignOutAlt } from 'react-icons/fa';
 import styles from '@/styles/user/user.module.css';
-import { useSession ,signOut, getSession} from 'next-auth/react';
+import { signOut} from 'next-auth/react';
 import Link from 'next/link';
 const Usernav=()=>{
     return(<div className={styles.usernav}>

@@ -4,15 +4,12 @@ import Loader from '../components/loader';
 import Footer from '../components/footer';
 import Nav from '../components/nav';
 import styles from '@/styles/videos.module.css';
-
 interface Video {
   url: string;
 }
-
 interface VideosProps {
   initialVideos: Video[];
 }
-
 const Videos: React.FC<VideosProps> = ({ initialVideos }) => {
   const [videos, setVideos] = useState<Video[]>(initialVideos);
   const [loading, setLoading] = useState(false);

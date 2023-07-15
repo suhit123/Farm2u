@@ -8,8 +8,9 @@ import Image from 'next/image';
 import Footer from '../components/footer';
 import Nav from '../components/nav';
 import styles from '@/styles/products.module.css';
-import { ColorRing } from 'react-loader-spinner';
 import Loader from '../components/loader';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner} from "@fortawesome/free-solid-svg-icons";
 interface Product {
   _id: string;
   image1: string;
@@ -83,17 +84,7 @@ const Products = ({ productsData }: { productsData: Product[] }) => {
                       onClick={() => addToCart(item._id)}
                       disabled={loading[item._id]}
                     >
-                      {loading[item._id] ? (
-                        <ColorRing
-                          visible={true}
-                          height="30"
-                          width="30"
-                          ariaLabel="blocks-loading"
-                          wrapperStyle={{}}
-                          wrapperClass="blocks-wrapper"
-                          colors={['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff']}
-                        />
-                      ) : (
+                      {loading[item._id] ? (<FontAwesomeIcon icon={faSpinner} className="fa-spin" />) : (
                         'ADD TO CART'
                       )}
                     </button>

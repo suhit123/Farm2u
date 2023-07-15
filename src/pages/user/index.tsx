@@ -4,7 +4,6 @@ import styles from '@/styles/user/user.module.css';
 import Usernav from "./Usernav";
 import { Usercheck } from "./check";
 import { getSession, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";

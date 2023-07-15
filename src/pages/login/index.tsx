@@ -8,7 +8,8 @@ import Loader from '../components/loader';
 import { loginUser } from '../../../helpers';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
-import { ColorRing } from 'react-loader-spinner';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner} from "@fortawesome/free-solid-svg-icons";
 const Login=()=>{
     const router = useRouter()
     const [changeLoad,setChangeLoad]=useState(false);
@@ -82,16 +83,7 @@ const Login=()=>{
             <p>Show password</p>
           </div>
           <button type='submit'>
-            {changeLoad ?
-              <ColorRing
-                visible={true}
-                height="30"
-                width="30"
-                ariaLabel="blocks-loading"
-                wrapperStyle={{}}
-                wrapperClass="blocks-wrapper"
-                colors={['#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff']}
-              /> : <>Submit</>}
+            {changeLoad ?<FontAwesomeIcon icon={faSpinner} className="fa-spin" />: <>Submit</>}
           </button>
           <p><Link href='/forgotpassword'>forgot password?</Link></p>
           <p className={styles.loginredirection}>Don't have an account? <Link href='/signup'>Sign Up</Link></p>
