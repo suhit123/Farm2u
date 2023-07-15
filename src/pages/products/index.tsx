@@ -57,7 +57,29 @@ const Products = ({ productsData }: { productsData: Product[] }) => {
       <Nav />
       <div className={styles.products_container}>
         <div className={styles.products_page}>
-          {productsData.map((item:any,index: number) => {
+          {productsData.length===0?
+          [0,1,2,3].map((item:any)=>{
+            return(
+              <div className={styles.products_list_item_grid} key={item._id}>
+                <div className={styles.products_list_item_empty}>
+                  <div className={styles.products_list_item_image_empty}>
+                  </div>
+                  <div className={styles.products_list_items_content}>
+                    <div className={styles.p_empty}></div>
+                    <div className={styles.h_empty}></div>
+                    <div className={styles.hs_empty}></div>
+                    <div className={styles.p_empty}></div>
+                    <button
+                      className={styles.addtocart_products_empty}
+                    >
+                    </button>
+                  </div>
+                  <p className={styles.products_page_item_discounttag_empty}></p>
+                </div>
+              </div>
+            );
+          })
+          :productsData.map((item:any,index: number) => {
             const reviews = item.comments;
             let ratingAddition = 0;
             reviews.forEach((comment:any) => {
