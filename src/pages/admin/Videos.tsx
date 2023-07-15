@@ -12,6 +12,7 @@ import nodatafound from '@/resources/no_data_found.png'
 import { faSpinner} from "@fortawesome/free-solid-svg-icons";
 import Loader_colorring from '../components/Loader_colorring';
 import AdminNav from './AdminNav';
+import React from 'react';
 const Blogs=()=>{
     const router=useRouter();
     const [data,setData]:any=useState([]);    

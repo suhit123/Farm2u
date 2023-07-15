@@ -1,3 +1,4 @@
+import React from 'react';
 import { useRouter } from "next/router";
 import Footer from "../components/footer";
 import Nav from "../components/nav";

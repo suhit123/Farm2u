@@ -8,6 +8,7 @@ import { useState } from 'react';
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner} from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
 const ChangePassword = () => {
   Usercheck();
   const {data:session}:any=useSession();

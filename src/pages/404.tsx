@@ -2,6 +2,7 @@ import pagenotfound from '@/resources/Pagenotfound_image.jpg'
 import styles from '@/styles/custom404.module.css'
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import React from 'react';
 const Custom404 = () => {
   const router=useRouter();
   return (

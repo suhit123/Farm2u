@@ -8,6 +8,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
+import React from 'react';
 const Dashboard = ({addressData}:any) => {
   const router=useRouter();
   const {data:session,status}:any=useSession();

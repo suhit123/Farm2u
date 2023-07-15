@@ -13,6 +13,7 @@ import Loader_colorring from "./../components/Loader_colorring";
 import nodatafound from "@/resources/no_data_found.png";
 import { GetServerSidePropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
+import React from 'react';
 const Orders = ({ orders }: { orders: Order[] }) => {
   Usercheck()
   const [loader, setLoader] = useState(false);

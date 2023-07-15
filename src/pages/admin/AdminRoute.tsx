@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import rotate from '@/resources/rotateyourscreenanimationblack.gif'
 import styles from '@/styles/admin/indexpage.module.css'
+import React from 'react';
 const AdminRoute = ({ children }:any) => {
   const [loading, setLoading] = useState(true);
   const { data: session } = useSession();

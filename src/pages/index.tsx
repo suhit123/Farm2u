@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Video_slider from './components/Slider_video'
 import Bloghome from './components/Bloghome'
+import React from 'react';
 export default function Home() {
   const [blogdata,setBlogData]=useState([]);
     useEffect(()=>{

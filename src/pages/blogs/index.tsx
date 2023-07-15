@@ -7,6 +7,7 @@ import axios from 'axios';
 import Loader from '../components/loader';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner} from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
 interface Blog {
   // Define the properties of a single blog
   _id: number;

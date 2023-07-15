@@ -1,6 +1,7 @@
 import styles from '@/styles/blogbox.module.css'
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
 const Blogbox=(props:any)=>{
     return(
         <div className={styles.blogbox_con}>

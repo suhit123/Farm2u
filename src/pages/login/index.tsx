@@ -1,4 +1,5 @@
 import Link  from 'next/link';
+import React from 'react';
 import axios, { AxiosError } from "axios";
 import Footer from "../components/footer";
 import Nav from "../components/nav";

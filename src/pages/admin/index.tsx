@@ -13,6 +13,7 @@ import logo from '@/resources/logo_text.png';
 import Image from "next/image";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
+import React from 'react';
 const Admin = () => {
   const router=useRouter();
   return (

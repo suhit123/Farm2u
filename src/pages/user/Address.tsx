@@ -9,6 +9,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
+import React from 'react';
 const Addresses = ({addressData}:any) => {
     Usercheck();
     const router=useRouter();

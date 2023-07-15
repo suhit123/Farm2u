@@ -9,7 +9,7 @@ import AdminRoute from "./AdminRoute";
 import Admin from ".";
 import styles from '@/styles/admin/admintable_managemnt.module.css';
 import AdminNav from "./AdminNav";
-
+import React from 'react';
 const AdminPasswordChange=()=>{
     const {data:session}:any=useSession();
     const [checkConfirmPassword, setCheckConfirmPassword] = useState("text");  

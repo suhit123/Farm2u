@@ -11,7 +11,7 @@ import Admin from '.';
 import Loader_colorring from '../components/Loader_colorring';
 import nodatafound from '@/resources/no_data_found.png'
 import AdminNav from './AdminNav';
-
+import React from 'react';
 const Blogs=()=>{
     const router=useRouter();
     const [data,setData]:any=useState([]);

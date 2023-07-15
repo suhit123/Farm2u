@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import loaderimage from '@/resources/genmatrixlogo2.png';
 import { useState } from 'react';
-
+import React from 'react';
 type Visibility = 'visible' | 'hidden' | 'collapse';
 
 const Loader = (props: any) => {

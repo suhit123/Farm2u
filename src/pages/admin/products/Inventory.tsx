@@ -11,6 +11,7 @@ import successlogo from '@/resources/successicon.png'
 import Loader_colorring from "@/pages/components/Loader_colorring";
 import nodatafound from '@/resources/no_data_found.png'
 import AdminNav from "../AdminNav";
+import React from 'react';
 const Inventory = () => {
   let key=1;
   const router=useRouter();

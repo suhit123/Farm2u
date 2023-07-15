@@ -4,7 +4,7 @@ import Footer from "../components/footer";
 import Nav from "../components/nav";
 import styles from '@/styles/signup.module.css'
 import Image from "next/image";
-import googlelogo from'@/resources/google.png';
+import React from 'react';
 import successlogo from '@/resources/successicon.png'
 import { useEffect, useState } from 'react'
 import Loader from '../components/loader';

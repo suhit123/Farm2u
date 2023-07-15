@@ -9,6 +9,7 @@ import { RWebShare } from "react-web-share";
 import Blogad from "../components/Blogad";
 import sharepngpage from '@/resources/sharepngpage.png'
 import Custom404 from "../404";
+import React from 'react';
 const Blogid=()=>{
     const router=useRouter()
     let Blogid=router.query.Blogid;

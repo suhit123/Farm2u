@@ -1,5 +1,5 @@
 import styles from '@/styles/home.module.css'
-import Image from 'next/image';
+import React from 'react';
 import Link from 'next/link';
 const Bloghome=(props:any)=>{
     return(

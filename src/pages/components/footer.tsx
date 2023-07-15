@@ -1,8 +1,7 @@
 import Image from 'next/image';
 import styles from '@/styles/footer.module.css'
 import logo from '@/resources/genmatrixwhitelogo.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWhatsapp, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import React from 'react';
 const Footer=()=>{
     const scrollToTop = () => {
         window.scrollTo({

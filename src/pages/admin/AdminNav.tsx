@@ -1,5 +1,6 @@
 import { useSession } from "next-auth/react";
 import styles from '@/styles/admin/adminnav.module.css'
+import React from 'react';
 const AdminNav=()=>{
     const {data:session}=useSession();
     return(

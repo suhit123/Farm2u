@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import styles from '@/styles/video_curosel.module.css'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import React from 'react';
 interface Video {
   url: string;
   // Add more properties if necessary
