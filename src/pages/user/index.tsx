@@ -3,35 +3,16 @@ import Nav from "../components/nav";
 import styles from '@/styles/user/user.module.css';
 import Usernav from "./Usernav";
 import { Usercheck } from "./check";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-const Dashboard = () => {
+import { GetServerSidePropsContext } from "next";
+import { ParsedUrlQuery } from "querystring";
+const Dashboard = ({addressData}:any) => {
   const router=useRouter();
   const {data:session,status}:any=useSession();
-    Usercheck();
-    const [addressData, setAddressData]:any = useState([]);
-    const [addressDataCheck,setAddressDataCheck]=useState(false);
-    const fetchAddressData = () => {
-      axios.get(`/api/users/${session?.user?._id}/addresses`)
-          .then((res) => {
-          setAddressData(res.data.reverse()[0]);
-          if(res.data.length===0){
-            setAddressDataCheck(true);
-          }
-        })
-        .catch((err) => {
-          console.log("Something went wrong");
-        })
-        .finally(() => {
-        });
-    };
-    useEffect(()=>{
-      if (status === "authenticated") {
-        fetchAddressData();
-      }
-    },[status])
+  Usercheck();
   return (
     <>
       <Nav />
@@ -58,7 +39,7 @@ const Dashboard = () => {
                 </tbody>
             </table>
             <h6 className={styles.heading}>Address:</h6>
-            {addressDataCheck?<div className={styles.newaddress}><p>Click here to add a new address</p><button className={styles.add_address} onClick={()=>{router.push('/user/Address')}}>New Address</button></div>:<div className={styles.address_block}>
+            {!addressData?<div className={styles.newaddress}><p>Click here to add a new address</p><button className={styles.add_address} onClick={()=>{router.push('/user/Address')}}>New Address</button></div>:<div className={styles.address_block}>
                         <p>{addressData.firstName} {addressData.lastName}</p>
                         <p>{addressData.phoneNumber}</p>
                         <p>{addressData.address}</p>
@@ -74,5 +55,32 @@ const Dashboard = () => {
     </>
   );
 };
+export async function getServerSideProps(context:GetServerSidePropsContext<ParsedUrlQuery>){
+  try{
+    const session:any = await getSession(context);
+    if (!session) {
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false,
+        },
+      };
+    }
 
+    const baseUrl = process.env.BASE_URL;
+    const response = await axios.get(`${baseUrl}/api/users/${session?.user?._id}/addresses`);
+    const addressData = response.data.reverse()[0] || [];
+    return {
+      props: {
+        addressData,
+      },
+    };
+  }
+  catch(err){
+    console.log(err)
+    return {
+      props:{addressData:[]}
+    }
+  }
+}
 export default Dashboard;

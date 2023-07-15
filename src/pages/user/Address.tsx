@@ -4,18 +4,17 @@ import styles from '@/styles/user/user.module.css';
 import Usernav from "./Usernav";
 import { useEffect, useReducer, useState } from "react";
 import { Usercheck } from "./check";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import axios from "axios";
 import Loader_colorring from "../components/Loader_colorring";
 import { useRouter } from "next/router";
-const Addresses = () => {
+import { GetServerSidePropsContext } from "next";
+import { ParsedUrlQuery } from "querystring";
+const Addresses = ({addressData}:any) => {
     Usercheck();
     const router=useRouter();
-    const {data:session,status}:any=useSession();
+    const {data:session}:any=useSession();
     const [showForm,setShowForm]=useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const [addressDataCheck,setAddressDataCheck]=useState(false);
-    const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -27,7 +26,6 @@ const Addresses = () => {
         pincode: '',
         country: 'India'
       });
-      const [addressData, setAddressData] = useState([]);
 
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -49,7 +47,6 @@ const Addresses = () => {
           pincode: '',
           country: 'India'
         });
-        forceUpdate
         setShowForm(false)
         fetchAddressData();
         router.reload();
@@ -60,20 +57,7 @@ const Addresses = () => {
   };
 
   const fetchAddressData = () => {
-    setIsLoading(true); // Set loading state to true
-    axios.get(`/api/users/${session?.user?._id}/addresses`)
-        .then((res) => {
-        setAddressData(res.data.reverse());
-        if(res.data.length===0){
-          setAddressDataCheck(true);
-        }
-      })
-      .catch((err) => {
-        console.log("Something went wrong");
-      })
-      .finally(() => {
-        setIsLoading(false); // Set loading state to false
-      });
+    router.reload()
   };
   const handleDelete=(id:any)=>{
     axios.delete(`/api/users/${session?.user?._id}/addresses/${id}`)
@@ -84,11 +68,6 @@ const Addresses = () => {
       console.log('Failed to delete address:', err);
     });
   };
-  useEffect(() => {
-    if (status === "authenticated") {
-      fetchAddressData();
-    }
-  }, [status,reducerValue]);
 
   return (
     <>
@@ -187,8 +166,7 @@ const Addresses = () => {
     </form>:<></>}
             <h5>ADDRESS BOOK</h5>     
             <div className={styles.address_blocks}>
-              {isLoading && <div className={styles.address_loader}><Loader_colorring/></div>}
-                {addressDataCheck?<p>Address not found ! Add New.</p>:addressData.map((item:any)=>{
+                {addressData.length===0?<p>Address not found ! Add New.</p>:addressData.map((item:any)=>{
                     return(
                         <div className={styles.address_block}>
                         <button className={styles.closebtn} onClick={()=>handleDelete(item._id)}>&times;</button>
@@ -210,5 +188,34 @@ const Addresses = () => {
     </>
   );
 };
+
+export async function getServerSideProps(context:GetServerSidePropsContext<ParsedUrlQuery>){
+  try{
+    const session:any = await getSession(context);
+    if (!session) {
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false,
+        },
+      };
+    }
+
+    const baseUrl = process.env.BASE_URL;
+    const response = await axios.get(`${baseUrl}/api/users/${session?.user?._id}/addresses`);
+    const addressData = response.data.reverse();
+    return {
+      props: {
+        addressData,
+      },
+    };
+  }
+  catch(err){
+    console.log(err)
+    return {
+      props:{addressData:[]}
+    }
+  }
+}
 
 export default Addresses;

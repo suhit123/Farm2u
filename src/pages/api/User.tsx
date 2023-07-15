@@ -20,11 +20,11 @@ export default async (req:NextApiRequest,res:NextApiResponse)=>{
                     
                 }
                 const user=await UserB.create(userdetails);
-                res.status(201).json({success:true,data:user})
+                return res.status(201).json({success:true,data:user})
             }
             catch(err){
                 console.log(err)
-                res.status(400).json({success:false});
+                return res.status(400).json({success:false});
             }
             }
             else{
@@ -32,6 +32,6 @@ export default async (req:NextApiRequest,res:NextApiResponse)=>{
             }
             break;
         default:
-            res.status(400).json({success:false});
+            return res.status(400).json({success:false});
     }
 }

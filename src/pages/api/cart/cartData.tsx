@@ -8,8 +8,8 @@ export default async (req:any,res:any)=>{
     switch(method){
         case 'POST':
             const userdata=await UserB.findOne({_id:req.body.id});
-            res.json(userdata.cart);
+            return res.json(userdata.cart);
         default:
-            res.status(400).json({success:false});
+            return res.status(400).json({success:false});
         }
     }

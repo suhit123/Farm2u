@@ -1,9 +1,12 @@
+.entire_landing_page{
+    scroll-behavior: auto;
+}
 .landing_content{
     height: 70vh;
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('../resources/DNAGenetics.gif');
+    background-image: url('https://user-images.githubusercontent.com/105535366/253722120-f60408b3-bf63-4568-989c-58701071e936.gif');
     background-color: rgb(79, 79, 79);
     background-blend-mode: multiply;
     display: flex;

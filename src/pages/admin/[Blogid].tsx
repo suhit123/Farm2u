@@ -149,16 +149,6 @@ const Editblog=()=>{
                     <div><input className={styles.publish_blog_input} type="file" name="image" accept="image/*" onChange={handleInputChange} /></div>
                 </div>
                 <div>
-                    Category:
-                    <div><select className={styles.publish_blog_input} name="category" value={formData.category} onChange={handleInputChange}>
-                        <option value="">Select a category</option>
-                        <option value="1">Category 1</option>
-                        <option value="2">Category 2</option>
-                        <option value="3">Category 3</option>
-                        <option value="4">Category 4</option>
-                    </select></div>
-                </div>
-                <div>
                     Description:
                     <div><textarea className={styles.publish_blog_textarea} name="description" value={formData.description} onChange={handleInputChange} /></div>
                 </div>
@@ -188,7 +178,7 @@ const Editblog=()=>{
                 <tr>
                   <td>{item._id}</td>
                   <td>{item.name}</td>
-                  <td>{item.publishDate.split('@')[0]}</td>
+                  <td>{item.publishDate}</td>
                   <td>{item.comment}</td>
                   <td><button onClick={()=>{
                     try{

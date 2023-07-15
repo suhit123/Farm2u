@@ -167,7 +167,7 @@ return(
   </div>
   <div id="mySidenav" className={`${cartstyles.sidecart} ${cartState?cartstyles.sidecart_visible:cartstyles.sidecart_none}`}>
   <h4 className={cartstyles.heading}>Shopping Cart</h4>
-  <a href="javascript:void(0)" className={cartstyles.closebtn} onClick={closeNav}>&times;</a>
+  <a className={cartstyles.closebtn} onClick={closeNav}>&times;</a>
   {cartData.length!==0 && cartDataContents.length!==0?<div>
   <div className={cartstyles.cart_items}><div className={cartstyles.cart_items_list}>
   {loading ? ( 
@@ -216,7 +216,7 @@ return(
     <div  className={cartstyles.cart_bottom_container}><button className={cartstyles.cart_checkout} onClick={()=>{router.push('/products')}}>Continue Shopping</button></div>
   </div>}
   </div>
-  <div className={styles.facebook_link}><a href='https://facebook.com'><Image width="40" height="40" src={facebooklogo} alt="facebook--v1"/></a></div>
+  <div className={styles.facebook_link}><a href='https://www.facebook.com/profile.php?id=100093098380347'><Image width="40" height="40" src={facebooklogo} alt="facebook--v1"/></a></div>
   </div>
 );
 };

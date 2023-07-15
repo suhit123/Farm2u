@@ -9,14 +9,14 @@ export default async (req:NextApiRequest,res:NextApiResponse) => {
       port: 587,
       secure: false, // Set it to true if using a secure connection (TLS/SSL)
       auth: {
-        user: 'suhiteswar123@gmail.com',
-        pass: 'dmgymhmhjotlgnbh',
+        user: process.env.ADMIN_EMAIL,
+        pass: process.env.ADMIN_EMAIL_PASS,
       },
     });
     // Create an email message
     const mailOptions = {
-      from: 'suhiteswar123@gmail.com',
-      to: `suhiteswar123@gmail.com`,
+      from: process.env.ADMIN_EMAIL,
+      to: process.env.ADMIN_EMAIL,
       subject: 'Someone commented',
       html:`
       <html>
@@ -65,10 +65,10 @@ export default async (req:NextApiRequest,res:NextApiResponse) => {
     // Send the email
     await transporter.sendMail(mailOptions);
     // Return a success response
-    res.status(200).json({ message: 'Email sent successfully' });
+    return res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {
     console.error(error);
     // Return an error response
-    res.status(500).json({ message: 'Failed to send email' });
+    return res.status(500).json({ message: 'Failed to send email' });
   }
 };

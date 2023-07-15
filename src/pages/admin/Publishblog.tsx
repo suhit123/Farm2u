@@ -21,7 +21,7 @@ const Publishblog=()=>{
         title: '',
         publishDate: '',
         image: '',
-        category: '',
+        category: '0',
         description: '',
         bodycontent:null
       });
@@ -139,16 +139,6 @@ const Publishblog=()=>{
                 <div>
                     Image:
                     <div><input className={styles.publish_blog_input} type="file" name="image" accept="image/*" onChange={handleInputChange} required/></div>
-                </div>
-                <div>
-                    Category:
-                    <div><select className={styles.publish_blog_input_catogary} name="category" value={formData.category} onChange={handleInputChange} required>
-                        <option value="">Select a category</option>
-                        <option value="1">Category 1</option>
-                        <option value="2">Category 2</option>
-                        <option value="3">Category 3</option>
-                        <option value="4">Category 4</option>
-                    </select></div>
                 </div>
                 <div>
                     Summary:

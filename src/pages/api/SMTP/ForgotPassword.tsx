@@ -18,8 +18,8 @@ export default async (req:NextApiRequest,res:NextApiResponse)=>{
                     port: 587,
                     secure: false, // Set it to true if using a secure connection (TLS/SSL)
                     auth: {
-                      user: 'suhiteswar123@gmail.com',
-                      pass: 'dmgymhmhjotlgnbh',
+                      user: process.env.ADMIN_EMAIL,
+                      pass: process.env.ADMIN_EMAIL_PASS,
                     },
                 }) 
                 const generateOTP=()=> {
@@ -32,7 +32,7 @@ export default async (req:NextApiRequest,res:NextApiResponse)=>{
                 }
                 const otp=generateOTP()
                     const options={
-                        from:'suhiteswar123@gmail.com',
+                        from:process.env.ADMIN_EMAIL,
                         to:`${email}`,
                         subject:'Customer account password reset',
                         html:  ` <html>
@@ -91,19 +91,18 @@ export default async (req:NextApiRequest,res:NextApiResponse)=>{
                         console.log(err);
                         return res.status(401).json({someerr:'Something wrong' });
                       }                
-                      res.status(201).json({success:true,message:"Otp sent!"})
+                      return res.status(201).json({success:true,message:"Otp sent!"})
                       }
                     catch(err){
                       console.log(err)
                       return res.status(401).json({someerr:'Something wrong' });
                     }
-                    res.status(200).json({message:"Otp sent!"})   
             }
             catch(err){
-                res.status(200).json({message:"Cannot able sent otp!"})
+                return res.status(200).json({message:"Cannot able sent otp!"})
             }
             break;
         default:
-            res.status(400).json({success:false});
+            return res.status(400).json({success:false});
     }
 }

@@ -218,11 +218,12 @@ const AllOrders = () => {
                                 </thead>
                                 <tbody>
                                   {item.products.map((i: any) => {
+                                    console.log(i.productId)
                                     return (
                                       <tr>
                                         <td className={`${styles.second_product_td} ${styles.second_p_td}`}>
-                                          <Image src={i.image} alt="image" width={100} height={100} />
-                                          <p>{i.title}</p>
+                                          <Image src={i.productId.image1} alt="image" width={100} height={100} />
+                                          <p>{i.productId.heading}</p>
                                         </td>
                                         <td className={styles.second_p_td}>
                                           <p>Qty : {i.quantity}</p>
@@ -542,8 +543,8 @@ const Custom=({element}:any)=>{
                                     return (
                                       <tr>
                                         <td className={`${styles.second_product_td} ${styles.second_p_td}`}>
-                                          <Image src={i.image} alt="image" width={100} height={100} />
-                                          <p>{i.title}</p>
+                                          <Image src={i.productId.image1} alt="image" width={100} height={100} />
+                                          <p>{i.productId.heading}</p>
                                         </td>
                                         <td className={styles.second_p_td}>
                                           <p>Qty : {i.quantity}</p>

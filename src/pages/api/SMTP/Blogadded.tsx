@@ -12,14 +12,14 @@ export default async (req:NextApiRequest,res:NextApiResponse)=>{
                     port: 587,
                     secure: false, // Set it to true if using a secure connection (TLS/SSL)
                     auth: {
-                      user: 'suhiteswar123@gmail.com',
-                      pass: 'dmgymhmhjotlgnbh',
+                      user: process.env.ADMIN_EMAIL,
+                      pass: process.env.ADMIN_EMAIL_PASS,
                     },
                 }) 
                 const subscribers=await Notifyemails.find();
                 subscribers.forEach(async(subscriber)=>{
                     const options={
-                        from:'suhiteswar123@gmail.com',
+                        from:process.env.ADMIN_EMAIL,
                         to:`${subscriber.email}`,
                         subject:'New blog posted checkout!',
                         html:  ` <html>
@@ -87,14 +87,14 @@ export default async (req:NextApiRequest,res:NextApiResponse)=>{
                     }
                     await transporter.sendMail(options)
                 })
-                res.status(200).json({message:"Message sent to all subscribers!"})
+                return res.status(200).json({message:"Message sent to all subscribers!"})
                 
             }
             catch(err){
-                res.status(200).json({message:"Cannot able sent to all subscribers!"})
+                return res.status(200).json({message:"Cannot able sent to all subscribers!"})
             }
             break;
         default:
-            res.status(400).json({success:false});
+            return res.status(400).json({success:false});
     }
 }

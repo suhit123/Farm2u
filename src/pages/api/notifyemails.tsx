@@ -12,10 +12,10 @@ export default async (req:NextApiRequest,res:NextApiResponse)=>{
             if(check==null){
             try{
                 const user=await NotifyEmail.create(req.body);
-                res.status(201).json({success:true,data:user})
+                return res.status(201).json({success:true,data:user})
             }
             catch(err){
-                res.status(400).json({success:false});
+                return res.status(400).json({success:false});
             }
             }
             else{
@@ -23,6 +23,6 @@ export default async (req:NextApiRequest,res:NextApiResponse)=>{
             }
             break;
         default:
-            res.status(400).json({success:false});
+            return res.status(400).json({success:false});
     }
 }

@@ -10,7 +10,6 @@ import { useRouter } from 'next/router';
 import genmatrixlogo from '@/resources/logo_text.png'
 import Head from 'next/head';
 import circlelogo from '@/resources/genmatrixlogo2.png'
-
 const CheckoutForm = () => {
   const router=useRouter();
   const { data: session , status: sessionStatus}:any = useSession();
@@ -123,15 +122,15 @@ const CheckoutForm = () => {
     setTotalPrice(tp);
     setTotalDiscount(dp);
   }, [reducerValue, cartData, cartDataContents]);
-  const addToOrders=()=>{
+  const addToOrders=async()=>{
     try{
       let cart:any=[];
       cartData.map((item:any) => {
+        console.log(item)
         const dataelement:any = cartDataContents.find((i:any) => i._id === item.productId);
         if (dataelement) {
           cart.push({
-            title:dataelement.heading,
-            image:dataelement.image1,
+            productId:item.productId,
             quantity:item.quantity,
             price:Math.floor(dataelement.price-((dataelement.discount * dataelement.price) / 100))
           })
@@ -146,10 +145,18 @@ const CheckoutForm = () => {
           paymentStatus:'paid',
       };
       console.log(data)
-      axios.post('/api/Orders',data)
-      .then((res)=>{
-        console.log(res)
-        router.push('/user/Orders')
+      await axios.post('/api/Orders',data)
+      .then(async(res)=>{
+        await axios.delete(`/api/cart/ResetCart/${session?.user?._id}`)
+        .then((res)=>{
+          console.log("cart reset");
+        })
+        .catch((err)=>{
+          alert("Something gone wrong reseting the cart items!");
+        })
+        .finally(()=>{
+          router.push('/user/Orders');
+        })
       })
       .catch((err)=>{
         alert("something went wrong")
@@ -188,7 +195,7 @@ const CheckoutForm = () => {
     );
     console.log(data);
     var options = {
-      key:"rzp_test_P4936ySdvNy851", // Enter the Key ID generated from the Dashboard
+      key:process.env.RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
       name: "GENMATRIX REMEDIES",
       currency: data.currency,
       amount: data.amount,

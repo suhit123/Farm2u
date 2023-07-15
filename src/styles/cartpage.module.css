@@ -154,8 +154,52 @@ font-weight: 500;
 .desktop{
     display: none;
 }
-@media screen and (max-width:950px){
-
+.empty_loader{
+    margin: 30px 0px;
+    width: 60vw;
+    height: max-content;
+    background-color: rgb(255, 255, 255);
+    transition: 0.3s all ease;
+    position: relative;
+    background-image: linear-gradient(
+		90deg,
+		#f1f1f13d 0px,
+		rgb(255, 255, 255) 40px,
+		#f1f1f13d 80px
+	);
+	background-size: 300%;
+	background-position: 100% 0;
+	border-radius: inherit;
+	animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+	to {
+		background-position: -100% 0;
+	}
+}
+.empty_header{
+    width: 100%;
+    height: 50px;
+    background-color: #9292923f;
+    border-radius: 5px;
+}
+.empty_block{
+    border-radius: 5px;
+    width: 100%;
+    height: 100px;
+    margin: 10px 0px;
+    background-color: #e2e2e262;
+}
+@media screen and (max-width:1150px){
+    .empty_loader{
+        width: 70vw;}
+        .empty_header{
+            height: 40px;
+        }
+        .empty_block{
+            height: 50px;
+        }
+    .cartpa
     .cartpage_entire h4{
         font-size: 15px;
         margin: 10px;
@@ -261,7 +305,16 @@ font-weight: 500;
         display: none;
     }
 }
-@media screen and (max-width:550px){
+@media screen and (max-width:700px){
+    .empty_loader{
+        width: 70vw;}
+        .empty_header{
+            height: 30px;
+        }
+        .empty_block{
+            width: 100%;
+            height: 50px;
+        }
     .cartpage_entire h4{
         margin: 10px 0px;
         font-size: 15px;

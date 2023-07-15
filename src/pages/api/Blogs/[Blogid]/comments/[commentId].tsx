@@ -21,10 +21,10 @@ export default async (req: any, res: any) => {
         }
         Blog.comments.splice(commentIndex, 1);
         await Blog.save();
-        res.json({ message: 'comments removed successfully' });
+        return res.json({ message: 'comments removed successfully' });
       } catch (error) {
         console.error('Failed to remove comments:', error);
-        res.status(500).json({ error: 'Failed to remove comments' });
+        return res.status(500).json({ error: 'Failed to remove comments' });
       }
       break;
 

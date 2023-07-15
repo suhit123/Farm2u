@@ -59,35 +59,12 @@ const Editblog=()=>{
       useEffect(() => {
         fetchData()
       }, [Productid,initialContent,quill]);
-        const toBase64 =(file:any)=>new Promise((resolve,reject)=>{
-        const reader=new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload=()=>resolve(reader.result);
-        reader.onerror=(error)=>reject(error);
-        })
         const handleInputChange = async(e:any) => {
-            if (e.target.name === 'image1'||e.target.name === 'image2'||e.target.name === 'image3'||e.target.name === 'image4') {
-                const file = e.target.files[0];
-                setSelectedImage(file);
-                if (file) {
-                  const reader:any = new FileReader();
-                  reader.onloadend = () => {
-                    console.log(reader.result)
-                    setFormData((prevState:any) => ({
-                        ...prevState,
-                        [e.target.name]:reader.result
-                    }));
-                  };
-                  reader.readAsDataURL(file);
-                }
-            } 
-            else {
                 const { name, value } = e.target;
                 setFormData((prevState:any) => ({
                 ...prevState,
                 [name]: value
             }));
-        }
           };
     
       const handlePublish = (e:any) => {
@@ -145,19 +122,19 @@ const Editblog=()=>{
                 </div >
                 <div className={styles.publish_post_form_container_leftbox_div}>
                     Image1:
-                    <div><input className={styles.publish_blog_input} type="file" name="image1" accept="image/*" onChange={handleInputChange}/></div>
+                    <div><input className={styles.publish_blog_input} type="text" name="image1" value={formData.image1} accept="image/*" onChange={handleInputChange}/></div>
                 </div>
                 <div className={styles.publish_post_form_container_leftbox_div}>
                     Image2:
-                    <div><input className={styles.publish_blog_input} type="file" name="image2" accept="image/*" onChange={handleInputChange}/></div>
+                    <div><input className={styles.publish_blog_input} type="text" name="image2" accept="image/*" value={formData.image2} onChange={handleInputChange}/></div>
                 </div>
                 <div className={styles.publish_post_form_container_leftbox_div}>
                     Image3:
-                    <div><input className={styles.publish_blog_input} type="file" name="image3" accept="image/*" onChange={handleInputChange}/></div>
+                    <div><input className={styles.publish_blog_input} type="text" name="image3" accept="image/*" value={formData.image3} onChange={handleInputChange}/></div>
                 </div>
                 <div className={styles.publish_post_form_container_leftbox_div}>
                     Image4:
-                    <div><input className={styles.publish_blog_input} type="file" name="image4" accept="image/*" onChange={handleInputChange}/></div>
+                    <div><input className={styles.publish_blog_input} type="text" name="image4" accept="image/*" value={formData.image4} onChange={handleInputChange}/></div>
                 </div>
                 <div className={styles.publish_post_form_container_leftbox_div}>
                     Price:

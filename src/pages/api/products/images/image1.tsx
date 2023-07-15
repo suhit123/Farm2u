@@ -5,23 +5,11 @@ export const config = { api: { bodyParser: { sizeLimit: '100mb' },responseLimit:
 export default async (req:any,res:any)=>{
     const {method}=req;
     switch(method){
-        case 'POST':
-            try{
-                const data=req.body;
-                Object.assign(data,{comments:[]});
-                const user=await Product.create(data);
-                return res.status(201).json({success:true,data:user})
-            }
-            catch(err){
-                console.log(err);
-                return res.status(400).json({success:false});
-            }
-            break;
         case 'GET':
             try{
-                const products=await Product.find({}, "-image2 -image3 -image4 -description");
-                if(products){    
-                    return res.status(200).json(products)}
+                const productsImage1=await Product.find({}, " _id image1");
+                if(productsImage1){    
+                    return res.status(200).json(productsImage1)}
                 else{
                     return res.status(404).json({});
                 }

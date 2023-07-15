@@ -163,6 +163,7 @@
     padding: 10px;
     border-radius: 5px;
     color: white;
+    cursor: pointer;
 }
 @media screen and (max-width:950px){
     .publish_post_form_container{

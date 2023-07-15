@@ -11,13 +11,13 @@ export default async (req:any,res:any)=>{
             try{
                 const blogs=await Product.findOne({_id:Productid});
                 if(blogs){    
-                    res.status(200).json(blogs)}
+                    return res.status(200).json(blogs)}
                 else{
                     return res.status(404).send("iderror");
                 }
             }
             catch(err){
-                res.status(404).send("iderror");
+                return res.status(404).send("iderror");
             }
             break;
             
@@ -26,31 +26,31 @@ export default async (req:any,res:any)=>{
                 const blog = await Product.findOne({_id:Productid});
                 blog.comments.push({ name:req.body.name,rating:req.body.rating, comment:req.body.comment, publishDate:Date.now()});
                 await blog.save();
-                res.status(200).json({ message: 'Comment added to product successfully' });
+                return res.status(200).json({ message: 'Comment added to product successfully' });
               } catch (error) {
                 console.error(error);
-                res.status(500).json({ message: 'Internal Server Error' });
+                return res.status(500).json({ message: 'Internal Server Error' });
               }
               break;
         case 'DELETE':
             try{
                 await Product.findByIdAndDelete(Productid);
-                res.status(200).send('delted');
+                return res.status(200).send('delted');
             }
             catch(err){
-                res.status(401).send("iderror");
+                return res.status(401).send("iderror");
             }
             break;
         case 'PATCH':
             try{
                 await Product.findByIdAndUpdate(Productid,req.body);
-                res.status(200).send('edited');
+                return res.status(200).send('edited');
             }
             catch(err){
-                res.status(401).send("iderror");
+                return res.status(401).send("iderror");
             }
             break;
         default:
-            res.status(400).json({success:false});
+            return res.status(400).json({success:false});
     }
 }

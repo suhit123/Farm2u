@@ -7,8 +7,8 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
   if (req.method === "POST") {
     // Initialize razorpay object
     const razorpay = new Razorpay({
-      key_id: "rzp_test_P4936ySdvNy851",
-      key_secret: "74t2y4BdPDXVm0hwKjWd7u4f",
+      key_id: process.env.RAZORPAY_KEY_ID,
+      key_secret: process.env.RAZORPAY_KEY_SECRET,
     });
     // Create an order -> generate the OrderID -> Send it to the Front-end
     const payment_capture = 1;

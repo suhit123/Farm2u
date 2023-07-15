@@ -16,9 +16,9 @@ export default async function addToCart(req:any, res:any) {
         user.cart.push({ productId:productId, quantity: 1 });
       }
       await user.save();
-      res.status(200).json({ message: 'Product added to cart successfully' });
+      return res.status(200).json({ message: 'Product added to cart successfully' });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal Server Error' });
+    console.error(error);
+      return res.status(500).json({ message: 'Internal Server Error' });
     }
   }

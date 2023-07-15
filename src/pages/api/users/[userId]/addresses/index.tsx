@@ -32,30 +32,30 @@ export default async (req:any,res:any)=>{
                     country
                 });
                 await user.save();
-                res.status(200).json({ message: 'Address added successfully' });
+                return res.status(200).json({ message: 'Address added successfully' });
               } catch (error) {
                 console.error(error);
                 console.log(error)
-                res.status(500).json({ message: 'Internal Server Error' });
+                return res.status(500).json({ message: 'Internal Server Error' });
               }
             break;
             case 'GET':
           UserB.findById(userId)
           .then(user=>{
             if (!user) {
-                res.status(404).json({ error: 'User not found' });
+                return res.status(404).json({ error: 'User not found' });
             }
             else{
-                res.status(200).send(user.address);
+                return res.status(200).send(user.address);
             }
           })
           .catch(err => {
             console.error('Failed to find user:', err);
-            res.status(500).json({ error: 'Failed to remove address' });
+            return res.status(500).json({ error: 'Failed to remove address' });
           });
           break;
             default:
-                res.status(500).json({ message: 'Method Error' });
+                return res.status(500).json({ message: 'Method Error' });
             break;
     }
 }

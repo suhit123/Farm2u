@@ -26,7 +26,7 @@ export default async (req: any, res: any) => {
         res.json({ message: 'Address removed successfully' });
       } catch (error) {
         console.error('Failed to remove address:', error);
-        res.status(500).json({ error: 'Failed to remove address' });
+        return res.status(500).json({ error: 'Failed to remove address' });
       }
       break;
 

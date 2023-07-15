@@ -12,7 +12,6 @@ const ChangePassword = () => {
   const {data:session}:any=useSession();
   const [checkConfirmPassword, setCheckConfirmPassword] = useState("text");  
   const [loading, setLoading] = useState(false);
-
   const [formData, setFormData] = useState({
     oldPassword: "",
     newPassword: "",
@@ -25,7 +24,6 @@ const ChangePassword = () => {
   const handleChange = (e:any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = (e:any) => {
     e.preventDefault();
     if(formData.newPassword!==formData.confirmPassword){

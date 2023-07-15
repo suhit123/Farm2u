@@ -38,7 +38,7 @@ const BlogsASchema=new mongoose.Schema({
             trim:true
         },
         publishDate:{
-            type:String,
+            type:Date,
             required:true,
             trim:true
         },

@@ -1,5 +1,5 @@
 import dbConnect from '@/utils/dbConnect';
-import Order from '@/models/Order';
+import Orderi from '@/models/Orderi';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 dbConnect();
@@ -13,7 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch (method) {
     case 'PATCH':
       try {
-        const updatedOrder = await Order.findByIdAndUpdate(
+        const updatedOrder = await Orderi.findByIdAndUpdate(
           orderId,req.body );
 
         if (!updatedOrder) {

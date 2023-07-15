@@ -26,7 +26,7 @@ export default async function addToCart(req: any, res: any) {
       return res.status(200).json({ message: 'No such Product in your cart' });
     }
     await user.save();
-    res.status(200).json({ message: 'Removed product from your cart successfully' });
+    return res.status(200).json({ message: 'Removed product from your cart successfully' });
   } catch (error) {
     res.end();
   }

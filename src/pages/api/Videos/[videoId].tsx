@@ -9,13 +9,13 @@ export default async (req:any,res:any)=>{
         case 'DELETE':
             try{
                 await Videos.findByIdAndDelete(videoId);
-                res.status(200).send('delted');
+                return res.status(200).send('delted');
             }
             catch(err){
-                res.status(401).send("iderror");
+                return res.status(401).send("iderror");
             }
             break;
         default:
-            res.status(400).json({success:false});
+            return res.status(400).json({success:false});
     }
 }

@@ -10,26 +10,30 @@ export default async (req:any,res:any)=>{
                 const data=req.body;
                 Object.assign(data,{comments:[]});
                 const user=await BlogsA.create(data);
-                res.status(201).json({success:true,data:user})
+                return res.status(201).json({success:true,data:user})
             }
             catch(err){
-                res.status(400).json({success:false});
+                return res.status(400).json({success:false});
             }
             break;
         case 'GET':
             try{
-                const blogs=await BlogsA.find().sort({publishDate: 'descending'});
+                const { start, end } = req.query;
+                const blogs = await BlogsA.find({}, '-bodycontent -comments')
+                .sort({ publishDate: 'descending' })
+                .skip(Number(start))
+                .limit(Number(end) - Number(start) + 1);
                 if(blogs){    
-                    res.status(200).json(blogs)}
+                    return res.status(200).json(blogs)}
                 else{
-                    res.status(404).json({});
+                    return res.status(404).json({});
                 }
             }
             catch(err){
-                res.status(400).json({success:false});
+                return res.status(400).json({success:false});
             }
             break;
         default:
-            res.status(400).json({success:false});
+            return res.status(400).json({success:false});
     }
 }

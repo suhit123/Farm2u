@@ -59,7 +59,7 @@ export default function Home() {
       <main>
         
     <Loader time={1000}/>
-    <div className="box-area">
+    <div className={styles.entire_landing_page}>
          <Nav/>
          <div className={styles.landing_content}>
             <div className={styles.landing_content_block}><h2>Welcome to</h2>

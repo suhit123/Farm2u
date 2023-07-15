@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useReducer, useState } from "react";
-import cartstyles from "@/styles/cartpage.module.css";
+import styles from "@/styles/cartpage.module.css";
 import cartemptyimg from "@/resources/cartempty.png";
 import Nav from "./components/nav";
 import Footer from "./components/footer";
@@ -118,23 +118,23 @@ const Cart = () => {
   return (
     <>{!session?<></>:<>
       <Nav />
-      <div className={cartstyles.cartpage_entire}>
-        <h4 className={cartstyles.heading}>Shopping Cart</h4>
+      <div className={styles.cartpage_entire}>
+        <h4 className={styles.heading}>Shopping Cart</h4>
         {cartData.length !== 0 && cartDataContents.length !== 0 ? (
-          <div className={cartstyles.cart_main_block}>
+          <div className={styles.cart_main_block}>
              {loading ? ( 
                 <Loader_colorring/>
                 ) : <p></p>}
-            <div className={cartstyles.cart_items}>
-              <div className={cartstyles.cart_items_list}>
-                  <table className={cartstyles.table}>
+            <div className={styles.cart_items}>
+              <div className={styles.cart_items_list}>
+                  <table className={styles.table}>
                     <thead>
                       <tr>
                         <th>Product</th>
-                        <th className={cartstyles.mobile}>Price</th>
+                        <th className={styles.mobile}>Price</th>
                         <th>Discount Price</th>
                         <th >Quantity</th>
-                        <th className={cartstyles.mobile}>Total</th>
+                        <th className={styles.mobile}>Total</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -145,29 +145,29 @@ const Cart = () => {
                             <>
                               <tr>
                                 <td>
-                                  <div className={cartstyles.image_and_title}>
+                                  <div className={styles.image_and_title}>
                                     <Image src={dataelement.image1} alt="" width={100} height={100} />
                                     <div>
-                                      <p className={cartstyles.mobile}>{dataelement.heading}</p>
-                                      <p className={cartstyles.desktop}>{dataelement.heading.slice(0,20)}...</p>
-                                      <p className={`${cartstyles.companyname} ${cartstyles.mobile}`}>Genmatrix remedies</p>
+                                      <p className={styles.mobile}>{dataelement.heading}</p>
+                                      <p className={styles.desktop}>{dataelement.heading.slice(0,20)}...</p>
+                                      <p className={`${styles.companyname} ${styles.mobile}`}>Genmatrix remedies</p>
                                     </div>
                                   </div>
                                 </td>
-                                <td className={cartstyles.mobile}>
+                                <td className={styles.mobile}>
                                   <p>Rs. {dataelement.price}</p>
                                 </td>
                                 <td>
                                   <p>Rs. {Math.floor(dataelement.price-((dataelement.discount * dataelement.price) / 100))}</p>
                                 </td>
                                 <td>
-                                  <div className={cartstyles.quantity}>
-                                    <button className={cartstyles.cart_removefromcart_products} onClick={() => { RemoveFromcart(dataelement._id) }}>-</button>
+                                  <div className={styles.quantity}>
+                                    <button className={styles.cart_removefromcart_products} onClick={() => { RemoveFromcart(dataelement._id) }}>-</button>
                                     <p>{item.quantity}</p>
-                                    <button className={cartstyles.cart_addtocart_products} onClick={() => { Addtocart(dataelement._id) }}>+</button>
+                                    <button className={styles.cart_addtocart_products} onClick={() => { Addtocart(dataelement._id) }}>+</button>
                                   </div>
                                 </td>
-                                <td className={cartstyles.mobile}>Rs. {Math.floor(dataelement.price-((dataelement.discount * dataelement.price) / 100)) * item.quantity}</td>
+                                <td className={styles.mobile}>Rs. {Math.floor(dataelement.price-((dataelement.discount * dataelement.price) / 100)) * item.quantity}</td>
                               </tr>
                             </>
                           );
@@ -177,25 +177,25 @@ const Cart = () => {
                   </table>
               </div>
             </div>
-            <div className={cartstyles.cart_right_container}>
+            <div className={styles.cart_right_container}>
               <h3>Order Summary</h3>
-              <div className={cartstyles.cart_total}>
+              <div className={styles.cart_total}>
                 <p>Total</p>
-                <p className={cartstyles.priceamounts}>{totalPrice}</p>
+                <p className={styles.priceamounts}>{totalPrice}</p>
               </div>
-              <div className={cartstyles.cart_discount}>
+              <div className={styles.cart_discount}>
                 <p>Discount</p>
-                <p className={cartstyles.priceamounts}>- {totalDiscount}</p>
+                <p className={styles.priceamounts}>- {totalDiscount}</p>
               </div>
-              <div className={cartstyles.cart_subtotal}>
+              <div className={styles.cart_subtotal}>
                 <p>Subtotal</p>
-                <p className={cartstyles.priceamounts}>Rs. {totalPrice - totalDiscount}</p>
+                <p className={styles.priceamounts}>Rs. {totalPrice - totalDiscount}</p>
               </div>
-              <button className={cartstyles.cart_checkout } onClick={() => {
+              <button className={styles.cart_checkout } onClick={() => {
                   router.push("/checkout");
                 }}>PROCEED TO CHECKOUT</button>
               <button
-                className={cartstyles.cart_back}
+                className={styles.cart_back}
                 onClick={() => {
                   router.push("/products");
                 }}
@@ -205,14 +205,14 @@ const Cart = () => {
             </div>
           </div>
         ) : addressDataCheck?(
-          <div className={cartstyles.cart_empty_div}>
-            <div className={cartstyles.cart_empty_image}>
+          <div className={styles.cart_empty_div}>
+            <div className={styles.cart_empty_image}>
               <Image src={cartemptyimg} alt="" />
               <p>Oops! Your cart is empty</p>
             </div>
-            <div className={cartstyles.cart_bottom_container}>
+            <div className={styles.cart_bottom_container}>
               <button
-                className={cartstyles.cart_continue_shopping}
+                className={styles.cart_continue_shopping}
                 onClick={() => {
                   router.push("/products");
                 }}
@@ -221,7 +221,13 @@ const Cart = () => {
               </button>
             </div>
           </div>
-        ):<></>}
+        ):
+        <div className={styles.empty_loader}>
+            <div className={styles.empty_header}></div>
+            <div  className={styles.empty_block}></div>
+            <div  className={styles.empty_block}></div>
+            <div  className={styles.empty_block}></div>
+          </div>}
       </div>
       <Footer />
     </>}</>

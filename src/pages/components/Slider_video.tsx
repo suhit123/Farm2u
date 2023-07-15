@@ -4,8 +4,12 @@ import "slick-carousel/slick/slick-theme.css";
 import styles from '@/styles/video_curosel.module.css'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+interface Video {
+  url: string;
+  // Add more properties if necessary
+}
 const Video_slider=()=>{
-  const [videos,setVideos]=useState([]);
+  const [videos,setVideos]=useState<Video[]>([]);
   const [loading,setLoading]=useState(true);
   useEffect(()=>{
     try{

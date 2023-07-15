@@ -17,6 +17,7 @@
     width: 100vw;
 }
 .discount_nav_bar a{
+    cursor: pointer;
     color: white;
     text-decoration: none;
     font-size: 20px;
@@ -250,6 +251,7 @@
         width: 100vw;
     }
     .discount_nav_bar a{
+        margin: 0px;
         font-size: 20px;
     }
     .nav_bar_private{

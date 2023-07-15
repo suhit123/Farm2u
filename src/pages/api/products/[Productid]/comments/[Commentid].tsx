@@ -21,10 +21,10 @@ console.log("hi")
         }
         product.comments.splice(commentIndex, 1);
         await product.save();
-        res.json({ message: 'comments removed successfully' });
+        return res.json({ message: 'comments removed successfully' });
       } catch (error) {
         console.error('Failed to remove comments:', error);
-        res.status(500).json({ error: 'Failed to remove comments' });
+        return res.status(500).json({ error: 'Failed to remove comments' });
       }
       break;
 

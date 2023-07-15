@@ -25,6 +25,7 @@
     color: #000000;
     display: block;
     transition: 0.3s;
+    cursor: pointer;
   }
   .sidecart a:hover {
     color: #242424;
