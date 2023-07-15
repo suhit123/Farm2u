@@ -2,7 +2,7 @@ import Footer from "../components/footer";
 import Nav from "../components/nav";
 import styles from '@/styles/user/user.module.css';
 import Usernav from "./Usernav";
-import { Usercheck } from "./check";
+import { Usercheck } from "../../../helpers/check";
 import { useSession } from "next-auth/react";
 import { useState } from 'react';
 import axios from "axios";

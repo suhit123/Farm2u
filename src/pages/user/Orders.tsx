@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Usercheck } from "./check";
+import { Usercheck } from "../../../helpers/check";
 import { useEffect, useState } from "react";
 import { getSession, useSession } from "next-auth/react";
 import Nav from "./../components/nav";

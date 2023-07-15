@@ -3,7 +3,7 @@ import Nav from "../components/nav";
 import styles from '@/styles/user/user.module.css';
 import Usernav from "./Usernav";
 import { useState } from "react";
-import { Usercheck } from "./check";
+import { Usercheck } from "../../../helpers/check";
 import { getSession, useSession } from "next-auth/react";
 import axios from "axios";
 import { useRouter } from "next/router";
