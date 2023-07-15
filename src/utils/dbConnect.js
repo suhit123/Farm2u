@@ -4,7 +4,7 @@ async function dbConnect(){
     if(connection.isConnected){
         return;
     }
-    const db=await mongoose.connect('mongodb+srv://GenmatrixRemedies:xAqmCY1NKyIwcoZF@cluster0.jmeknto.mongodb.net/Genmatrix',{
+    const db=await mongoose.connect(process.env.DB_URL,{
         useNewUrlParser: true,
         useUnifiedTopology:true,
     });
