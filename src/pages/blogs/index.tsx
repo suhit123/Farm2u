@@ -143,7 +143,7 @@ const [blogs, setBlogs] = useState<Blog[]>(initialData);
 };
 
 export async function getServerSideProps() {
-    const baseUrl = process.env.BASE_URL;
+    const baseUrl = process.env.VERCEL_URL;
     const response = await axios.get(`${baseUrl}/api/Blogs?start=0&end=2`);
     const initialData: Blog[] = response.data || [];
     return {

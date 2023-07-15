@@ -201,7 +201,7 @@ export async function getServerSideProps(context:GetServerSidePropsContext<Parse
       };
     }
 
-    const baseUrl = process.env.BASE_URL;
+    const baseUrl = process.env.VERCEL_URL;
     const response = await axios.get(`${baseUrl}/api/users/${session?.user?._id}/addresses`);
     const addressData = response.data.reverse();
     return {

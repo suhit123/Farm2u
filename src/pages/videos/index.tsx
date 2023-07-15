@@ -67,7 +67,7 @@ const Videos: React.FC<VideosProps> = ({ initialVideos }) => {
 
 export async function getServerSideProps() {
   try {
-    const baseUrl = process.env.BASE_URL;
+    const baseUrl = process.env.VERCEL_URL;
     const res = await axios.get(`${baseUrl}/api/Videos`);
     const initialVideos: Video[] = res.data.reverse();
     return { props: { initialVideos } };

@@ -112,7 +112,7 @@ const Products = ({ productsData }: { productsData: Product[] }) => {
 
 export async function getServerSideProps() {
   try {
-    const baseUrl = process.env.BASE_URL; // Update with your actual base URL
+    const baseUrl = process.env.VERCEL_URL; // Update with your actual base URL
     const res = await axios.get(`${baseUrl}/api/products`);
     const productsData = res.data;
     return {
