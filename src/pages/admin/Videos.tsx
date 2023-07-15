@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import successlogo from '@/resources/successicon.png'
 import Admin from '.';
 import nodatafound from '@/resources/no_data_found.png'
-import { ColorRing } from 'react-loader-spinner';
+import { faSpinner} from "@fortawesome/free-solid-svg-icons";
 import Loader_colorring from '../components/Loader_colorring';
 import AdminNav from './AdminNav';
 const Blogs=()=>{
@@ -89,15 +89,7 @@ const Blogs=()=>{
         <label htmlFor="url">URL:</label>
         <input className={styles.input2} type="text" id="url" name="url" placeholder="Enter URL" value={formData.url} onChange={handleInputChange} required/>
       </div>
-      <button className={styles.videoform_submit} type="submit">{loading ? <ColorRing
-                                            visible={true}
-                                            height="15"
-                                            width="15"
-                                            ariaLabel="blocks-loading"
-                                            wrapperStyle={{}}
-                                            wrapperClass="blocks-wrapper"
-                                            colors={['#1e2940','#1e2940','#1e2940','#1e2940','#1e2940']}
-                                            />: 'Submit'}</button>
+      <button className={styles.videoform_submit} type="submit">{loading ?<FontAwesomeIcon icon={faSpinner} className="fa-spin" />: 'Submit'}</button>
     </form>
     <table className={styles.table}>
       <thead>

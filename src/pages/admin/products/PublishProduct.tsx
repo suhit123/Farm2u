@@ -1,6 +1,4 @@
 import { useEffect, useReducer, useState } from "react";
-import Footer from "@/pages/components/footer";
-import Nav from "@/pages/components/nav";
 import styles from '@/styles/publish.module.css'
 import { useQuill } from "react-quilljs";
 import 'quill/dist/quill.snow.css';
@@ -8,7 +6,6 @@ import Image from 'next/image'
 import successlogo from '@/resources/successicon.png'
 import axios from "axios";
 import AdminRoute from "../AdminRoute";
-import Loader from "@/pages/components/loader";
 import Admin from "..";
 import AdminNav from "../AdminNav";
 const PublishProduct=()=>{

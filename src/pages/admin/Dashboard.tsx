@@ -2,7 +2,7 @@ import React,{ useEffect, useState } from "react";
 import Admin from ".";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSort, faCheck, faTimes, faSpinner, faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faTimes, faSpinner, faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import styles from '@/styles/admin/orders.module.css';
 import Image from "next/image";
 import Loader_colorring from "../components/Loader_colorring";

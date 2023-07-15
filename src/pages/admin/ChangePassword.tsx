@@ -1,5 +1,6 @@
 
-import { ColorRing } from "react-loader-spinner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner} from "@fortawesome/free-solid-svg-icons";
 import changePassstyles from '@/styles/user/user.module.css';
 import { useSession } from "next-auth/react";
 import { useState } from "react";
@@ -145,15 +146,7 @@ const AdminPasswordChange=()=>{
         </label>
         <p>{errmsg.notMatchErr}</p>
         <button type="submit" className={changePassstyles.changePasswordsubmit}>{loading? 
-                                    <ColorRing
-                                    visible={true}
-                                    height="30"
-                                    width="30"
-                                    ariaLabel="blocks-loading"
-                                    wrapperStyle={{}}
-                                    wrapperClass="blocks-wrapper"
-                                    colors={['#ffffff','#ffffff','#ffffff','#ffffff','#ffffff']}
-                                    />: 'Change Password'}</button>
+                                    <FontAwesomeIcon icon={faSpinner} className="fa-spin" />: 'Change Password'}</button>
       </form>
     </div>
     </div>
