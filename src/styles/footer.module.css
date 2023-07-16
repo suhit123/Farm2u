@@ -24,6 +24,11 @@
     color: white;
     font-size: 16px;
 }
+.quicklinks p a{
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+}
 .quicklinks ul{
     list-style-type: none;
 }
@@ -31,10 +36,16 @@
     font-size: 14px;
     color: white;
     margin: 5px 0px;
+    padding: 0px 5px;
     transition: 0.3s all ease-in-out;
+}
+.quicklinks ul li a{
+    font-size: 14px;
+    text-decoration: none;
 }
 .quicklinks ul li:hover{
     color: rgb(211, 211, 211);
+    border-left: 1px solid white;
 }
 .quicklinks a{
     font-size: 30px;
@@ -98,7 +109,7 @@ width: 350px;
     .quicklinks{
         margin:5px 15px;
     }
-    .quicklinks p{
+    .quicklinks p,.quicklinks p a{
         font-size: 13px;
     }
     .quicklinks .heading{
@@ -107,6 +118,9 @@ width: 350px;
     .quicklinks ul li{
         font-size: 12px;
         margin: 5px 0px;
+    }
+    .quicklinks ul li a{
+        font-size: 12px;
     }
     .contactus{
     width: 50%;
@@ -139,7 +153,7 @@ width: 350px;
     .quicklinks{
         margin:20px 15px;
     }
-    .quicklinks p{
+    .quicklinks p,.quicklinks p a{
         font-size: 12px;
     }
     .quicklinks .heading{
@@ -148,6 +162,9 @@ width: 350px;
     .quicklinks ul li{
         font-size: 13px;
         margin: 5px 0px;
+    }
+    .quicklinks ul li a{
+        font-size: 13px;
     }
     .contactus{
     width: 90%;

@@ -40,6 +40,7 @@
 .contactuspage_container_block1_box2_block p{
     margin: 0px 5px;
     font-size: 14px;
+    text-align: center;
 }
 .contactusform{
     display: flex;

@@ -65,20 +65,23 @@ const Contactus=()=>{
                 <div className={styles.contactuspage_container_block1_box2_blocks}>
                     <div className={styles.contactuspage_container_block1_box2_block}>
                         <h4>Contact Us</h4>
-                        <p>Monday - Saturday</p>
+                        <p>Monday - Sunday</p>
+                        <p>Working Hours 9AM-10PM</p>
                         <p>Feel free to call us on</p>
-                        <p>999999999</p>
+                        <p><a style={{textDecoration:"none",color:"grey"}} href="tel:7569444410">7569444410</a></p>
                     </div>
                     <div className={styles.contactuspage_container_block1_box2_block}>
                         <h4>Our Email</h4>
                         <p>Drop us a line anytime at</p>
-                        <p>genmatrixremedies@gmail.com</p>
+                        <p><a style={{textDecoration:"none",color:"grey"}} href="mailto:gnxremedys@gmail.com">gnxremedys@gmail.com</a></p>
                         <p>and we'll get back soon</p>
                     </div>
                     <div className={styles.contactuspage_container_block1_box2_block}>
                         <h4>Our Address</h4>
-                        <p>11,StreetName,Townname</p>
-                        <p>Statename, Pincode</p>
+                        <p>GENMATRIX Remedies,</p>
+                        <p>F115, PADMADHAM APARTMENTS,</p>
+                        <p>VIJAYAPURI COLONY,</p>
+                        <p>SECUNDERABAD, 500017</p>
                     </div>
                 </div>
             </div>

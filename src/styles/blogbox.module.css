@@ -1,6 +1,8 @@
 .blogbox_con{
     width: 21vw;
     margin: 20px;
+    
+    border-radius: 5px;
 }
 .blogbox_image{
     display: flex;
@@ -8,6 +10,7 @@
     align-items: center;
     height: 14vw;
     overflow: hidden;
+    border-radius: 5px;
 }
 .blogbox_image img{
     width: 120%;
@@ -46,7 +49,7 @@
 @media screen and (max-width:1200px){
     .blogbox_con{
         width: 260px;
-        margin: 5px;
+        margin: 5px 5px;
     }
     .blogbox_con p{
         font-size: 12px;
@@ -75,7 +78,7 @@
 @media screen and (max-width:550px){
     .blogbox_con{
         width: 100%;
-        margin: 5px;
+        margin: 5px 0px;
     }
     .blogbox_con p{
         font-size: 12px;
