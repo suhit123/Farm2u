@@ -20,10 +20,21 @@ interface Product {
   price: number;
   discount: number;
 }
-const Products = ({ productsData }: { productsData: Product[] }) => {
+const Products = () => {
   const { data: session }:any = useSession();
   const [loading, setLoading] = useState<{ [key: string]: boolean }>({});
   const router = useRouter();
+  const [productsData,setProductData]=useState([]);
+  useEffect(()=>{
+      axios.get('/api/products')
+      .then((res)=>{
+        setProductData(res.data.reverse());
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+    
+  },[])
   const addToCart = async (productId:any) => {
     if (session) {
       setLoading((prevLoading) => ({
@@ -58,7 +69,7 @@ const Products = ({ productsData }: { productsData: Product[] }) => {
       <div className={styles.products_container}>
         <div className={styles.products_page}>
           {productsData.length===0?
-          [0,1,2,3].map((item:any)=>{
+          [0,1,2,3].map((item:any, Index:Number)=>{
             return(
               <div className={styles.products_list_item_grid} key={item._id}>
                 <div className={styles.products_list_item_empty}>
@@ -123,24 +134,4 @@ const Products = ({ productsData }: { productsData: Product[] }) => {
     </>
   );
 };
-
-export async function getServerSideProps() {
-  try {
-    const baseUrl = process.env.VERCEL_URL; // Update with your actual base URL
-    const res = await fetch(`${baseUrl}/api/products`);
-    
-    if (!res.ok) {
-      throw new Error('Failed to fetch products from the API');
-    }
-    const productsData = await res.json(); // Use response.json() to extract the data
-    return {
-      props: { productsData },
-    };
-  } catch (err) {
-    console.error(err);
-    return {
-      props: { productsData: [] },
-    };
-  }
-}
 export default Products;
