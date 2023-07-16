@@ -12,7 +12,6 @@ import styles from '@/styles/products.module.css';
 import Loader from '../components/loader';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner} from "@fortawesome/free-solid-svg-icons";
-import { NextPageContext } from 'next';
 interface Product {
   _id: string;
   image1: string;
@@ -124,21 +123,24 @@ const Products = ({ productsData }: { productsData: Product[] }) => {
     </>
   );
 };
-Products.getInitialProps=async (ctx:NextPageContext)=>{
+
+export async function getServerSideProps() {
   try {
     const baseUrl = process.env.VERCEL_URL; // Update with your actual base URL
-    const res = await axios.get(`${baseUrl}/api/products`);
-    const productsData = res.data;
+    const res = await fetch(`${baseUrl}/api/products`);
+    
+    if (!res.ok) {
+      throw new Error('Failed to fetch products from the API');
+    }
+    const productsData = await res.json(); // Use response.json() to extract the data
     return {
-        productsData ,
+      props: { productsData },
     };
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return {
-      productsData: [] ,
+      props: { productsData: [] },
     };
   }
 }
-
-
 export default Products;
