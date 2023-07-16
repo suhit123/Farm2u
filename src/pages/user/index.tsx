@@ -8,11 +8,21 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
-import React from 'react';
-const Dashboard = ({addressData}:any) => {
+import React, { useEffect, useState } from 'react';
+const Dashboard = () => {
   const router=useRouter();
   const {data:session,status}:any=useSession();
   Usercheck();
+  const [addressData,setAddressData]:any=useState({});
+  useEffect(()=>{
+    axios.get(`/api/users/${session?.user?._id}/addresses`)
+    .then((res)=>{
+      setAddressData(res.data.reverse()[0])
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  },[router,status])
   return (
     <>
       <Nav />
@@ -55,32 +65,32 @@ const Dashboard = ({addressData}:any) => {
     </>
   );
 };
-export async function getServerSideProps(context:GetServerSidePropsContext<ParsedUrlQuery>){
-  try{
-    const session:any = await getSession(context);
-    if (!session) {
-      return {
-        redirect: {
-          destination: '/login',
-          permanent: false,
-        },
-      };
-    }
+// export async function getServerSideProps(context:GetServerSidePropsContext<ParsedUrlQuery>){
+//   try{
+//     const session:any = await getSession(context);
+//     if (!session) {
+//       return {
+//         redirect: {
+//           destination: '/login',
+//           permanent: false,
+//         },
+//       };
+//     }
 
-    const baseUrl = process.env.VERCEL_URL;
-    const response = await axios.get(`${baseUrl}/api/users/${session?.user?._id}/addresses`);
-    const addressData = response.data.reverse()[0] || [];
-    return {
-      props: {
-        addressData,
-      },
-    };
-  }
-  catch(err){
-    console.log(err)
-    return {
-      props:{addressData:[]}
-    }
-  }
-}
+//     const baseUrl = process.env.VERCEL_URL;
+//     const response = await axios.get(`${baseUrl}/api/users/${session?.user?._id}/addresses`);
+//     const addressData = response.data.reverse()[0] || [];
+//     return {
+//       props: {
+//         addressData,
+//       },
+//     };
+//   }
+//   catch(err){
+//     console.log(err)
+//     return {
+//       props:{addressData:[]}
+//     }
+//   }
+// }
 export default Dashboard;

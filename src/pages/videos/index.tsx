@@ -10,8 +10,8 @@ interface Video {
 interface VideosProps {
   initialVideos: Video[];
 }
-const Videos: React.FC<VideosProps> = ({ initialVideos }) => {
-  const [videos, setVideos] = useState<Video[]>(initialVideos);
+const Videos: React.FC<VideosProps> = ( ) => {
+  const [videos, setVideos] = useState<Video[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -62,16 +62,16 @@ const Videos: React.FC<VideosProps> = ({ initialVideos }) => {
   );
 };
 
-export async function getServerSideProps() {
-  try {
-    const baseUrl = process.env.VERCEL_URL;
-    const res = await axios.get(`${baseUrl}/api/Videos`);
-    const initialVideos: Video[] = res.data.reverse();
-    return { props: { initialVideos } };
-  } catch (error) {
-    console.log('Something went wrong');
-    return { props: { initialVideos: [] } };
-  }
-}
+// export async function getServerSideProps() {
+//   try {
+//     const baseUrl = process.env.VERCEL_URL;
+//     const res = await axios.get(`${baseUrl}/api/Videos`);
+//     const initialVideos: Video[] = res.data.reverse();
+//     return { props: { initialVideos } };
+//   } catch (error) {
+//     console.log('Something went wrong');
+//     return { props: { initialVideos: [] } };
+//   }
+// }
 
 export default Videos;

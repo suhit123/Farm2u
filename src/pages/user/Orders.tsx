@@ -14,10 +14,28 @@ import nodatafound from "@/resources/no_data_found.png";
 import { GetServerSidePropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from 'react';
-const Orders = ({ orders }: { orders: Order[] }) => {
+import { useRouter } from "next/router";
+const Orders = () => {
   Usercheck()
-  const [loader, setLoader] = useState(false);
-  const [expandedOrders, setExpandedOrders] = useState<boolean[]>(new Array(orders.length).fill(false));
+  const router=useRouter();
+  const {data:session,status}:any=useSession();
+  const [orders,setOrders]=useState([]);
+  const [loader, setLoader] = useState(true);
+  const [expandedOrders, setExpandedOrders] = useState<boolean[]>([]);
+  useEffect(()=>{
+    setLoader(true);
+    axios.get(`/api/Orders/${session?.user?._id}`)
+    .then((res)=>{
+      setOrders(res.data.data.reverse());
+      setExpandedOrders(new Array(orders.length).fill(false))
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+    .finally(()=>{
+      setLoader(false);
+    })
+  },[status,router])
   const toggleExtendedDiv = (index:any) => {
     const expandedCopy = [...expandedOrders];
     expandedCopy[index] = !expandedCopy[index];
@@ -119,37 +137,37 @@ const Orders = ({ orders }: { orders: Order[] }) => {
   );
 };
 
-export async function getServerSideProps(context:GetServerSidePropsContext<ParsedUrlQuery>) {
-  try {
-    const session:any = await getSession(context);
+// export async function getServerSideProps(context:GetServerSidePropsContext<ParsedUrlQuery>) {
+//   try {
+//     const session:any = await getSession(context);
 
-    if (!session) {
-      // Handle case where session is not available
-      return {
-        redirect: {
-          destination: '/login',
-          permanent: false,
-        },
-      };
-    }
+//     if (!session) {
+//       // Handle case where session is not available
+//       return {
+//         redirect: {
+//           destination: '/login',
+//           permanent: false,
+//         },
+//       };
+//     }
 
-    const baseUrl = process.env.VERCEL_URL;
-    const response = await axios.get(`${baseUrl}/api/Orders/${session?.user?._id}`);
-    const orders = response.data.data.reverse();
-    return {
-      props: {
-        orders,
-      },
-    };
-  } catch (error) {
-    console.log('Error:', error);
-    return {
-      props: {
-        orders: [],
-      },
-    };
-  }
-}
+//     const baseUrl = process.env.VERCEL_URL;
+//     const response = await axios.get(`${baseUrl}/api/Orders/${session?.user?._id}`);
+//     const orders = response.data.data.reverse();
+//     return {
+//       props: {
+//         orders,
+//       },
+//     };
+//   } catch (error) {
+//     console.log('Error:', error);
+//     return {
+//       props: {
+//         orders: [],
+//       },
+//     };
+//   }
+// }
 
 
 export default Orders;

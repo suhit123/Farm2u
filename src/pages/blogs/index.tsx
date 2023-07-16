@@ -1,7 +1,7 @@
 import styles from '@/styles/blogs.module.css';
 import Nav from '../components/nav';
 import Footer from '../components/footer';
-import {useState } from 'react';
+import {useEffect, useState } from 'react';
 import axios from 'axios';
 import Loader from '../components/loader';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,9 +25,9 @@ interface BlogsProps {
   data: Blog[]; // Define the prop type for data
 }
 
-const Blogs: React.FC<BlogsProps> = ({ initialData }:any) => {
-const [blogs, setBlogs] = useState<Blog[]>(initialData);
-  const [shownum, setShownum] = useState(2);
+const Blogs: React.FC<BlogsProps> = () => {
+const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [shownum, setShownum] = useState(0);
   const [notifyemail, setNotifyemail] = useState('');
   const [emailSent, setEmailSent] = useState(false);
   const [loader1, setLoader1] = useState(false);
@@ -53,7 +53,7 @@ const [blogs, setBlogs] = useState<Blog[]>(initialData);
   const loadMoreBlogs = async () => {
     setLoader1(true);
     try {
-      const response = await axios.get(`/api/Blogs?start=${shownum+1}&end=${shownum + 3}`);
+      const response = await axios.get(`/api/Blogs?start=${shownum}&end=${shownum + 2}`);
       const newBlogs = response.data;
       setBlogs((prevBlogs) => [...prevBlogs, ...newBlogs]);
       setShownum((prevShownum) => prevShownum + 3);
@@ -63,6 +63,9 @@ const [blogs, setBlogs] = useState<Blog[]>(initialData);
       setLoader1(false);
     }
   };
+  useEffect(()=>{
+    loadMoreBlogs();
+  },[])
   return (
     <>
       <Loader time={1000} />
@@ -135,15 +138,15 @@ const [blogs, setBlogs] = useState<Blog[]>(initialData);
   );
 };
 
-export async function getServerSideProps() {
-    const baseUrl = process.env.VERCEL_URL;
-    const response = await axios.get(`${baseUrl}/api/Blogs?start=0&end=2`);
-    const initialData: Blog[] = response.data || [];
-    return {
-      props: {
-        initialData,
-      },
-    };
-  }
+// export async function getServerSideProps() {
+//     const baseUrl = process.env.VERCEL_URL;
+//     const response = await axios.get(`${baseUrl}/api/Blogs?start=0&end=2`);
+//     const initialData: Blog[] = response.data || [];
+//     return {
+//       props: {
+//         initialData,
+//       },
+//     };
+//   }
 
 export default Blogs;

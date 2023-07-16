@@ -2,7 +2,7 @@ import Footer from "../components/footer";
 import Nav from "../components/nav";
 import styles from '@/styles/user/user.module.css';
 import Usernav from "./Usernav";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Usercheck } from "../../../helpers/check";
 import { getSession, useSession } from "next-auth/react";
 import axios from "axios";
@@ -10,10 +10,10 @@ import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from 'react';
-const Addresses = ({addressData}:any) => {
+const Addresses = () => {
     Usercheck();
     const router=useRouter();
-    const {data:session}:any=useSession();
+    const {data:session,status}:any=useSession();
     const [showForm,setShowForm]=useState(false);
     const [formData, setFormData] = useState({
         firstName: '',
@@ -26,7 +26,7 @@ const Addresses = ({addressData}:any) => {
         pincode: '',
         country: 'India'
       });
-
+  const [addressData,setAddressData]=useState([]);
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -57,8 +57,17 @@ const Addresses = ({addressData}:any) => {
   };
 
   const fetchAddressData = () => {
-    router.reload()
+    axios.get(`/api/users/${session?.user?._id}/addresses`)
+    .then((res)=>{
+      setAddressData(res.data.reverse())
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
   };
+  useEffect(()=>{
+    fetchAddressData()
+  },[router,status])
   const handleDelete=(id:any)=>{
     axios.delete(`/api/users/${session?.user?._id}/addresses/${id}`)
     .then((res) => {
@@ -189,33 +198,33 @@ const Addresses = ({addressData}:any) => {
   );
 };
 
-export async function getServerSideProps(context:GetServerSidePropsContext<ParsedUrlQuery>){
-  try{
-    const session:any = await getSession(context);
-    if (!session) {
-      return {
-        redirect: {
-          destination: '/login',
-          permanent: false,
-        },
-      };
-    }
+// export async function getServerSideProps(context:GetServerSidePropsContext<ParsedUrlQuery>){
+//   try{
+//     const session:any = await getSession(context);
+//     if (!session) {
+//       return {
+//         redirect: {
+//           destination: '/login',
+//           permanent: false,
+//         },
+//       };
+//     }
 
-    const baseUrl = process.env.VERCEL_URL;
-    const response = await axios.get(`${baseUrl}/api/users/${session?.user?._id}/addresses`);
-    const addressData = response.data.reverse();
-    return {
-      props: {
-        addressData,
-      },
-    };
-  }
-  catch(err){
-    console.log(err)
-    return {
-      props:{addressData:[]}
-    }
-  }
-}
+//     const baseUrl = process.env.VERCEL_URL;
+//     const response = await axios.get(`${baseUrl}/api/users/${session?.user?._id}/addresses`);
+//     const addressData = response.data.reverse();
+//     return {
+//       props: {
+//         addressData,
+//       },
+//     };
+//   }
+//   catch(err){
+//     console.log(err)
+//     return {
+//       props:{addressData:[]}
+//     }
+//   }
+// }
 
 export default Addresses;
