@@ -12,6 +12,7 @@ import styles from '@/styles/products.module.css';
 import Loader from '../components/loader';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner} from "@fortawesome/free-solid-svg-icons";
+import { NextPageContext } from 'next';
 interface Product {
   _id: string;
   image1: string;
@@ -123,21 +124,21 @@ const Products = ({ productsData }: { productsData: Product[] }) => {
     </>
   );
 };
-
-export async function getServerSideProps() {
+Products.getInitialProps=async (ctx:NextPageContext)=>{
   try {
     const baseUrl = process.env.VERCEL_URL; // Update with your actual base URL
     const res = await axios.get(`${baseUrl}/api/products`);
     const productsData = res.data;
     return {
-      props: { productsData },
+        productsData ,
     };
   } catch (err) {
     console.log(err);
     return {
-      props: { productsData: [] },
+      productsData: [] ,
     };
   }
 }
+
 
 export default Products;
