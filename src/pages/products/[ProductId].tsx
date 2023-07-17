@@ -10,6 +10,8 @@ import ReactStars from 'react-stars'
 import axios from "axios";
 import loaderimage from '@/resources/genmatrixlogo2.png'
 import { useSession } from "next-auth/react";
+import { Metadata } from 'next';
+import Head from 'next/head';
 interface Comment {
   name: string;
   rating: number;
@@ -28,7 +30,7 @@ interface ProductData {
   description: string;
   comments: Comment[];
 }
-const DetailedProduct: React.FC = () => {
+const DetailedProduct = () => {
   const { data: session }: any = useSession();
   const router = useRouter();
   let ProductId = router.query.ProductId;
@@ -150,6 +152,17 @@ const DetailedProduct: React.FC = () => {
   };
   return (
     <>
+    <Head>
+    <title>{productData?.heading}</title>
+        <link rel="canonical" href={`${process.env.VERCEL_URL}/products/${ProductId}`} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="noindex, follow" />
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content={`${productData?.heading}`} />
+        <meta property="og:image" content={productData?.image1} />
+        <meta property="og:url" content={`${process.env.VERCEL_URL}/products/${ProductId}`} />
+        <meta property="og:type" content="website" />
+    </Head>
       {isLoading && productData ? (
         <>
           {isVisible ? (

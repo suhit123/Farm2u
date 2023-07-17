@@ -20,6 +20,11 @@ interface Product {
   price: number;
   discount: number;
 }
+const fetchProducts=async()=>{
+  const res=await fetch(`${process.env.VERCEL_URL}/api/products`,{cache:"no-store"});
+  const productData=await res.json();
+  return productData;
+}
 const Products = () => {
   const { data: session }:any = useSession();
   const [loading, setLoading] = useState<{ [key: string]: boolean }>({});
