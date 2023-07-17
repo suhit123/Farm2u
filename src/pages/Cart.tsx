@@ -6,9 +6,9 @@ import { useRouter } from "next/router";
 import { useEffect, useReducer, useState } from "react";
 import styles from "@/styles/cartpage.module.css";
 import cartemptyimg from "@/resources/cartempty.png";
-import Nav from "./components/nav";
-import Footer from "./components/footer";
-import Loader_colorring from "./components/Loader_colorring";
+import Nav from "../components/nav";
+import Footer from "../components/footer";
+import Loader_colorring from "../components/Loader_colorring";
 const Cart = () => {
   const router = useRouter();
   const { data: session, status: sessionStatus }: any = useSession();

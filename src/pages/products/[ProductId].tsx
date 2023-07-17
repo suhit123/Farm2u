@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from "next/router";
-import Footer from "../components/footer";
-import Nav from "../components/nav";
+import Footer from "../../components/footer";
+import Nav from "../../components/nav";
 import { useEffect, useReducer, useState } from "react";
 import Image from "next/image";
 import emptyimage from '@/resources/emptyimage.png'

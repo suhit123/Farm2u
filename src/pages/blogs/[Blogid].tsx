@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import Footer from "../components/footer";
-import Nav from "../components/nav";
+import Footer from "../../components/footer";
+import Nav from "../../components/nav";
 import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
 import Image from "next/image";

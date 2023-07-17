@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faTimes, faSpinner, faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import styles from '@/styles/admin/orders.module.css';
 import Image from "next/image";
-import Loader_colorring from "../components/Loader_colorring";
+import Loader_colorring from "../../components/Loader_colorring";
 import nodatafound from '@/resources/no_data_found.png'
 import AdminRoute from "./AdminRoute";
 import AdminNav from "./AdminNav";

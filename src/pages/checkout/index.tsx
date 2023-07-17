@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import cartstyles from '@/styles/checkout/cart.module.css'
-import Loader_colorring from '../components/Loader_colorring';
+import Loader_colorring from '../../components/Loader_colorring';
 import { useRouter } from 'next/router';
 import genmatrixlogo from '@/resources/logo_text.png'
 import Head from 'next/head';

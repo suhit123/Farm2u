@@ -174,7 +174,7 @@
 	}
 }
 .blogbox_con{
-    width: 20vw;
+    width: 22vw;
 }
 .blogbox_image{
     border-radius: 5px;
@@ -193,11 +193,11 @@
 }
 .blogbox_heading h3{
     font-size: 15px;
-    margin: 10px;
+    margin:10px 20px;
 }
 .content{
     font-size: 14px;
-    margin: 10px;
+    margin:5px 20px;
 }
 .content a{
     text-decoration: none;
@@ -408,11 +408,12 @@
     .blogbox_image{
         height: 45vw;
     }
-    .blogbox_heading{
+    .blogbox_heading h3{
         font-size: 13px;
-        margin-bottom: 5px;
+        margin: 5px 10px;
     }
     .content{
         font-size: 12px;
+        margin: 5px 10px;
     }
 }

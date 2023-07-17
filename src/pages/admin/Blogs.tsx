@@ -8,7 +8,7 @@ import styles from '@/styles/admin/admintable_managemnt.module.css';
 import { useRouter } from 'next/router';
 import successlogo from '@/resources/successicon.png'
 import Admin from '.';
-import Loader_colorring from '../components/Loader_colorring';
+import Loader_colorring from '../../components/Loader_colorring';
 import nodatafound from '@/resources/no_data_found.png'
 import AdminNav from './AdminNav';
 import React from 'react';

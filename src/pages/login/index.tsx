@@ -1,11 +1,11 @@
 import Link  from 'next/link';
 import React from 'react';
 import axios, { AxiosError } from "axios";
-import Footer from "../components/footer";
-import Nav from "../components/nav";
+import Footer from "../../components/footer";
+import Nav from "../../components/nav";
 import styles from '@/styles/signup.module.css'
 import { useEffect, useState } from 'react'
-import Loader from '../components/loader';
+import Loader from '../../components/loader';
 import { loginUser } from '../../../helpers';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';

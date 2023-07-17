@@ -3,8 +3,8 @@ import React from 'react';
 import styles from '@/styles/contactus.module.css'
 import Image from "next/image";
 import contactpageimage from '@/resources/contactpagebanner.png'
-import Nav from "../components/nav";
-import Footer from "../components/footer";
+import Nav from "../../components/nav";
+import Footer from "../../components/footer";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faSpinner} from "@fortawesome/free-solid-svg-icons";

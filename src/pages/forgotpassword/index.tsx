@@ -1,7 +1,7 @@
 import Link  from 'next/link';
 import axios, { AxiosError } from "axios";
-import Footer from "../components/footer";
-import Nav from "../components/nav";
+import Footer from "../../components/footer";
+import Nav from "../../components/nav";
 import styles from '@/styles/signup.module.css'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router';

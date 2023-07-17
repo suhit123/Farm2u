@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Loader from '../components/loader';
-import Footer from '../components/footer';
-import Nav from '../components/nav';
+import Loader from '../../components/loader';
+import Footer from '../../components/footer';
+import Nav from '../../components/nav';
 import styles from '@/styles/videos.module.css';
 interface Video {
   url: string;

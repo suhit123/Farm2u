@@ -1,5 +1,5 @@
-import Footer from "../components/footer";
-import Nav from "../components/nav";
+import Footer from "../../components/footer";
+import Nav from "../../components/nav";
 import styles from '@/styles/user/user.module.css';
 import Usernav from "./Usernav";
 import { useEffect, useState } from "react";

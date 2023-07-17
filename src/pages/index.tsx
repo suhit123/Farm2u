@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import Nav from './components/nav'
-import Footer from './components/footer'
-import Loader from './components/loader'
+import Nav from '../components/nav'
+import Footer from '../components/footer'
+import Loader from '../components/loader'
 import styles from '@/styles/home.module.css'
 import Image from 'next/image'
 import fssai from '@/resources/certifications/fssai.png';
@@ -14,7 +14,7 @@ import Link from 'next/link'
 import Typewriter from 'typewriter-effect'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import Video_slider from './components/Slider_video'
+import Video_slider from '../components/Slider_video'
 import bloghomestyles from '@/styles/home.module.css'
 import React from 'react';
 export default function Home() {
@@ -34,7 +34,7 @@ export default function Home() {
       <Head>
         <title>Genmatrix Remedies</title>
         <meta name="description" content="We, at GENMATRIX REMEDIES, strive to build a bond of Love and Trust with our valued customers worldwide. With our range of nutraceutical supplements, we aim to empower you in your journey towards a healthier, happier life. With a means to reestablish the significant minerals and nutrients back into your body. Our division has built up a wide scope of indispensable nutraceutical supplements that plays an important role in promoting your health and well-being of your loved ones. By providing a combination of nutritional and pharmaceutical benefits. These products are derived from natural sources and are formulated to provide specific health benefits beyond basic nutrition. Let's embark on this path together!" />
-        <meta name="keywords" content="Genmatrix Remedies, Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's FSSAI, GMP, HACCP, HALAL, ISO, KOSHER" />
+        <meta name="keywords" content="Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's FSSAI, GMP, HACCP, HALAL, ISO, KOSHER" />
         <meta name="distribution" content="global" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

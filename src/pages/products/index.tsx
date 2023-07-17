@@ -6,10 +6,10 @@ import Link from 'next/link';
 import ReactStars from 'react-stars';
 import axios from 'axios';
 import Image from 'next/image';
-import Footer from '../components/footer';
-import Nav from '../components/nav';
+import Footer from '../../components/footer';
+import Nav from '../../components/nav';
 import styles from '@/styles/products.module.css';
-import Loader from '../components/loader';
+import Loader from '../../components/loader';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner} from "@fortawesome/free-solid-svg-icons";
 interface Product {
