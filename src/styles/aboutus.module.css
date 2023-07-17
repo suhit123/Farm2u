@@ -43,3 +43,21 @@
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 }
+@media screen and(max-width:550px){
+    .aboutusPage_heading{
+        width: 100%;
+        height: 200px;
+    }
+    .aboutusPage_heading h5{
+        color: white;
+        font-size: 20px;
+    }
+    .aboutusPage_content{
+        width: 90vw;
+        margin: 20px auto;
+    }
+    .aboutusPage_content p{
+        font-size: 15px;
+        line-height: 1.8;
+    }
+}
