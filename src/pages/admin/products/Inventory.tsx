@@ -10,7 +10,7 @@ import Image from "next/image";
 import successlogo from '@/resources/successicon.png'
 import Loader_colorring from "@/components/Loader_colorring";
 import nodatafound from '@/resources/no_data_found.png'
-import AdminNav from "../AdminNav";
+import AdminNav from "../../../components/AdminNav";
 import React from 'react';
 const Inventory = () => {
   let key=1;

@@ -7,12 +7,12 @@ import styles from '@/styles/admin/indexpage.module.css'
 import React from 'react';
 const AdminRoute = ({ children }:any) => {
   const [loading, setLoading] = useState(true);
-  const { data: session } = useSession();
+  const { data: session }:any = useSession();
   const router = useRouter();
   useEffect(() => {
     const checkSession = async () => {
-      const session = await getSession();
-      if (session && session.user && session.user.email === "Genmatrixadmin@gmail.com") {
+      const session:any = await getSession();
+      if (session && session.user && session.user.role === "admin") {
         setLoading(false);
       } else {
         router.push("/");
@@ -26,7 +26,7 @@ const AdminRoute = ({ children }:any) => {
     return <div></div>;
   }
 
-  if (session && session.user && session.user.email === "Genmatrixadmin@gmail.com") {
+  if (session && session.user && session.user.role === "admin") {
     return <><div className={styles.norotate}>{children}</div>
     <div className={styles.rotate}>
       <Image src={rotate} alt=""/>  

@@ -1,5 +1,6 @@
 import dbConnect from '@/utils/dbConnect';
 import BlogsA from '@/models/BlogsA';
+import { getToken } from 'next-auth/jwt';
 
 dbConnect();
 
@@ -11,6 +12,10 @@ export default async (req: any, res: any) => {
   switch (method) {
     case 'DELETE':
       try {
+        const session:any=await getToken({req});
+                if(!session || session.user.role!=="admin"){
+                    return res.status(401).json({message:"unauthorized"})
+                }
         const Blog = await BlogsA.findById(Blogid);
         if (!Blog) {
           return res.status(404).json({ error: 'Blog not found' });

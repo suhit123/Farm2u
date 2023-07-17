@@ -10,7 +10,7 @@ import successlogo from '@/resources/successicon.png'
 import Admin from '.';
 import Loader_colorring from '../../components/Loader_colorring';
 import nodatafound from '@/resources/no_data_found.png'
-import AdminNav from './AdminNav';
+import AdminNav from '../../components/AdminNav';
 import React from 'react';
 const Blogs=()=>{
     const router=useRouter();

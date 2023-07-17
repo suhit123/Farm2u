@@ -3,7 +3,6 @@ import dbConnect from '@/utils/dbConnect'
 import NextAuth,{NextAuthOptions} from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import {compare} from 'bcryptjs'
-import { Session } from 'inspector'
 const options:NextAuthOptions={
     providers:[
         CredentialsProvider({

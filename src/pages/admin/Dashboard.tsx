@@ -8,7 +8,7 @@ import Image from "next/image";
 import Loader_colorring from "../../components/Loader_colorring";
 import nodatafound from '@/resources/no_data_found.png'
 import AdminRoute from "./AdminRoute";
-import AdminNav from "./AdminNav";
+import AdminNav from "../../components/AdminNav";
 const Dashboard = () => {
   const [view,setView]=useState("all");
   return (

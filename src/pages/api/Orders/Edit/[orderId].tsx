@@ -1,6 +1,7 @@
 import dbConnect from '@/utils/dbConnect';
 import Orderi from '@/models/Orderi';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { getToken } from 'next-auth/jwt';
 
 dbConnect();
 
@@ -13,6 +14,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch (method) {
     case 'PATCH':
       try {
+        const session:any=await getToken({req});
+                if(!session || session.user.role!=="admin"){
+                    return res.status(401).json({message:"unauthorized"})
+                }
         const updatedOrder = await Orderi.findByIdAndUpdate(
           orderId,req.body );
 

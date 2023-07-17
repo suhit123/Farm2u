@@ -1,5 +1,6 @@
 import dbConnect from '@/utils/dbConnect';
 import BlogsA from '@/models/BlogsA';
+import { getToken } from 'next-auth/jwt';
 dbConnect();
 export const config = { api: { bodyParser: { sizeLimit: '100mb' } } }
 export default async (req:any,res:any)=>{
@@ -7,6 +8,10 @@ export default async (req:any,res:any)=>{
     switch(method){
         case 'POST':
             try{
+                const session:any=await getToken({req});
+                if(!session || session.user.role!=="admin"){
+                    return res.status(401).json({message:"unauthorized"})
+                }
                 const data=req.body;
                 Object.assign(data,{comments:[]});
                 const user=await BlogsA.create(data);

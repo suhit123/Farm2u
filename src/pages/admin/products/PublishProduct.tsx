@@ -7,7 +7,7 @@ import successlogo from '@/resources/successicon.png'
 import axios from "axios";
 import AdminRoute from "../AdminRoute";
 import Admin from "..";
-import AdminNav from "../AdminNav";
+import AdminNav from "../../../components/AdminNav";
 import React from 'react';
 const PublishProduct=()=>{
     const {quill,quillRef}:any=useQuill();

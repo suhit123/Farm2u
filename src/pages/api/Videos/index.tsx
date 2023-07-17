@@ -1,5 +1,7 @@
 import dbConnect from '@/utils/dbConnect';
 import Videos from '@/models/Videos';
+import { getSession } from 'next-auth/react';
+import { getToken } from 'next-auth/jwt';
 dbConnect();
 export const config = { api: { bodyParser: { sizeLimit: '1mb' } } }
 export default async (req:any,res:any)=>{
@@ -7,6 +9,10 @@ export default async (req:any,res:any)=>{
     switch(method){
         case 'POST':
             try{
+                const session:any=await getToken({req});
+                if(!session || session.user.role!=="admin"){
+                    return res.status(401).json({message:"unauthorized"})
+                }
                 const data=req.body;
                 const user=await Videos.create(data);
                 return res.status(201).json({success:true,data:user})

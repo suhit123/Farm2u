@@ -1,5 +1,6 @@
 import dbConnect from '@/utils/dbConnect';
 import BlogsA from '@/models/BlogsA';
+import { getToken } from 'next-auth/jwt';
 dbConnect();
 const bcrypt=require("bcrypt");
 export const config = { api: { bodyParser: { sizeLimit: '100mb' } } }
@@ -34,6 +35,10 @@ export default async (req:any,res:any)=>{
               break;
         case 'DELETE':
             try{
+                const session:any=await getToken({req});
+                if(!session || session.user.role!=="admin"){
+                    return res.status(401).json({message:"unauthorized"})
+                }
                 await BlogsA.findByIdAndDelete(blogid);
                 return res.status(200).send('delted');
             }
@@ -43,6 +48,10 @@ export default async (req:any,res:any)=>{
             break;
         case 'PATCH':
             try{
+                const session:any=await getToken({req});
+                if(!session || session.user.role!=="admin"){
+                    return res.status(401).json({message:"unauthorized"})
+                }
                 await BlogsA.findByIdAndUpdate(blogid,req.body);
                 return res.status(200).send('edited');
             }
