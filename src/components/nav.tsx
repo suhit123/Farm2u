@@ -14,6 +14,7 @@ import cartemptyimg from '@/resources/cartempty.png'
 import { useSession ,signOut} from 'next-auth/react';
 import Loader_colorring from './Loader_colorring';
 import facebooklogo from '@/resources/facebooklogo.png'
+import whatsapplogo from '@/resources/whatsapplogo.png'
 import React from 'react';
 const Nav=()=>{
 const router = useRouter();
@@ -217,7 +218,10 @@ return(
     <div  className={cartstyles.cart_bottom_container}><button className={cartstyles.cart_checkout} onClick={()=>{router.push('/products')}}>Continue Shopping</button></div>
   </div>}
   </div>
-  <div className={styles.facebook_link}><a href='https://www.facebook.com/profile.php?id=100093098380347'><Image width="40" height="40" src={facebooklogo} alt="facebook--v1"/></a></div>
+  <div className={styles.facebook_link}>
+  <a href='https://wa.me/7569444410' style={{marginBottom:"5px"}}><Image width="40" height="40" style={{borderRadius:"3px"}} src={whatsapplogo} alt="whatsapp--v1"/></a>
+    <a href='https://www.facebook.com/profile.php?id=100093098380347' ><Image width="40" height="40" src={facebooklogo} alt="facebook--v1"/></a>
+  </div>
   </div>
 );
 };
