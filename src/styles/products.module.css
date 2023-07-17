@@ -282,6 +282,7 @@
         height: 170px;
     }
     .products_list_items_content {
+        width: 100%;
         margin: 5px 5vw;
     }
     .products_list_items_content a{

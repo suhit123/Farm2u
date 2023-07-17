@@ -52,6 +52,9 @@
     margin: 15px 0px;
     color: #29395A;
     font-size: 18px;
+    background: -webkit-linear-gradient(0deg, #000000 0%, #1f6a92 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 @keyframes shimmer {
 	to {

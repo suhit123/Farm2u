@@ -144,7 +144,7 @@ return(
           <Link className={styles.nav_li_a} href="/">HOME</Link>
         </li>
         <li className={styles.nav_li}>
-          <a className={styles.nav_li_a} href="#">ABOUT</a>
+          <a className={styles.nav_li_a} href="/AboutUs">ABOUT</a>
         </li>
         <li className={styles.nav_li}>
           <a className={styles.nav_li_a} href="/products">PRODUCTS</a>

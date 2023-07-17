@@ -36,6 +36,9 @@
 }
 .contactuspage_container_block1_box2_block h4{
     font-size: 18px;
+    background: -webkit-linear-gradient(0deg, #000000 0%, #1f6a92 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .contactuspage_container_block1_box2_block p{
     margin: 0px 5px;
