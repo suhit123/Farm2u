@@ -157,6 +157,8 @@ const DetailedProduct = () => {
         <link rel="canonical" href={`${process.env.VERCEL_URL}/products/${ProductId}`} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="noindex, follow" />
+        <meta name="keywords" content="Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's,Sleep Apnea,Heart Attacks,Snoring,Cerebral Stroke,Nasal Pathway,Noisy Breathing,Sleeping Disorder,Nasal problems,ALZHEIMERS,AGEING
+PROBLEMS, BRAIN POWER,ARTHRITIS" />
         {/* Open Graph Meta Tags */}
         <meta property="og:title" content={`${productData?.heading}`} />
         <meta property="og:image" content={productData?.image1} />

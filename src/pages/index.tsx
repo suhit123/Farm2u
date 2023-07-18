@@ -32,8 +32,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Genmatrix Remedies</title>
-        <meta name="description" content="We, at GENMATRIX REMEDIES, strive to build a bond of Love and Trust with our valued customers worldwide. With our range of nutraceutical supplements, we aim to empower you in your journey towards a healthier, happier life. With a means to reestablish the significant minerals and nutrients back into your body. Our division has built up a wide scope of indispensable nutraceutical supplements that plays an important role in promoting your health and well-being of your loved ones. By providing a combination of nutritional and pharmaceutical benefits. These products are derived from natural sources and are formulated to provide specific health benefits beyond basic nutrition. Let's embark on this path together!" />
+        <title>Genmatrix Remedies - Nutraceutical Supplements for a Healthier Life</title>
+        <meta name="description" content="Discover a wide range of nutraceutical supplements at Genmatrix Remedies. Our products aim to empower you in your journey towards a healthier, happier life by providing essential minerals and nutrients. Join us in promoting health and well-being." />
         <meta name="keywords" content="Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's FSSAI, GMP, HACCP, HALAL, ISO, KOSHER" />
         <meta name="distribution" content="global" />
         <meta name="rating" content="general" />
