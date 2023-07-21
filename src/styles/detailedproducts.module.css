@@ -36,13 +36,13 @@
     background-color: white;
     border-radius: 5px;
     color: #192543;
-    transition: 0.3s all ease-in-out;
     border: 1px solid #192543;
 }
 .bottom_bar_container button:hover{
     border: 1px solid #192543;
     color: white;
-    background-color: #192543;
+    background: -webkit-linear-gradient(0deg, #172831 0%, #1f6a92 100%);
+
 }
 .detailed_product_page{
     width: 55%;
@@ -110,17 +110,16 @@
 .detailedproduct_main_details button{
     padding: 15px;
     border: 1px solid #192543;
-    background-color: #192543;
+    background: -webkit-linear-gradient(0deg, #172831 0%, #1f6a92 100%);
     border-radius: 5px;
     color: white;
-    transition: 0.3s all ease-in-out;
     position: relative;
     font-size: 14px;
 }
 .detailedproduct_main_details button:hover{
     border: 1px solid #192543;
     color: #192543;
-    background-color: white;
+    background: white;
 }
 .description{
 width: 100%;

@@ -58,10 +58,9 @@
     padding: 10px 15px;
     border: 1px solid #29395A;
     border-radius: 5px;
-    transition: 0.3s all ease-in-out;
 }
 .blogs_loadmore_btn button:hover{
-    background-color: #1f2c45;
+    background: -webkit-linear-gradient(0deg, #172831 0%, #1f6a92 100%);
     color: white;
 }
 /*empty*/

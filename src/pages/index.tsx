@@ -20,7 +20,7 @@ import React from 'react';
 export default function Home() {
   const [blogdata,setBlogData]=useState([]);
     useEffect(()=>{
-        axios.get("../api/Blogs")
+        axios.get("../api/Blogs?start=0&end=2")
         .then((res)=>{
              setBlogData(res.data);
 

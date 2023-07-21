@@ -75,7 +75,7 @@
     transition: 0.3s all ease;
     }
 .addtocart_products:hover{
-    background-color: #29395A;
+    background: -webkit-linear-gradient(0deg, #172831 0%, #1f6a92 100%);
     color: white;
 }
 .products_page_item_discounttag{

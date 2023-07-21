@@ -51,14 +51,14 @@
 .video_slider_top h4 {
     font-weight: 700;
     color: #29395A;
-    font-size: 18px;
+    font-size: 20px;
     background: -webkit-linear-gradient(0deg, #000000 0%, #1f6a92 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 .video_slider_line{
     height: 2px;
-    width: 15%;
+    width: 15vw;
     background-color: rgba(128, 128, 128, 0.366);
     margin: 0px 1vw;
 }

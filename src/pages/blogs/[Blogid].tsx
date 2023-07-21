@@ -47,7 +47,7 @@ const Blogid=()=>{
     },[Blogdata])
     const [data,setData]=useState([]);
     useEffect(()=>{
-        axios.get("../api/Blogs")
+        axios.get("../api/Blogs?start=0&end=2")
         .then((res)=>{
              setData(res.data);
 
