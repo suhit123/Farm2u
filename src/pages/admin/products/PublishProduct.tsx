@@ -48,6 +48,13 @@ const PublishProduct=()=>{
     
       const handlePublish = (e:any) => {
         e.preventDefault();
+        if(formData.qty<0){
+            setFormData((prevState:any)=>({
+                ...prevState,
+                "qty":0
+            }))
+            return;
+        }
         const sizeof = require('sizeof');
         const objectSizeBytes = sizeof.sizeof(formData);
         const objectSizeMB = objectSizeBytes / (1024 * 1024); 
@@ -160,7 +167,7 @@ const PublishProduct=()=>{
                 </div>
                 <div className={styles.publish_post_form_container_leftbox_div}>
                     Quantity:
-                    <div><input className={styles.publish_blog_input} type="number" name="qty" value={formData.qty} onChange={handleInputChange} required/></div>
+                    <div><input className={styles.publish_blog_input} type="number" name="qty" value={formData.qty} onChange={handleInputChange}  required/></div>
                 </div>
                 {limitexceed?<p>Exceeded the maximum upload limit i.e 100MB</p>:<></>}
                 <div className={styles.publish_post_form_container_leftbox_div}>

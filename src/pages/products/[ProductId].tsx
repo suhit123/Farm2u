@@ -29,6 +29,7 @@ interface ProductData {
   image4: string;
   description: string;
   comments: Comment[];
+  qty:number;
 }
 const DetailedProduct = () => {
   const { data: session }: any = useSession();
@@ -88,6 +89,10 @@ const DetailedProduct = () => {
           setMainImage(res.data.image1);
           setPageComments(res.data.comments.reverse());
           const reviews = res.data.comments;
+          if(reviews.length===0){
+            setRating(0);
+            return;
+          }
           let ratingAddition = 0;
           reviews.forEach((comment: Comment) => {
             ratingAddition += comment.rating;
@@ -118,10 +123,8 @@ const DetailedProduct = () => {
   };
   const userSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(newComment);
     await axios.post(`../api/products/${ProductId}`, newComment)
       .then((res) => {
-        console.log("Comment added!");
         forceUpdate();
         setCommentingState(false);
         setNewComment({ name: "", rating: 5, comment: "", publishDate: "" });
@@ -147,7 +150,7 @@ const DetailedProduct = () => {
           console.log("Something went wrong!");
         });
     } else {
-      router.push('/login');
+      router.push('/signup');
     }
   };
   return (
@@ -178,7 +181,7 @@ PROBLEMS, BRAIN POWER,ARTHRITIS" />
                     <p>M.R.P.: <del>Rs. {productData?.price}</del><span className={styles.showcasing_discountprice}>Rs. {productData?.price - ((productData?.discount * productData?.price) / 100)}</span></p>
                   </div>
                 </div>
-                <button onClick={() => { addToCart(productData?._id); router.push('/Cart'); }}>ADD TO CART</button>
+                {productData?.qty<1?<button>Out of stock</button>:<button onClick={() => { addToCart(productData?._id); router.push('/Cart'); }}>ADD TO CART</button>}
               </div>
             </div>
           ) : null}
@@ -211,7 +214,7 @@ PROBLEMS, BRAIN POWER,ARTHRITIS" />
                   <p>{Math.round(rating * 10) / 10}/5</p>
                 </div>
                 <p>	&#128525; Yay! You saved Rs. {((productData?.discount * productData?.price) / 100)}</p>
-                <button onClick={() => { addToCart(productData?._id); router.push('/Cart'); }}>ADD TO CART</button>
+                {productData?.qty<1?<button>Out of stock</button>:<button onClick={() => { addToCart(productData?._id); router.push('/Cart'); }}>ADD TO CART</button>}
                 <div className={styles.maufactured_and_marketed}>
                   <h6>Manufactured & Marketed by :</h6>
                   <p>Genmatrix remedies. 227, Building No.5-B, Andheri Kurla Road, Mittal Industrial Estate Rd, Andheri East, Mumbai, Maharashtra 400059.</p>

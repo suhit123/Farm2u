@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import AdminRoute from './AdminRoute';
+import AdminRoute from '../AdminRoute';
 import Image from 'next/image';
 import { faEdit, faTrash ,faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from '@/styles/admin/admintable_managemnt.module.css';
 import { useRouter } from 'next/router';
 import successlogo from '@/resources/successicon.png'
-import Admin from '.';
+import Admin from '..';
 import nodatafound from '@/resources/no_data_found.png'
 import { faSpinner} from "@fortawesome/free-solid-svg-icons";
-import Loader_colorring from '../../components/Loader_colorring';
-import AdminNav from '../../components/AdminNav';
+import Loader_colorring from '../../../components/Loader_colorring';
+import AdminNav from '../../../components/AdminNav';
 import React from 'react';
 const Blogs=()=>{
     const router=useRouter();

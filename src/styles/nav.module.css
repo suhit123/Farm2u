@@ -3,12 +3,12 @@
     overflow-x: hidden;
 }
 .discount_nav_bar{
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     font-size: 15px;
     font-weight: 500;
     color: white;
-    background-color: #1e2940;
+    background-image: -webkit-linear-gradient(0deg, #1d2b47 0%, #175170 100%);
     display: flex;
     justify-content: center;
 }

@@ -16,29 +16,52 @@ import Loader_colorring from './Loader_colorring';
 import facebooklogo from '@/resources/facebooklogo.png'
 import whatsapplogo from '@/resources/whatsapplogo.png'
 import React from 'react';
+interface coupon{
+  _id:string,
+  amount:number,
+  discount:number,
+  coupon:string
+}
 const Nav=()=>{
 const router = useRouter();
 const {data:session}:any=useSession();
 const [cartData,setCartData]:any =useState([]);
 const [reducerValue,forceUpdate]=useReducer(x=>x+1,0);
-const [cartState,setCartState]=useState(false);
+const [cartState,setCartState]=useState<boolean>(false);
 const [discountBarState,setDiscountBarState]=useState(true);
 const [cartDataContents,setCartDataContents]:any=useState([]);
 const [totalPrice,setTotalPrice]=useState(0);
 const [totalDiscount,setTotalDiscount]=useState(0);
+const[loading,setLoading]=useState<boolean>(false);
+const [coupon,setCoupon]=useState<coupon>({
+  _id:'',
+  amount:0,
+  discount:0,
+  coupon:''
+})
+const fetchdata= async()=>{
+  await axios.get('../api/products',)
+  .then((res)=>{
+      const productdata=res.data;
+      setCartDataContents(productdata);
+      console.log(productdata)
+  })
+  .catch((err)=>{
+      console.log(err);
+  })
+}
+const fetchCoupon=async()=>{
+  await axios.get('../../api/Coupon/get')
+  .then((res)=>{
+    setCoupon(res.data);
+  })
+  .catch((err)=>{
+    console.log(err)
+  })
+}
 useEffect(()=>{
-  const fetchdata= async()=>{
-      await axios.get('../api/products',)
-      .then((res)=>{
-          const productdata=res.data;
-          setCartDataContents(productdata);
-          console.log(productdata)
-      })
-      .catch((err)=>{
-          console.log(err);
-      })
-  }
   fetchdata();
+  fetchCoupon();
 },[])
 const closeNav=()=>{
     setCartState(false);
@@ -74,7 +97,6 @@ const RemoveFromcart=async(productId:String)=>{
     setLoading(false); // Stop loading
   });
 }
-const[loading,setLoading]=useState(false);
 useEffect(()=>{
   if(session){
     setLoading(true);
@@ -107,7 +129,7 @@ useEffect(()=>{
 return(
   <div className={styles.entirenav}>
     {discountBarState?<div className={styles.discount_nav_bar}>
-          <p>Get 10% Discount for Purchase above Rs. 1500/- Use Coupon : GMR1500</p>
+          <p>Get {coupon.discount}% Discount for Purchase above Rs. {coupon.amount}/- Use Coupon : {coupon.coupon}</p>
           <a className={cartstyles.closebtn} onClick={()=>{setDiscountBarState(!discountBarState)}}>&times;</a>
     </div>:<></>}
     <div className={styles.main_nav_bar_p}>

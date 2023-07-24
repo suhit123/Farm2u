@@ -12,15 +12,28 @@ import Loader_colorring from "@/components/Loader_colorring";
 import nodatafound from '@/resources/no_data_found.png'
 import AdminNav from "../../../components/AdminNav";
 import React from 'react';
+
+interface coupon{
+  _id:string,
+  amount:number,
+  discount:number,
+  coupon:string
+}
+
 const Inventory = () => {
   let key=1;
   const router=useRouter();
   const [alertmessage_delete,setAlertmessage_delete]:any=useState('');
-  const [loader,setLoader]=useState(false);
+  const [loader,setLoader]=useState<boolean>(false);
   const [productsdata,setProductsData]:any=useState([]);
-  const [loading,setLoading]=useState(false);
+  const [coupon,setCoupon]=useState<coupon>({
+    _id:'',
+    amount:0,
+    discount:0,
+    coupon:''
+  })
+  const [couponEdit,setCouponEdit]=useState<boolean>(false);
   const fetchdata= async()=>{
-    setLoading(true);
     setLoader(true)
     await axios.get('../../api/products',)
     .then((res)=>{
@@ -33,18 +46,79 @@ const Inventory = () => {
         console.log(err);
     })
     .finally(()=>{
-      setLoading(false);
       setLoader(false)
     })
-}  
+}
+  const fetchCoupon=async()=>{
+    await axios.get('../../api/Coupon/get')
+    .then((res)=>{
+      setCoupon(res.data);
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
   useEffect(()=>{
         fetchdata();
+        fetchCoupon();
     },[])
+  const handleChange=async(e:any)=>{
+    setCoupon((coupon)=>({
+      ...coupon,[e.target.name]:e.target.value
+    }))
+  }
+  const handleCouponSubmit=async(e:any)=>{
+    e.preventDefault();
+    console.log(coupon)
+    await axios.patch(`../../api/Coupon/${coupon._id}`,coupon)
+    .then((res)=>{
+      console.log("Added new coupon");
+    })
+    .catch((err)=>{
+      console.log("Something gone wrong!");
+    })
+    .finally(()=>{
+      setCouponEdit(false)
+      fetchCoupon();
+    })
+  }
   return (
     <AdminRoute>
     <Admin/>
     <div className="admin_nav_adjustment">
     <AdminNav/>
+    {couponEdit?<div className={styles.coupon_div}>
+      <p>coupon</p>
+      <div className={styles.coupon_inputs}>
+      <p>Amount above (Rs):</p>
+      <input type='number' placeholder="1500" name="amount" value={coupon.amount} onChange={handleChange}/>
+      </div>
+      <div className={styles.coupon_inputs}>
+      <p>Discount percentage (%) :</p>
+      <input type='number' placeholder="10" name="discount" value={coupon.discount} onChange={handleChange}/>
+      </div>
+      <div className={styles.coupon_inputs}>
+        <p>Code :</p>
+      <input type='text' placeholder="GEN1500" name="coupon" value={coupon.coupon} onChange={handleChange}/>
+      </div>
+      <button className={styles.coupon_save} onClick={handleCouponSubmit}>Save</button>
+    </div>
+    :<div className={styles.coupon_div}>
+      <p>coupon</p>
+      <div className={styles.coupon_inputs}>
+      <p>Amount above (Rs):</p>
+      <p>{coupon.amount}</p>
+      </div>
+      <div className={styles.coupon_inputs}>
+      <p>Discount percentage (%) :</p>
+      <p>{coupon.discount}</p>
+      </div>
+      <div className={styles.coupon_inputs}>
+        <p>Code :</p>
+        <p>{coupon.coupon}</p>
+      </div>
+      <button className={styles.coupon_edit} onClick={()=>{setCouponEdit(true)}}>Edit</button>
+    </div>}
     <div className={styles.invetory_entire}>
     <h2>Products</h2>
     <table className={styles.table}>

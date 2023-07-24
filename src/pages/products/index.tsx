@@ -63,7 +63,7 @@ const Products = () => {
         }));
       }
     } else {
-      router.push('/login');
+      router.push('/signup');
     }
   };
 
@@ -118,7 +118,7 @@ const Products = () => {
                     <h4>
                       <del>Rs. {item.price}</del> Rs. {Math.floor(item.price - (item.discount * item.price) / 100)}
                     </h4>
-                    <button
+                    {item?.qty<1?<button className={styles.addtocart_products}>OUT OF STOCK</button>:<button
                       className={styles.addtocart_products}
                       onClick={() => addToCart(item._id)}
                       disabled={loading[item._id]}
@@ -126,7 +126,7 @@ const Products = () => {
                       {loading[item._id] ? (<FontAwesomeIcon icon={faSpinner} className="fa-spin" />) : (
                         'ADD TO CART'
                       )}
-                    </button>
+                    </button>}
                   </div>
                   <p className={styles.products_page_item_discounttag}>-{item.discount}%</p>
                 </div>

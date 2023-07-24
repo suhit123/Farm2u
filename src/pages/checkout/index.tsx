@@ -10,10 +10,29 @@ import { useRouter } from 'next/router';
 import genmatrixlogo from '@/resources/logo_text.png'
 import Head from 'next/head';
 import circlelogo from '@/resources/genmatrixlogo2.png'
+import Congrats from '@/components/congrats';
+interface address{
+  _id:string,
+  firstName:string,
+  lastName:string,
+  phoneNumber:string,
+  address:string,
+  landmark:string,
+  city:string,
+  state:string,
+  pincode:string,
+  country:string
+}
+interface coupon{
+  _id:string,
+  amount:number,
+  discount:number,
+  coupon:string
+}
 const CheckoutForm = () => {
   const router=useRouter();
   const { data: session , status: sessionStatus}:any = useSession();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<address>({
     _id:'123',
     firstName: '',
     lastName: '',
@@ -25,8 +44,52 @@ const CheckoutForm = () => {
     pincode: '',
     country: 'India'
   });
+  //coupon
+  const [couponInput,setCouponInput]=useState<string>('')
+  const [congrats,setCongrats]=useState<boolean>(false);
+  const [couponMessage,setCouponMessage]=useState<string>('')
+  const [coupon,setCoupon]=useState<coupon>({
+    _id:'',
+    amount:0,
+    discount:0,
+    coupon:''
+  })
+  const fetchCoupon=async()=>{
+    await axios.get('../../api/Coupon/get')
+    .then((res)=>{
+      setCoupon(res.data);
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
+  useEffect(()=>{
+    fetchCoupon();
+  },[])
+  const congratsAnimation=()=>{
+    setTimeout(()=>{
+      setCongrats(false);
+    },2000)
+  }
+  const handleCouponSubmit=()=>{
+    if(couponInput===coupon.coupon){
+      if(totalPrice<coupon.amount){
+        setTotalDiscount(0);
+        setCouponMessage('⛔ Oops! Order more to validate this coupon.');
+        return;
+      }
+      setTotalDiscount(Math.floor((totalPrice*coupon.discount)/100))
+      setCouponMessage('✅ Added successfully');
+      setCongrats(true);
+      congratsAnimation();
+    }
+    else{
+      setTotalDiscount(0);
+      setCouponMessage("⛔ Invalid coupon");
+    }
+  }
   //address fetching
-  const [addressData, setAddressData]= useState([]);
+  const [addressData, setAddressData]= useState<address[]>([]);
   const fetchAddressData = () => {
     axios.get(`/api/users/${session?.user?._id}/addresses`)
         .then((res) => {
@@ -55,14 +118,13 @@ const CheckoutForm = () => {
   };
 
 
-  //side bar
+  //amounts right side
   const [cartDataContents, setCartDataContents] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [cartData, setCartData] = useState([]);
-
   const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [totalDiscount, setTotalDiscount] = useState(0);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [totalDiscount, setTotalDiscount] = useState<number>(0);
   useEffect(() => {
     if (sessionStatus === 'loading') {
       return;
@@ -119,8 +181,7 @@ const CheckoutForm = () => {
         }
       });
     }
-    setTotalPrice(tp);
-    setTotalDiscount(dp);
+    setTotalPrice(tp-dp);
   }, [reducerValue, cartData, cartDataContents]);
   const addToOrders=async()=>{
     try{
@@ -141,7 +202,7 @@ const CheckoutForm = () => {
           address:addressdata,
           email:session?.user?.email,
           products:cart,
-          totalAmount:totalPrice - totalDiscount,
+          totalAmount:totalPrice-totalDiscount,
           paymentStatus:'paid',
       };
       console.log(data)
@@ -236,6 +297,7 @@ const CheckoutForm = () => {
     </Head>
     {!session?<></>:
     <>
+    {congrats?<Congrats/>:<></>}
     <div className={cartstyles.grey_box}></div>
     <div className={styles.checkout_container}>
     <div>
@@ -393,13 +455,18 @@ const CheckoutForm = () => {
             </div>
           </div>
           <div className={cartstyles.coupon_discount_section}>
-            <input type='text' placeholder='Discount code'/>
-            <button>Apply</button>
+            <input type='text' placeholder='Discount code' name="coupon" value={couponInput} onChange={(e)=>(setCouponInput(e.target.value))}/>
+            <button onClick={handleCouponSubmit}>Apply</button>
           </div>
+          {couponMessage}
           <div className={cartstyles.cart_total}>
                 <p>Subtotal</p>
-                <p className={cartstyles.priceamounts}>{totalPrice - totalDiscount}</p>
+                <p className={cartstyles.priceamounts}>{totalPrice}</p>
               </div>
+              {totalDiscount<1?<></>:<div className={cartstyles.cart_total}>
+                <p>Coupon code</p>
+                <p className={cartstyles.priceamounts}>-{totalDiscount}</p>
+              </div>}
               <div className={cartstyles.cart_discount}>
                 <p>Shipping</p>
                 <p className={cartstyles.priceamounts}>Free</p>
@@ -409,7 +476,7 @@ const CheckoutForm = () => {
                   <p>Total</p>
                   <p>(Including of all taxes)</p>
                 </div>
-                <p className={cartstyles.priceamounts}>Rs. {totalPrice - totalDiscount}</p>
+                <p className={cartstyles.priceamounts}>Rs. {totalPrice-totalDiscount}</p>
               </div>
          </> 
         ) :(<p>wait for a moment ...</p>) 

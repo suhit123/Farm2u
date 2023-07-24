@@ -3,6 +3,8 @@
     height: auto;
 }
 .checkout_container{
+    height: max-content;
+    overflow: hidden;
     display: flex;
     width: max-content;
     margin: 50px auto;
@@ -68,16 +70,15 @@ font-weight: 500;
     box-shadow: 0px 0px 20px rgba(193, 193, 193, 0.25);
     border-radius: 5px;
     outline: none;
-    background-color:#29395A ;
+    background-image: -webkit-linear-gradient(0deg, #29395A 0%, #1f6a92 100%);
     color: white;
     margin: 10px 0px;
-    transition: 0.3s all ease-in-out;
     cursor: pointer;
     
 }
 .info_submit:hover{
     color: #29395A;
-    background-color: white;
+    background: white;
     border: 1px solid #29395A;
 }
 .info_form_back_submit{

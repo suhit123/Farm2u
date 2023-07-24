@@ -2,8 +2,6 @@ import dbConnect from '../../utils/dbConnect';
 import NotifyEmail from '../../models/Notifyemails';
 import { NextApiRequest, NextApiResponse } from 'next';
 dbConnect();
-const bcrypt=require("bcrypt");
-
 export default async (req:NextApiRequest,res:NextApiResponse)=>{
     const {method}=req;
     switch(method){
@@ -19,7 +17,7 @@ export default async (req:NextApiRequest,res:NextApiResponse)=>{
             }
             }
             else{
-                return res.status(400).send("emailerror")
+                return res.status(400).send("Already added!")
             }
             break;
         default:

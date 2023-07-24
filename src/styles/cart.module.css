@@ -79,14 +79,13 @@
     width: 100%;
     padding: 10px;
     border: 1px solid #29395A;
-    background-color: white;
+    background: white;
     color: #29395A;
     font-weight: 600;
     font-size: 14px;
-    transition: 0.4s all ease-in-out;
   }
   .cart_checkout:hover{
-    background-color: #29395A;
+    background-image: -webkit-linear-gradient(0deg, #29395A 0%, #1f6a92 100%);
     color: white;
   }
   .cart_bottom_container{

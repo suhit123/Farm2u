@@ -70,6 +70,13 @@ const Editblog=()=>{
     
       const handlePublish = (e:any) => {
         e.preventDefault();
+        if(formData.qty<0){
+          setFormData((prevState:any)=>({
+              ...prevState,
+              "qty":0
+          }))
+          return;
+      }
         console.log('Form Data:', formData);
         const sizeof = require('sizeof');
         const objectSizeBytes = sizeof.sizeof(formData);
