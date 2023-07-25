@@ -4,30 +4,22 @@ import { getToken } from 'next-auth/jwt';
 dbConnect();
 export const config = { api: { bodyParser: { sizeLimit: '100mb' } } };
 export default async (req: any, res: any) => {
-  const Productid = req.query.Productid;
   const { method } = req;
   switch (method) {
     case 'PATCH':
       try {
-        const session: any = await getToken({ req });
-        if (!session) {
-          return res.status(401).json({ message: 'Not authenticated' });
-        }
-        // Get the quantity from the request body
-        const { quantity } = req.body;
-        // Check if the quantity is a valid number
-        if (typeof quantity !== 'number' || quantity <= 0) {
+        const productId = req.body.productId;
+        const { quantity } = req.body;        // Get the quantity from the request body
+        if (typeof quantity !== 'number' || quantity <= 0) {  // Check if the quantity is a valid number
           return res.status(400).json({ message: 'Invalid quantity' });
         }
-        // Find the product by ID in the database
-        const product = await Product.findById(Productid);
+        const product = await Product.findOne({_id:productId});   // Find the product by ID in the database
         if (!product) {
+          console.log("yes")
           return res.status(404).json({ message: 'Product not found' });
         }
-        // Reduce the current quantity by the specified amount
-        product.quantity -= quantity;
-        // Save the updated product in the database
-        await product.save();
+        product.qty -= quantity; // Reduce the current quantity by the specified amount
+        await product.save(); // Save the updated product in the database
         return res.status(200).json({ message: 'Quantity updated successfully', product });
       } catch (err) {
         console.error(err);

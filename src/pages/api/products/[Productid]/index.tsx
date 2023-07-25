@@ -2,7 +2,6 @@ import dbConnect from '@/utils/dbConnect';
 import Product from '@/models/Product';
 import { getToken } from 'next-auth/jwt';
 dbConnect();
-const bcrypt=require("bcrypt");
 export const config = { api: { bodyParser: { sizeLimit: '100mb' } } }
 export default async (req:any,res:any)=>{
     const Productid=req.query.Productid;
@@ -10,9 +9,9 @@ export default async (req:any,res:any)=>{
     switch(method){
         case 'GET':
             try{
-                const blogs=await Product.findOne({_id:Productid});
-                if(blogs){    
-                    return res.status(200).json(blogs)}
+                const product=await Product.findOne({_id:Productid});
+                if(product){    
+                    return res.status(200).json(product)}
                 else{
                     return res.status(404).send("iderror");
                 }
@@ -20,19 +19,16 @@ export default async (req:any,res:any)=>{
             catch(err){
                 return res.status(404).send("iderror");
             }
-            break;
-            
         case 'POST':
             try {
-                const blog = await Product.findOne({_id:Productid});
-                blog.comments.push({ name:req.body.name,rating:req.body.rating, comment:req.body.comment, publishDate:Date.now()});
-                await blog.save();
+                const product = await Product.findOne({_id:Productid});
+                product.comments.push({ name:req.body.name,rating:req.body.rating, comment:req.body.comment, publishDate:Date.now()});
+                await product.save();
                 return res.status(200).json({ message: 'Comment added to product successfully' });
               } catch (error) {
                 console.error(error);
                 return res.status(500).json({ message: 'Internal Server Error' });
               }
-              break;
         case 'DELETE':
             try{
                 const session:any=await getToken({req});
@@ -45,7 +41,6 @@ export default async (req:any,res:any)=>{
             catch(err){
                 return res.status(401).send("iderror");
             }
-            break;
         case 'PATCH':
             try{
                 const session:any=await getToken({req});

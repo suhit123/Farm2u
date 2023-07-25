@@ -18,7 +18,7 @@ return (
             <p className={styles.heading}>Quick Pages</p>
             <ul>
                 <li><Link href={'/'}>HOME</Link></li>
-                <li><Link href={'#'}>ABOUT</Link></li>
+                <li><Link href={'/AboutUs'}>ABOUT</Link></li>
                 <li><Link href={'/products'}>PRODUCTS</Link></li>
                 <li><Link href={'/videos'}>VIDEOS</Link></li>
                 <li><Link href={'/blogs'}>BLOG</Link></li>

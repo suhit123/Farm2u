@@ -108,7 +108,9 @@ useEffect(()=>{
       .catch((err)=>{
           console.log(err);
       })
-    setLoading(false);
+      .finally(()=>{
+          setLoading(false);
+      })
   }
 },[cartState,reducerValue])
 useEffect(()=>{
@@ -194,9 +196,8 @@ return(
   <a className={cartstyles.closebtn} onClick={closeNav}>&times;</a>
   {cartData.length!==0 && cartDataContents.length!==0?<div>
   <div className={cartstyles.cart_items}><div className={cartstyles.cart_items_list}>
-  {loading ? ( 
-                <Loader_colorring/>
-                ) : <p></p>}{cartData.map((item:any,index: number)=>{
+  {loading ? (<Loader_colorring/>) : <p></p>}
+  {cartData.map((item:any,index: number)=>{
       const dataelement=cartDataContents.find((i:any)=>i._id===item.productId)
       if(dataelement){
       return(
@@ -217,7 +218,9 @@ return(
           <div className={cartcomponentstyles.cart_prodicts_item_underline}></div>
     </>
       );}
-  })}</div></div>
+  })}
+  </div>
+  </div>
   <div className={cartstyles.cart_bottom_container}>
   <div className={cartstyles.cart_total}>
   <p>Total</p>

@@ -43,6 +43,9 @@
     font-size: 14px;
     text-decoration: none;
 }
+.quicklinks ul li a:hover{
+    color: white;
+}
 .quicklinks ul li:hover{
     color: rgb(211, 211, 211);
     border-left: 1px solid white;

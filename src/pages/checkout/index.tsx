@@ -94,7 +94,6 @@ const CheckoutForm = () => {
     axios.get(`/api/users/${session?.user?._id}/addresses`)
         .then((res) => {
         setAddressData(res.data.reverse());
-        console.log(res.data)
       })
       .catch((err) => {
         console.log("Something went wrong");
@@ -187,7 +186,6 @@ const CheckoutForm = () => {
     try{
       let cart:any=[];
       cartData.map((item:any) => {
-        console.log(item)
         const dataelement:any = cartDataContents.find((i:any) => i._id === item.productId);
         if (dataelement) {
           cart.push({
@@ -228,6 +226,17 @@ const CheckoutForm = () => {
       console.log("Something wen't wrong!");
     }
   }
+  const reduceQty=()=>{
+    cartData.map(async(i)=>{
+      console.log(i)
+      await axios.patch('/api/Orders/Edit/ReduceQty',i)
+      .then((res)=>{
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+    })
+  }
   const initializeRazorpay = () => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -254,7 +263,6 @@ const CheckoutForm = () => {
     const data = await fetch("/api/razorpay", { method: "POST" , body:JSON.stringify(amount)}).then((t) =>
       t.json()
     );
-    console.log(data);
     var options = {
       key:process.env.RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
       name: "GENMATRIX REMEDIES",
@@ -269,10 +277,9 @@ const CheckoutForm = () => {
         // alert(response.razorpay_order_id);
         // alert(response.razorpay_signature);
         if (response.razorpay_payment_id) {
-          // Payment successful
           addToOrders();
+          reduceQty();
         } else {
-          // Payment failed
           console.log("Payment failed");
         }
       },

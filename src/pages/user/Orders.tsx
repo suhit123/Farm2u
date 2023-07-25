@@ -62,7 +62,6 @@ const Orders = () => {
                           Date : {item.createdAt.split("T")[0]}
                         </p>
                         {item.products.map((i:any,index: number) => {
-                          console.log(i)
                           return (
                             <div
                               className={styles.order_block_products}

@@ -27,18 +27,18 @@ const Cart = () => {
       router.push('/');
     }
   }, [session, sessionStatus, router]);
+  const fetchdata = async () => {
+    await axios
+      .get("./api/products")
+      .then((res) => {
+        const productdata = res.data;
+        setCartDataContents(productdata);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
-    const fetchdata = async () => {
-      await axios
-        .get("./api/products")
-        .then((res) => {
-          const productdata = res.data;
-          setCartDataContents(productdata);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
     fetchdata();
   }, []);
 
