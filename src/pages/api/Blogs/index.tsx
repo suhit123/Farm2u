@@ -1,5 +1,5 @@
 import dbConnect from '@/utils/dbConnect';
-import BlogsA from '@/models/BlogsA';
+import BlogsB from '@/models/BlogsB';
 import { getToken } from 'next-auth/jwt';
 dbConnect();
 export const config = { api: { bodyParser: { sizeLimit: '100mb' } } }
@@ -14,17 +14,18 @@ export default async (req:any,res:any)=>{
                 }
                 const data=req.body;
                 Object.assign(data,{comments:[]});
-                const user=await BlogsA.create(data);
+                const user=await BlogsB.create(data);
                 return res.status(201).json({success:true,data:user})
             }
             catch(err){
+                console.log(err)
                 return res.status(400).json({success:false});
             }
             break;
         case 'GET':
             try{
                 const { start, end } = req.query;
-                const blogs = await BlogsA.find({}, '-bodycontent -comments')
+                const blogs = await BlogsB.find({}, '-bodycontent -comments')
                 .sort({ publishDate: 'descending' })
                 .skip(Number(start))
                 .limit(Number(end) - Number(start) + 1);

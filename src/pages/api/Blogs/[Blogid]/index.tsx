@@ -1,5 +1,5 @@
 import dbConnect from '@/utils/dbConnect';
-import BlogsA from '@/models/BlogsA';
+import BlogsB from '@/models/BlogsB';
 import { getToken } from 'next-auth/jwt';
 dbConnect();
 const bcrypt=require("bcrypt");
@@ -10,7 +10,7 @@ export default async (req:any,res:any)=>{
     switch(method){
         case 'GET':
             try{
-                const blogs=await BlogsA.findOne({_id:blogid});
+                const blogs=await BlogsB.findOne({_id:blogid});
                 if(blogs){    
                     return res.status(200).json(blogs)}
                 else{
@@ -24,7 +24,7 @@ export default async (req:any,res:any)=>{
             
         case 'POST':
             try {
-                const blog = await BlogsA.findOne({_id:blogid});
+                const blog = await BlogsB.findOne({_id:blogid});
                 blog.comments.push({ name:req.body.name, comment:req.body.comment, publishDate:Date.now()});
                 await blog.save();
                 return res.status(200).json({ message: 'Comment added to cart successfully' });
@@ -39,7 +39,7 @@ export default async (req:any,res:any)=>{
                 if(!session || session.user.role!=="admin"){
                     return res.status(401).json({message:"unauthorized"})
                 }
-                await BlogsA.findByIdAndDelete(blogid);
+                await BlogsB.findByIdAndDelete(blogid);
                 return res.status(200).send('delted');
             }
             catch(err){
@@ -52,7 +52,7 @@ export default async (req:any,res:any)=>{
                 if(!session || session.user.role!=="admin"){
                     return res.status(401).json({message:"unauthorized"})
                 }
-                await BlogsA.findByIdAndUpdate(blogid,req.body);
+                await BlogsB.findByIdAndUpdate(blogid,req.body);
                 return res.status(200).send('edited');
             }
             catch(err){

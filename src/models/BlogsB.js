@@ -1,10 +1,10 @@
 const mongoose =require('mongoose');
-const BlogsASchema=new mongoose.Schema({
+const BlogsBSchema=new mongoose.Schema({
     title:{
         type:String,
         required:true,
         trim:true,
-        maxLength:[40,'Title cannot be more than 40 characters']
+        maxLength:[120,'Title cannot be more than 40 characters']
     },
     image:{
         type:String,
@@ -50,4 +50,4 @@ const BlogsASchema=new mongoose.Schema({
     }
     ]
 })
-module.exports=mongoose.models.BlogsA || mongoose.model('BlogsA',BlogsASchema);
+module.exports=mongoose.models.BlogsB || mongoose.model('BlogsB',BlogsBSchema);
