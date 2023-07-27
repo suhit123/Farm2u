@@ -372,6 +372,7 @@
     }
     .detailed_blog_container_entire_box1{
         width: 95%;
+        margin: 0px auto;
     }
     .detailed_blog_container_date{
         font-size: 13px;
