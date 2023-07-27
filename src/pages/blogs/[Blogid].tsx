@@ -11,6 +11,8 @@ import sharepngpage from '@/resources/sharepngpage.png'
 import Custom404 from "../404";
 import React from 'react';
 import Link from "next/link";
+import Loader from "@/components/loader";
+import {commentPublish,Detailedblog} from '@/components/Interfaces/Blogs';
 const Blogid=()=>{
     const router=useRouter()
     let Blogid=router.query.Blogid;
@@ -18,17 +20,27 @@ const Blogid=()=>{
     if (typeof window !== 'undefined') {
         currentUrl = window.location.href;
     }
-    const [Blogdata,setBlogdata]:any=useState({});
+    const [Blogdata,setBlogdata]=useState<Detailedblog>({
+        bodycontent:"",
+        category:"string",
+        comments:[],
+        description:"",
+        image:"",
+        publishDate:"",
+        title:"",
+    });
     const [pagecomments,setPagecomments]=useState([]);
-    const [checkId,setCheckId]=useState(false);
-    const [location,setLocation]:any=useState("");
+    const [checkId,setCheckId]=useState<boolean>(false);
     const [reducerValue,forceUpdate]=useReducer(x=>x+1,0);
+    const [onLoading,setOnLoading]=useState<boolean>(true);
+    const [commentError,setCommentError]=useState<boolean>(false);
     useEffect(() => {
         if (Blogid) {
           axios
             .get(`../api/Blogs/${Blogid}`)
             .then((res) => {
               setBlogdata(res.data);
+              console.log(res.data)
               setPagecomments(res.data.comments.reverse())
             })
             .catch((err) => {
@@ -36,21 +48,17 @@ const Blogid=()=>{
               if (err.response.data === "iderror") {
                 setCheckId(true);
               }
-            });
+            })
+            .finally(()=>{
+                setOnLoading(false);
+            })
         }
       }, [Blogid,reducerValue]);
-    useEffect(()=>{
-        setLocation(currentUrl);
-    },[currentUrl])
-    useEffect(()=>{
-
-    },[Blogdata])
     const [data,setData]=useState([]);
     useEffect(()=>{
         axios.get("../api/Blogs?start=0&end=2")
         .then((res)=>{
              setData(res.data);
-
         })
         .catch((err)=>{
             console.log(err);})
@@ -72,7 +80,7 @@ const Blogid=()=>{
     },[]);
     //comment
     const[commentingState,setCommentingState]=useState(true);
-    const [newcomment,setNewcomment]=useState({
+    const [newcomment,setNewcomment]=useState<commentPublish>({
         name:"",
         comment:""
     })
@@ -91,9 +99,11 @@ const Blogid=()=>{
             axios.post('/api/SMTP/Blogcomment',{name:newcomment.name,comment:newcomment.comment,blogid:Blogid,Blogtitle:Blogdata.title})
             .then((res)=>{
                 console.log("Comment added and posted");
+                setCommentError(false);
             })
             .catch((err)=>{
                 console.log("comment added email failed");
+                setCommentError(true);
             })
         })
         .catch((err)=>{
@@ -102,6 +112,7 @@ const Blogid=()=>{
     }
     return(
         <>
+        {onLoading?<Loader/>:<></>}
         <Nav/>
         <div className={styles.progressMainWrapper}>
             <div
@@ -139,6 +150,7 @@ const Blogid=()=>{
                 {commentingState?<form className={styles.blogcommentform} onSubmit={userSubmit}>
                 <input type="text" name="name" placeholder="Name" value={newcomment.name} onChange={handlechange} required/>
                 <textarea name="comment" placeholder="Comment your message"  value={newcomment.comment} onChange={handlechange} required></textarea>
+                {commentError?<p>Something gone wrong ! Try again later</p>:<></>}
                 <div>
                     <button className={styles.comment_section_submit}  type="submit">Submit</button>
                     {commentingState?<button className={styles.comment_section_close} onClick={()=>{setCommentingState(!commentingState)}}>Close</button>:<></>}

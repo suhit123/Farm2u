@@ -10,16 +10,18 @@ import AdminRoute from "@/pages/admin/AdminRoute";
 import Admin from ".";
 import AdminNav from "../../components/AdminNav";
 import React from 'react';
+import {Detailedblog} from '@/components/Interfaces/Blogs';
+
 const Editblog=()=>{
     const router=useRouter()
     let Blogid=router.query.Blogid;
-    const [formData, setFormData]:any = useState({
+    const [formData, setFormData] = useState<Detailedblog>({
         title: '',
         publishDate: '',
         image: '',
         category: '',
         description: '',
-        bodycontent:null,
+        bodycontent:'',
         comments:[]
       });
     const {quill,quillRef}:any=useQuill();

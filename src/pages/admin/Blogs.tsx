@@ -12,6 +12,7 @@ import Loader_colorring from '../../components/Loader_colorring';
 import nodatafound from '@/resources/no_data_found.png'
 import AdminNav from '../../components/AdminNav';
 import React from 'react';
+import {Blog} from '@/components/Interfaces/Blogs';
 const Blogs=()=>{
     const router=useRouter();
     const [data,setData]:any=useState([]);
@@ -53,7 +54,7 @@ const Blogs=()=>{
         </tr>
       </thead>
       <tbody>
-        {!loader && data.length!==0?data.map((item:any,index: number) => (
+        {!loader && data.length!==0?data.map((item:Blog,index: number) => (
           <tr key={index}>
             <td>{key++}</td>
             <td>{item.title}</td>

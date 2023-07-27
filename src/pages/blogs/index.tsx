@@ -10,21 +10,7 @@ import React from 'react';
 import blogboxstyles from '@/styles/blogbox.module.css'
 import Image from 'next/image';
 import Link from 'next/link';
-interface Blog {
-  // Define the properties of a single blog
-  _id: number;
-  title: string;
-  image: string;
-  publishDate:string;
-  category:string;
-  description:string;
-  // Add other properties as needed
-}
-
-interface BlogsProps {
-  data: Blog[]; // Define the prop type for data
-}
-
+import {BlogsProps,Blog} from '@/components/Interfaces/Blogs';
 const Blogs: React.FC<BlogsProps> = () => {
 const [blogs, setBlogs] = useState<Blog[]>([]);
   const [shownum, setShownum] = useState(0);

@@ -9,19 +9,23 @@ import AdminRoute from "./AdminRoute";
 import Admin from ".";
 import AdminNav from "../../components/AdminNav";
 import React from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner} from "@fortawesome/free-solid-svg-icons";
+import {DetailedblogPublish} from '@/components/Interfaces/Blogs';
 const Publishblog=()=>{
     const {quill,quillRef}:any=useQuill();
     const [alertmessage_publish,setAlertmessage_publish]:any=useState('');
     const [selectedImage, setSelectedImage] = useState(null);
+    const [publishLoading,setPublishLoading]=useState<boolean>(false);
     const[limitexceed,setLimitexceed]=useState(false);
     const [reducerValue,forceUpdate]=useReducer(x=>x+1,0);
-    const [formData, setFormData]:any = useState({
+    const [formData, setFormData] = useState<DetailedblogPublish>({
         title: '',
         publishDate: '',
         image: '',
         category: '0',
         description: '',
-        bodycontent:null
+        bodycontent:''
       });
       useEffect(() => {
         if (quill) {
@@ -82,8 +86,9 @@ const Publishblog=()=>{
                     <p>Are you sure you want to publish this post ?</p>
                     <div className={styles.publish_alert_buttons}>
                         <button className={styles.publish_alert_button1} onClick={()=>{setAlertmessage_publish('')}}>No</button>
-                        <button className={styles.publish_alert_button2} onClick={()=>{
+                        {publishLoading?<button className={styles.publish_alert_button2}>Yes <FontAwesomeIcon icon={faSpinner} className="fa-spin" /></button>:<button className={styles.publish_alert_button2} onClick={()=>{
                             console.log(formData)
+                            setPublishLoading(true);
                             axios.post('../api/Blogs',formData)
                             .then(()=>{
                                 console.log("posted successfully!");
@@ -103,11 +108,14 @@ const Publishblog=()=>{
                                 .catch((err)=>{
                                     console.log("Mails sending failed")
                                 })
+                                .finally(()=>{
+                                    setPublishLoading(false);
+                                })
                             })
                             .catch((err)=>{
                                 console.log("Something went wrong!");
                             })
-                    }}>Yes</button>
+                    }}>Yes</button>}
                     </div>
                 </div>
                 </div>
