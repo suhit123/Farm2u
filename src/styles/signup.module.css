@@ -1,179 +1,179 @@
-.signupform{
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
+.signupform {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-.signupform h3{
-    font-size: 18px;
-    text-align: center;
-    margin: 20px;
-    color: rgba(41, 57, 90, 1);
+.signupform h3 {
+  font-size: 18px;
+  text-align: center;
+  margin: 20px;
+  color: rgba(41, 57, 90, 1);
 }
-.signupform input{
-    padding: 15px 20px;
-    border: none;
-    box-shadow: 0px 0px 20px rgba(177, 177, 177, 0.281);
-    border-radius: 5px;
-    outline: none;
+.signupform input {
+  padding: 15px 20px;
+  border: none;
+  box-shadow: 0px 0px 20px rgba(177, 177, 177, 0.281);
+  border-radius: 5px;
+  outline: none;
 }
-.signupform button{
-    background-color: rgba(41, 57, 90, 1);
-    color: white;
-    font-size: 15px;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 5px;
+.signupform button {
+  background-color: rgba(41, 57, 90, 1);
+  color: white;
+  font-size: 15px;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 5px;
 }
-.signupform p{
-    margin: 10px 0px;
-    font-weight: 500;
-    color: rgba(41, 57, 90, 1);
+.signupform p {
+  margin: 10px 0px;
+  font-weight: 500;
+  color: rgba(41, 57, 90, 1);
 }
-.loginredirection{
-    text-align: center;
+.loginredirection {
+  text-align: center;
 }
-.show_pass_signup{
-    display: flex;
-    margin-top: 10px;
+.show_pass_signup {
+  display: flex;
+  margin-top: 10px;
 }
-.show_pass_signup input[type=checkbox]{
-    width: 20px;
-    color: rgba(41, 57, 90, 1);
+.show_pass_signup input[type="checkbox"] {
+  width: 20px;
+  color: rgba(41, 57, 90, 1);
 }
-.show_pass_signup p{
-    margin-left: 20px;
+.show_pass_signup p {
+  margin-left: 20px;
 }
-.login_redirection{
-    width: 30vw;
-    z-index: 1;
-    top:33%;
-    left:35%;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 2px 10px 40px rgb(214, 214, 214);
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: 0.5s all ease-in-out;
+.login_redirection {
+  width: 30vw;
+  z-index: 1;
+  top: 33%;
+  left: 35%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 2px 10px 40px rgb(214, 214, 214);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 0.5s all ease-in-out;
 }
-.login_redirection img{
-    width: 3vw;
-    height: auto;
-    margin: 20px 0px;
+.login_redirection img {
+  width: 3vw;
+  height: auto;
+  margin: 20px 0px;
 }
-.login_redirection p{
-    font-size: 1vw;
-    color: rgb(86, 86, 86);
-    margin: 10px 0px;
+.login_redirection p {
+  font-size: 1vw;
+  color: rgb(86, 86, 86);
+  margin: 10px 0px;
 }
-.login_redirection button{
-    border: none;
-    margin: 20px 0px;
-    padding: 10px 20px;
-    background-color: rgba(41, 57, 90, 1);
-    color: white;
-    font-size: 1vw;
-    border-radius: 30px;
+.login_redirection button {
+  border: none;
+  margin: 20px 0px;
+  padding: 10px 20px;
+  background-color: rgba(41, 57, 90, 1);
+  color: white;
+  font-size: 1vw;
+  border-radius: 30px;
 }
-.loginalert{
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    top: 0%;
-    left: 35%;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.loginalert {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0%;
+  left: 35%;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.otp{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+.otp {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
-.otp input[type="text"]{
-    padding: 15px 20px;
+.otp input[type="text"] {
+  padding: 15px 20px;
   width: 50px;
   height: 50px;
 }
-@media screen and (max-width:950px){
-    .signupform{
-        width: 50%;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .signupform h3{
-        margin: 10px;
-        font-size: 15px;
-    }
-    .signupform input{
-        padding: 10px 15px;
-        font-size: 12px;
-    }
-    .signupform button{
-        margin-top:10px ;
-        font-size: 13px;
-    }
-    .signupform p{
-        margin: 5px 0px;
-        font-weight: 500;
-        font-size: 12px;
-    }
-    .show_pass_signup{
-        display: flex;
-        margin-top: 10px;
-    }
-    .show_pass_signup input[type=checkbox]{
-        width: 20px;
-        color: rgba(41, 57, 90, 1);
-    }
-    .show_pass_signup p{
-        margin:0px 0px 0px 20px;
-        font-size: 12px;
-    }
-    .login_redirection{
-        width: 100%;
-        z-index: 1;
-        top:33%;
-        box-shadow: 2px 10px 40px rgba(0, 0, 0, 0.116);
-    }
-    .login_redirection img{
-        width: 40px;
-        margin: 20px 0px;
-    }
-    .login_redirection p{
-        font-size: 13px;
-        margin: 10px 0px;
-    }
-    .login_redirection button{
-        margin: 20px 0px;
-        padding: 10px 20px;
-        font-size: 12px;
-        border-radius: 10px;
-    }
-    .loginalert{
-        top: 0%;
-        left: 0%;
-        z-index: 10;
-    }
-    .otp input[type="text"]{
-        padding: 10px;
-      width: 40px;
-      height: 40px;
-    }
-    .signupform button{
-        font-size: 13px;
-        padding: 10px 15px;
-    }
+@media screen and (max-width: 950px) {
+  .signupform {
+    width: 50%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .signupform h3 {
+    margin: 10px;
+    font-size: 15px;
+  }
+  .signupform input {
+    padding: 10px 15px;
+    font-size: 12px;
+  }
+  .signupform button {
+    margin-top: 10px;
+    font-size: 13px;
+  }
+  .signupform p {
+    margin: 5px 0px;
+    font-weight: 500;
+    font-size: 12px;
+  }
+  .show_pass_signup {
+    display: flex;
+    margin-top: 10px;
+  }
+  .show_pass_signup input[type="checkbox"] {
+    width: 20px;
+    color: rgba(41, 57, 90, 1);
+  }
+  .show_pass_signup p {
+    margin: 0px 0px 0px 20px;
+    font-size: 12px;
+  }
+  .login_redirection {
+    width: 100%;
+    z-index: 1;
+    top: 33%;
+    box-shadow: 2px 10px 40px rgba(0, 0, 0, 0.116);
+  }
+  .login_redirection img {
+    width: 40px;
+    margin: 20px 0px;
+  }
+  .login_redirection p {
+    font-size: 13px;
+    margin: 10px 0px;
+  }
+  .login_redirection button {
+    margin: 20px 0px;
+    padding: 10px 20px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+  .loginalert {
+    top: 0%;
+    left: 0%;
+    z-index: 10;
+  }
+  .otp input[type="text"] {
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+  }
+  .signupform button {
+    font-size: 13px;
+    padding: 10px 15px;
+  }
 }
-@media screen and (max-width:550px){
-    .signupform{
-        width: 90%;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
+@media screen and (max-width: 550px) {
+  .signupform {
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
