@@ -1,96 +1,129 @@
-import Link  from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 import axios, { AxiosError } from "axios";
 import Footer from "../../components/footer";
 import Nav from "../../components/nav";
-import styles from '@/styles/signup.module.css'
-import { useEffect, useState } from 'react'
-import Loader from '../../components/loader';
-import { loginUser } from '../../../helpers';
-import { useRouter } from 'next/router';
-import { useSession } from 'next-auth/react';
+import styles from "@/styles/signup.module.css";
+import { useEffect, useState } from "react";
+import Loader from "../../components/loader";
+import { loginUser } from "../../../helpers";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner} from "@fortawesome/free-solid-svg-icons";
-const Login=()=>{
-    const router = useRouter()
-    const [changeLoad,setChangeLoad]=useState(false);
-    const {data:session,status}=useSession();
-    const [showpass,setShowpass]=useState('password');
-    const [user,setUser]:any=useState({
-        email:"",
-        password:""
-    })
-    useEffect(()=>{
-        if(status==="authenticated"){
-            router.push('/')
-        }
-    },[status])
-    const [errmsg,setErrmsg]:any=useState({
-            email_error:"",
-            username_and_password_error:""
-    });
-    const handlechange=(e:any)=>{
-        setUser({...user,[e.target.name]:e.target.value});
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+const Login = () => {
+  const router = useRouter();
+  const [changeLoad, setChangeLoad] = useState(false);
+  const { data: session, status } = useSession();
+  const [showpass, setShowpass] = useState("password");
+  const [user, setUser]: any = useState({
+    email: "",
+    password: "",
+  });
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/");
     }
-    const handleSubmit=async(e:any)=>{
-        e.preventDefault();
-        try{
-        setChangeLoad(true);
-        const email=user.email;
-        const password=user.password;
-        const loginRes = await loginUser({email,password })
-        if (loginRes && !loginRes.ok) {
-            setChangeLoad(false);
-            setErrmsg({
-                            usernameerr:"",
-                            username_and_password_error:<p><span>&#9888;</span>{`${" "+"Email or Password Incorrect"}`}</p>
-                        })
-        }
-        else{
-            router.push("/")
-        }
-        }
-        catch(err){
-            if (err instanceof AxiosError) {
-                setChangeLoad(false)
-                const errorMsg = err.response?.data?.error
-                setErrmsg({
-                    usernameerr:"",
-                    username_and_password_error:<p><span>&#9888;</span>{`${" "+"Something went wrong!"}`}</p>
-                })
-            }
-        }
+  }, [status]);
+  const [errmsg, setErrmsg]: any = useState({
+    email_error: "",
+    username_and_password_error: "",
+  });
+  const handlechange = (e: any) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try {
+      setChangeLoad(true);
+      const email = user.email;
+      const password = user.password;
+      const loginRes = await loginUser({ email, password });
+      if (loginRes && !loginRes.ok) {
+        setChangeLoad(false);
+        setErrmsg({
+          usernameerr: "",
+          username_and_password_error: (
+            <p>
+              <span>&#9888;</span>
+              {`${" " + "Email or Password Incorrect"}`}
+            </p>
+          ),
+        });
+      } else {
+        router.push("/");
+      }
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        setChangeLoad(false);
+        const errorMsg = err.response?.data?.error;
+        setErrmsg({
+          usernameerr: "",
+          username_and_password_error: (
+            <p>
+              <span>&#9888;</span>
+              {`${" " + "Something went wrong!"}`}
+            </p>
+          ),
+        });
+      }
     }
-    return(
-        <>
-        <Loader time={500} />
-        <Nav />
-        <form className={styles.signupform} onSubmit={handleSubmit}>
-          <h3>LOG IN</h3>
-          <p>Email</p>
-          <input type="email" name="email" placeholder="eg. Ravikumar@gmail.com" value={user.email} onChange={handlechange} required />
-          <p>{errmsg.email_error}</p>
-          <p>Password</p>
-          <input type={`${showpass}`} name="password" placeholder="eg. Ravi@1456" value={user.password} onChange={handlechange} required />
-          <p>{errmsg.username_and_password_error}</p>
-          <div className={styles.show_pass_signup}>
-            <input type="checkbox" onChange={() => {
-              if (showpass === 'password') {
-                setShowpass('text');
+  };
+  return (
+    <>
+      <Loader time={500} />
+      <Nav />
+      <form className={styles.signupform} onSubmit={handleSubmit}>
+        <h3>LOG IN</h3>
+        <p>Email</p>
+        <input
+          type="email"
+          name="email"
+          placeholder="eg. Ravikumar@gmail.com"
+          value={user.email}
+          onChange={handlechange}
+          required
+        />
+        <p>{errmsg.email_error}</p>
+        <p>Password</p>
+        <input
+          type={`${showpass}`}
+          name="password"
+          placeholder="eg. Ravi@1456"
+          value={user.password}
+          onChange={handlechange}
+          required
+        />
+        <p>{errmsg.username_and_password_error}</p>
+        <div className={styles.show_pass_signup}>
+          <input
+            type="checkbox"
+            onChange={() => {
+              if (showpass === "password") {
+                setShowpass("text");
               } else {
-                setShowpass('password');
+                setShowpass("password");
               }
-            }} />
-            <p>Show password</p>
-          </div>
-          <button type='submit'>
-            {changeLoad ?<FontAwesomeIcon icon={faSpinner} className="fa-spin" />: <>Submit</>}
-          </button>
-          <p><Link href='/forgotpassword'>forgot password?</Link></p>
-          <p className={styles.loginredirection}>Don't have an account? <Link href='/signup'>Sign Up</Link></p>
-        </form>
-        <Footer />
-      </>
-    );
+            }}
+          />
+          <p>Show password</p>
+        </div>
+        <button type="submit">
+          {changeLoad ? (
+            <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
+          ) : (
+            <>Submit</>
+          )}
+        </button>
+        <p>
+          <Link href="/forgotpassword">forgot password?</Link>
+        </p>
+        <p className={styles.loginredirection}>
+          Don't have an account? <Link href="/signup">Sign Up</Link>
+        </p>
+      </form>
+      <Footer />
+    </>
+  );
 };
 export default Login;

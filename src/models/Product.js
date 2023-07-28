@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const ProductSchema = new mongoose.Schema({
   heading: {
     type: String,
@@ -73,4 +73,4 @@ const ProductSchema = new mongoose.Schema({
 });
 
 module.exports =
-mongoose.models.Product || mongoose.model('Product', ProductSchema);
+  mongoose.models.Product || mongoose.model("Product", ProductSchema);

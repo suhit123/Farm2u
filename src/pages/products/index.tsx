@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
-import React from 'react';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import ReactStars from 'react-stars';
-import axios from 'axios';
-import Image from 'next/image';
-import Footer from '../../components/footer';
-import Nav from '../../components/nav';
-import styles from '@/styles/products.module.css';
-import Loader from '../../components/loader';
+import { useEffect, useState } from "react";
+import React from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import ReactStars from "react-stars";
+import axios from "axios";
+import Image from "next/image";
+import Footer from "../../components/footer";
+import Nav from "../../components/nav";
+import styles from "@/styles/products.module.css";
+import Loader from "../../components/loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner} from "@fortawesome/free-solid-svg-icons";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 interface Product {
   _id: string;
   image1: string;
@@ -20,27 +20,29 @@ interface Product {
   price: number;
   discount: number;
 }
-const fetchProducts=async()=>{
-  const res=await fetch(`${process.env.VERCEL_URL}/api/products`,{cache:"no-store"});
-  const productData=await res.json();
+const fetchProducts = async () => {
+  const res = await fetch(`${process.env.VERCEL_URL}/api/products`, {
+    cache: "no-store",
+  });
+  const productData = await res.json();
   return productData;
-}
+};
 const Products = () => {
-  const { data: session }:any = useSession();
+  const { data: session }: any = useSession();
   const [loading, setLoading] = useState<{ [key: string]: boolean }>({});
   const router = useRouter();
-  const [productsData,setProductData]=useState([]);
-  useEffect(()=>{
-      axios.get('/api/products')
-      .then((res)=>{
+  const [productsData, setProductData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/api/products")
+      .then((res) => {
         setProductData(res.data.reverse());
       })
-      .catch((err)=>{
+      .catch((err) => {
         console.log(err);
-      })
-    
-  },[])
-  const addToCart = async (productId:any) => {
+      });
+  }, []);
+  const addToCart = async (productId: any) => {
     if (session) {
       setLoading((prevLoading) => ({
         ...prevLoading,
@@ -48,14 +50,14 @@ const Products = () => {
       }));
 
       try {
-        await axios.post('../api/cart/addToCart', {
+        await axios.post("../api/cart/addToCart", {
           userId: session?.user?._id,
           productId,
         });
-        console.log('Successfully added!');
-        router.push('/Cart');
+        console.log("Successfully added!");
+        router.push("/Cart");
       } catch (err) {
-        console.log('Something went wrong!');
+        console.log("Something went wrong!");
       } finally {
         setLoading((prevLoading) => ({
           ...prevLoading,
@@ -63,7 +65,7 @@ const Products = () => {
         }));
       }
     } else {
-      router.push('/signup');
+      router.push("/signup");
     }
   };
 
@@ -73,66 +75,101 @@ const Products = () => {
       <Nav />
       <div className={styles.products_container}>
         <div className={styles.products_page}>
-          {productsData.length===0?
-          [0,1,2,3].map((item:any, Index:Number)=>{
-            return(
-              <div className={styles.products_list_item_grid} key={item._id}>
-                <div className={styles.products_list_item_empty}>
-                  <div className={styles.products_list_item_image_empty}>
+          {productsData.length === 0
+            ? [0, 1, 2, 3].map((item: any, Index: Number) => {
+                return (
+                  <div
+                    className={styles.products_list_item_grid}
+                    key={item._id}
+                  >
+                    <div className={styles.products_list_item_empty}>
+                      <div
+                        className={styles.products_list_item_image_empty}
+                      ></div>
+                      <div className={styles.products_list_items_content}>
+                        <div className={styles.p_empty}></div>
+                        <div className={styles.h_empty}></div>
+                        <div className={styles.hs_empty}></div>
+                        <div className={styles.p_empty}></div>
+                        <button
+                          className={styles.addtocart_products_empty}
+                        ></button>
+                      </div>
+                      <p
+                        className={styles.products_page_item_discounttag_empty}
+                      ></p>
+                    </div>
                   </div>
-                  <div className={styles.products_list_items_content}>
-                    <div className={styles.p_empty}></div>
-                    <div className={styles.h_empty}></div>
-                    <div className={styles.hs_empty}></div>
-                    <div className={styles.p_empty}></div>
-                    <button
-                      className={styles.addtocart_products_empty}
-                    >
-                    </button>
+                );
+              })
+            : productsData.map((item: any, index: number) => {
+                const reviews = item.comments;
+                let ratingAddition = 0;
+                reviews.forEach((comment: any) => {
+                  ratingAddition += comment.rating;
+                });
+                let averageRating = 5;
+                averageRating = ratingAddition / reviews.length;
+                return (
+                  <div
+                    className={styles.products_list_item_grid}
+                    key={item._id}
+                  >
+                    <div className={styles.products_list_item}>
+                      <div className={styles.products_list_item_image}>
+                        <Image
+                          src={item.image1}
+                          alt=""
+                          width={5000}
+                          height={5000}
+                        />
+                      </div>
+                      <div className={styles.products_list_items_content}>
+                        <p>Genmatrix remedies</p>
+                        <Link href={`/products/${item._id}`}>
+                          <h3>{item.heading}</h3>
+                        </Link>
+                        <ReactStars
+                          count={5}
+                          size={24}
+                          edit={false}
+                          value={averageRating}
+                          color2={"#ffd700"}
+                        />
+                        <h4>
+                          <del>Rs. {item.price}</del> Rs.{" "}
+                          {Math.floor(
+                            item.price - (item.discount * item.price) / 100
+                          )}
+                        </h4>
+                        {item?.qty < 1 ? (
+                          <button className={styles.addtocart_products}>
+                            OUT OF STOCK
+                          </button>
+                        ) : (
+                          <button
+                            className={styles.addtocart_products}
+                            onClick={() => addToCart(item._id)}
+                            disabled={loading[item._id]}
+                          >
+                            {loading[item._id] ? (
+                              <FontAwesomeIcon
+                                icon={faSpinner}
+                                className="fa-spin"
+                              />
+                            ) : (
+                              "ADD TO CART"
+                            )}
+                          </button>
+                        )}
+                      </div>
+                      <p className={styles.products_page_item_discounttag}>
+                        -{item.discount}%
+                      </p>
+                    </div>
                   </div>
-                  <p className={styles.products_page_item_discounttag_empty}></p>
-                </div>
-              </div>
-            );
-          })
-          :productsData.map((item:any,index: number) => {
-            const reviews = item.comments;
-            let ratingAddition = 0;
-            reviews.forEach((comment:any) => {
-              ratingAddition += comment.rating;
-            });
-            let averageRating = 5;
-            averageRating = ratingAddition / reviews.length;
-            return (
-              <div className={styles.products_list_item_grid} key={item._id}>
-                <div className={styles.products_list_item}>
-                  <div className={styles.products_list_item_image}>
-                    <Image src={item.image1} alt="" width={5000} height={5000} />
-                  </div>
-                  <div className={styles.products_list_items_content}>
-                    <p>Genmatrix remedies</p>
-                    <Link href={`/products/${item._id}`}>
-                      <h3>{item.heading}</h3>
-                    </Link>
-                    <ReactStars count={5} size={24} edit={false} value={averageRating} color2={'#ffd700'} />
-                    <h4>
-                      <del>Rs. {item.price}</del> Rs. {Math.floor(item.price - (item.discount * item.price) / 100)}
-                    </h4>
-                    {item?.qty<1?<button className={styles.addtocart_products}>OUT OF STOCK</button>:<button
-                      className={styles.addtocart_products}
-                      onClick={() => addToCart(item._id)}
-                      disabled={loading[item._id]}
-                    >
-                      {loading[item._id] ? (<FontAwesomeIcon icon={faSpinner} className="fa-spin" />) : (
-                        'ADD TO CART'
-                      )}
-                    </button>}
-                  </div>
-                  <p className={styles.products_page_item_discounttag}>-{item.discount}%</p>
-                </div>
-              </div>
-            );
-          })}
+                );
+              })}
         </div>
       </div>
       <Footer />
