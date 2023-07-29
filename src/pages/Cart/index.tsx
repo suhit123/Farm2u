@@ -10,6 +10,8 @@ import Nav from "../../components/nav";
 import Footer from "../../components/footer";
 import Loader_colorring from "../../components/Loader_colorring";
 import { cartData, products } from "@/Interfaces/Products";
+import { calculatePrices } from "@/components/priceCalculator";
+import Head from "next/head";
 const Cart = () => {
   const router = useRouter();
   const { data: session, status: sessionStatus }: any = useSession();
@@ -105,28 +107,19 @@ const Cart = () => {
   }, [reducerValue, cartDataContents]);
 
   useEffect(() => {
-    let tp = 0;
-    let dp = 0;
-    if (cartData.length !== 0 && cartDataContents.length !== 0) {
-      cartData.map((item: any) => {
-        const dataelement = cartDataContents.find(
-          (i: any) => i._id === item.productId
-        );
-
-        if (dataelement) {
-          tp += dataelement.price * item.quantity;
-          dp +=
-            Math.floor((dataelement.discount * dataelement.price) / 100) *
-            item.quantity;
-        }
-      });
-    }
-    setTotalPrice(tp);
-    setTotalDiscount(dp);
+    const prices=calculatePrices(cartData,cartDataContents)
+    setTotalPrice(prices[0]);
+    setTotalDiscount(prices[0] - prices[1]);
   }, [reducerValue, cartData, cartDataContents]);
 
   return (
     <>
+    <Head>
+        <title>
+          Cart
+        </title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       {!session ? (
         <></>
       ) : (

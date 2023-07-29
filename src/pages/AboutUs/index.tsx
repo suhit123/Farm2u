@@ -9,9 +9,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Head from "next/head";
 const Aboutus = () => {
   return (
     <>
+    <Head>
+        <title>
+          Aboutus
+        </title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Nav />
       <div className={styles.aboutusPage}>
         <div className={styles.aboutusPage_heading}>

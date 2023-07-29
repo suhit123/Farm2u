@@ -45,6 +45,7 @@
 }
 .image_and_title img {
   height: 60px;
+  width: auto;
 }
 .quantity p {
   text-align: center;

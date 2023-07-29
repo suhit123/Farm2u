@@ -294,6 +294,10 @@ const CheckoutForm = () => {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>
+          Checkout
+        </title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       {!session ? (
         <></>

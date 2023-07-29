@@ -11,7 +11,7 @@ import axios from "axios";
 import loaderimage from "@/resources/genmatrixlogo2.png";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
-import { ProductData,Comment } from "@/Interfaces/Products";
+import { ProductData, Comment } from "@/Interfaces/Products";
 import Custom404 from "../404";
 const DetailedProduct = () => {
   const { data: session }: any = useSession();
@@ -165,6 +165,7 @@ const DetailedProduct = () => {
         meta: [
           { property: "og:title", content: heading },
           { property: "og:image", content: image1 },
+          { property:"og:url",content:`${process.env.VERCEL_URL}/products/${ProductId}`}
         ],
       };
 
@@ -183,19 +184,22 @@ const DetailedProduct = () => {
         <meta name="robots" content="noindex, follow" />
         <meta
           name="keywords"
-          content="Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's,Sleep Apnea,Heart Attacks,Snoring,Cerebral Stroke,Nasal Pathway,Noisy Breathing,Sleeping Disorder,Nasal problems,ALZHEIMERS,AGEING
-PROBLEMS, BRAIN POWER,ARTHRITIS"
+          content="Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's,Sleep Apnea,Heart Attacks,Snoring,Cerebral Stroke,Nasal Pathway,Noisy Breathing,Sleeping Disorder,Nasal problems,ALZHEIMERS,AGEINGPROBLEMS, BRAIN POWER,ARTHRITIS"
         />
         {metaData.meta.map((meta) => (
-              <meta key={meta.property} property={meta.property} content={meta.content} />
-            ))}
+          <meta
+            key={meta.property}
+            property={meta.property}
+            content={meta.content}
+          />
+        ))}
         <meta
           property="og:url"
           content={`${process.env.VERCEL_URL}/products/${ProductId}`}
         />
         <meta property="og:type" content="website" />
       </Head>
-      {checkId?<Custom404/>:<></>}
+      {checkId ? <Custom404 /> : <></>}
       {isLoading && productData ? (
         <>
           {isVisible ? (

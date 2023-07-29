@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import Head from "next/head";
 const Signup = () => {
   const { data: session, status } = useSession();
   const [changeLoad, setChangeLoad] = useState(false);
@@ -97,6 +98,12 @@ const Signup = () => {
   };
   return (
     <>
+    <Head>
+        <title>
+          Signup
+        </title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Loader time={500} />
       <Nav />
       <form className={styles.signupform} onSubmit={userSubmit}>

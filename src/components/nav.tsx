@@ -16,22 +16,19 @@ import Loader_colorring from "./Loader_colorring";
 import facebooklogo from "@/resources/facebooklogo.png";
 import whatsapplogo from "@/resources/whatsapplogo.png";
 import React from "react";
-interface coupon {
-  _id: string;
-  amount: number;
-  discount: number;
-  coupon: string;
-}
+import { cartData, products } from "@/Interfaces/Products";
+import { coupon } from "@/Interfaces/user/orders";
+import { calculatePrices } from "./priceCalculator";
 const Nav = () => {
   const router = useRouter();
   const { data: session }: any = useSession();
-  const [cartData, setCartData]: any = useState([]);
+  const [cartData, setCartData] = useState<cartData[]>([]);
   const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
   const [cartState, setCartState] = useState<boolean>(false);
-  const [discountBarState, setDiscountBarState] = useState(true);
-  const [cartDataContents, setCartDataContents]: any = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [totalDiscount, setTotalDiscount] = useState(0);
+  const [discountBarState, setDiscountBarState] = useState<boolean>(true);
+  const [cartDataContents, setCartDataContents] = useState<products[]>([]);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [totalDiscount, setTotalDiscount] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [coupon, setCoupon] = useState<coupon>({
     _id: "",
@@ -124,26 +121,9 @@ const Nav = () => {
     }
   }, [cartState, reducerValue]);
   useEffect(() => {
-    let tp = 0;
-    let dp = 0;
-    if (cartData.length !== 0 && cartDataContents.length !== 0) {
-      cartData.map((item: any, index: number) => {
-        const dataelement = cartDataContents.find(
-          (i: any) => i._id === item.productId
-        );
-
-        if (dataelement) {
-          tp += dataelement.price * item.quantity;
-          dp +=
-            Math.floor(
-              dataelement.price -
-                (dataelement.discount * dataelement.price) / 100
-            ) * item.quantity;
-        }
-      });
-    }
-    setTotalPrice(tp);
-    setTotalDiscount(tp - dp);
+    const prices=calculatePrices(cartData,cartDataContents)
+    setTotalPrice(prices[0]);
+    setTotalDiscount(prices[0] - prices[1]);
   }, [reducerValue, cartData, cartState, cartDataContents]);
   return (
     <div className={styles.entirenav}>

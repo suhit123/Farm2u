@@ -5,6 +5,7 @@ import Footer from "../../components/footer";
 import Nav from "../../components/nav";
 import styles from "@/styles/videos.module.css";
 import { VideosProps, Video } from "@/Interfaces/Videos";
+import Head from "next/head";
 const Videos: React.FC<VideosProps> = () => {
   const [videos, setVideos] = useState<Video[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -24,6 +25,12 @@ const Videos: React.FC<VideosProps> = () => {
   }, []);
   return (
     <>
+    <Head>
+        <title>
+          Videos
+        </title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Loader time={1000} />
       <Nav />
       {loading ? (
