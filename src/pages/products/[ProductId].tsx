@@ -45,7 +45,6 @@ const DetailedProduct = () => {
     const handleScroll = () => {
       const scrollHeight = window.pageYOffset;
       const threshold = 400;
-
       if (scrollHeight > threshold) {
         setIsVisible(true);
       } else {
@@ -58,9 +57,9 @@ const DetailedProduct = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  useEffect(() => {
+  const fetchData=async()=>{
     if (ProductId) {
-      axios
+      await axios
         .get<ProductData>(`../api/products/${ProductId}`)
         .then((res) => {
           setProductData(res.data);
@@ -91,6 +90,12 @@ const DetailedProduct = () => {
           }
         });
     }
+  }
+  useEffect(()=>{
+    fetchData();
+  },[])
+  useEffect(() => {
+    fetchData();
   }, [ProductId, reducerValue]);
   const [commentingState, setCommentingState] = useState(true);
   const [newComment, setNewComment] = useState<Comment>({
