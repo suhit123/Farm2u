@@ -12,26 +12,12 @@ import styles from "@/styles/products.module.css";
 import Loader from "../../components/loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-interface Product {
-  _id: string;
-  image1: string;
-  comments: Comment[];
-  heading: string;
-  price: number;
-  discount: number;
-}
-const fetchProducts = async () => {
-  const res = await fetch(`${process.env.VERCEL_URL}/api/products`, {
-    cache: "no-store",
-  });
-  const productData = await res.json();
-  return productData;
-};
+import { products } from "@/Interfaces/Products";
 const Products = () => {
   const { data: session }: any = useSession();
   const [loading, setLoading] = useState<{ [key: string]: boolean }>({});
   const router = useRouter();
-  const [productsData, setProductData] = useState([]);
+  const [productsData, setProductData] = useState<products[]>([]);
   useEffect(() => {
     axios
       .get("/api/products")
@@ -68,7 +54,6 @@ const Products = () => {
       router.push("/signup");
     }
   };
-
   return (
     <>
       <Loader time={1000} />

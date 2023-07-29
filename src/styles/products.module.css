@@ -14,6 +14,7 @@
 }
 .products_list_item {
   width: 280px;
+  height: 460px;
   box-shadow: 0px 0px 11px rgba(155, 155, 155, 0.25);
   margin: 20px;
   transition: 0.3s all ease;
@@ -63,14 +64,16 @@
   color: rgba(227, 101, 46, 1);
 }
 .addtocart_products {
+  position: absolute;
+  bottom: 0px;
+  left: 5%;
   margin: 20px 0px;
-  position: relative;
   border: none;
   padding: 15px;
   color: #29395a;
   background: white;
   border: 1px solid #bebebe;
-  width: 100%;
+  width: 90%;
   cursor: pointer;
   transition: 0.3s all ease;
 }
@@ -175,6 +178,7 @@
   }
   .products_list_item {
     width: 250px;
+    height: 420px;
     margin: 10px;
   }
   .products_list_item_image {
@@ -218,6 +222,7 @@
   }
   .products_list_item {
     width: 25vw;
+    height: max-content;
     margin: 10px;
   }
   .products_list_item_image {
@@ -246,6 +251,7 @@
     margin: 10px 0px;
     padding: 10px;
     font-size: 13px;
+    position: relative;
   }
   .products_page_item_discounttag {
     font-size: 12px;

@@ -9,12 +9,13 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
+import { changePassword } from "@/Interfaces/user/changePassword";
 const ChangePassword = () => {
   Usercheck();
   const { data: session }: any = useSession();
   const [checkConfirmPassword, setCheckConfirmPassword] = useState("text");
-  const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
+  const [loading, setLoading] = useState<boolean>(false);
+  const [formData, setFormData] = useState<changePassword>({
     oldPassword: "",
     newPassword: "",
     confirmPassword: "",

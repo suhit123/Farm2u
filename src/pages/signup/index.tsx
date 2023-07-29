@@ -81,6 +81,15 @@ const Signup = () => {
             ),
           });
         }
+        else{
+          setResponseerr({
+            emailerr: (
+              <p>
+                <span>&#9888;</span>Something gone wrong!{" "}
+              </p>
+            ),
+          });
+        }
       })
       .finally(() => {
         setChangeLoad(false);

@@ -12,25 +12,8 @@ import loaderimage from "@/resources/genmatrixlogo2.png";
 import { useSession } from "next-auth/react";
 import { Metadata } from "next";
 import Head from "next/head";
-interface Comment {
-  name: string;
-  rating: number;
-  comment: string;
-  publishDate: string;
-}
-interface ProductData {
-  _id: string;
-  heading: string;
-  price: number;
-  discount: number;
-  image1: string;
-  image2: string;
-  image3: string;
-  image4: string;
-  description: string;
-  comments: Comment[];
-  qty: number;
-}
+import { ProductData,Comment } from "@/Interfaces/Products";
+import Custom404 from "../404";
 const DetailedProduct = () => {
   const { data: session }: any = useSession();
   const router = useRouter();
@@ -177,7 +160,7 @@ const DetailedProduct = () => {
 PROBLEMS, BRAIN POWER,ARTHRITIS"
         />
         {/* Open Graph Meta Tags */}
-        <meta property="og:title" content={`${productData?.heading}`} />
+        <meta property="og:title" content={`hi`} />
         <meta property="og:image" content={productData?.image1} />
         <meta
           property="og:url"
@@ -185,6 +168,7 @@ PROBLEMS, BRAIN POWER,ARTHRITIS"
         />
         <meta property="og:type" content="website" />
       </Head>
+      {checkId?<Custom404/>:<></>}
       {isLoading && productData ? (
         <>
           {isVisible ? (

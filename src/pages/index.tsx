@@ -30,7 +30,6 @@ export default function Home() {
         console.log(err);
       });
   }, []);
-
   return (
     <>
       <Head>
@@ -133,12 +132,12 @@ export default function Home() {
               <div className={styles.company_certifications_line}></div>
             </div>
             <div className={styles.company_certifications_images}>
-              <Image src={fssai} alt="" />
-              <Image src={GMP} alt="" />
-              <Image src={HACCP} alt="" />
-              <Image src={HALAL} alt="" />
-              <Image src={ISO} alt="" />
-              <Image src={KOSHER} alt="" />
+              <Image src={fssai} alt="" width={100} height={100}/>
+              <Image src={GMP} alt="" width={100} height={100}/>
+              <Image src={HACCP} alt="" width={100} height={100}/>
+              <Image src={HALAL} alt="" width={100} height={100}/>
+              <Image src={ISO} alt="" width={100} height={100}/>
+              <Image src={KOSHER} alt="" width={100} height={100}/>
             </div>
           </div>
           <div className={styles.contact_us_banner}>
