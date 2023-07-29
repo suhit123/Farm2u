@@ -10,10 +10,10 @@ import ReactStars from "react-stars";
 import axios from "axios";
 import loaderimage from "@/resources/genmatrixlogo2.png";
 import { useSession } from "next-auth/react";
-import { Metadata } from "next";
 import Head from "next/head";
 import { ProductData,Comment } from "@/Interfaces/Products";
 import Custom404 from "../404";
+import { Metadata } from "next";
 const DetailedProduct = () => {
   const { data: session }: any = useSession();
   const router = useRouter();
@@ -144,6 +144,37 @@ const DetailedProduct = () => {
       router.push("/signup");
     }
   };
+  const [metaData, setMetaData] = useState<{
+    title: string;
+    meta: { property: string; content: string }[];
+  }>({
+    title: "Default Title",
+    meta: [
+      { property: "og:title", content: "Default Open Graph Title" },
+      { property: "og:image", content: "default-image.jpg" },
+      // Add other default meta tags here
+    ],
+  });
+  useEffect(() => {
+    if (productData) {
+      const { heading, image1 } = productData;
+
+      // Update the meta tags with the fetched data
+      const metaData: {
+        title: string;
+        meta: { property: string; content: string }[];
+      } = {
+        title: heading,
+        meta: [
+          { property: "og:title", content: heading },
+          { property: "og:image", content: image1 },
+          // Add other relevant meta tags here
+        ],
+      };
+
+      setMetaData(metaData);
+    }
+  }, [productData]);
   return (
     <>
       <Head>
@@ -159,9 +190,9 @@ const DetailedProduct = () => {
           content="Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's,Sleep Apnea,Heart Attacks,Snoring,Cerebral Stroke,Nasal Pathway,Noisy Breathing,Sleeping Disorder,Nasal problems,ALZHEIMERS,AGEING
 PROBLEMS, BRAIN POWER,ARTHRITIS"
         />
-        {/* Open Graph Meta Tags */}
-        <meta property="og:title" content={`hi`} />
-        <meta property="og:image" content={productData?.image1} />
+        {metaData.meta.map((meta) => (
+              <meta key={meta.property} property={meta.property} content={meta.content} />
+            ))}
         <meta
           property="og:url"
           content={`${process.env.VERCEL_URL}/products/${ProductId}`}

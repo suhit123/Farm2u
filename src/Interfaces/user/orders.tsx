@@ -29,5 +29,10 @@ export interface Order {
   status: string;
   paymentStatus: string;
   createdAt: string;
-  __v: number;
+}
+export interface coupon {
+  _id: string;
+  amount: number;
+  discount: number;
+  coupon: string;
 }

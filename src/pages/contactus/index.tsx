@@ -8,16 +8,17 @@ import Footer from "../../components/footer";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { contact } from "@/Interfaces/contactUs";
 const Contactus = () => {
-  const [user, setUser] = useState({
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const [user, setUser] = useState<contact>({
     name: "",
     email: "",
     phoneNumber: "",
     subject: "",
     message: "",
   });
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
   const handlechange = (e: any) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };

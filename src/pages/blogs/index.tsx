@@ -13,11 +13,11 @@ import Link from "next/link";
 import { BlogsProps, Blog } from "@/Interfaces/Blogs";
 const Blogs: React.FC<BlogsProps> = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [shownum, setShownum] = useState(0);
+  const [shownum, setShownum] = useState<number>(0);
   const [notifyemail, setNotifyemail] = useState("");
-  const [emailSent, setEmailSent] = useState(false);
-  const [loader1, setLoader1] = useState(false);
-  const [loader2, setLoader2] = useState(false);
+  const [emailSent, setEmailSent] = useState<boolean>(false);
+  const [loader1, setLoader1] = useState<boolean>(false);
+  const [loader2, setLoader2] = useState<boolean>(false);
 
   const handlenotify = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -153,16 +153,4 @@ const Blogs: React.FC<BlogsProps> = () => {
     </>
   );
 };
-
-// export async function getServerSideProps() {
-//     const baseUrl = process.env.VERCEL_URL;
-//     const response = await axios.get(`${baseUrl}/api/Blogs?start=0&end=2`);
-//     const initialData: Blog[] = response.data || [];
-//     return {
-//       props: {
-//         initialData,
-//       },
-//     };
-//   }
-
 export default Blogs;

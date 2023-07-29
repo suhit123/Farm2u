@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/checkout/address.module.css";
 import Link from "next/link";
 import axios from "axios";
@@ -11,24 +11,8 @@ import genmatrixlogo from "@/resources/logo_text.png";
 import Head from "next/head";
 import circlelogo from "@/resources/genmatrixlogo2.png";
 import Congrats from "@/components/congrats";
-interface address {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  address: string;
-  landmark: string;
-  city: string;
-  state: string;
-  pincode: string;
-  country: string;
-}
-interface coupon {
-  _id: string;
-  amount: number;
-  discount: number;
-  coupon: string;
-}
+import { products, cartData } from "@/Interfaces/Products";
+import { address, coupon } from "@/Interfaces/user/orders";
 const CheckoutForm = () => {
   const router = useRouter();
   const { data: session, status: sessionStatus }: any = useSession();
@@ -44,7 +28,6 @@ const CheckoutForm = () => {
     pincode: "",
     country: "India",
   });
-  //coupon
   const [couponInput, setCouponInput] = useState<string>("");
   const [congrats, setCongrats] = useState<boolean>(false);
   const [couponMessage, setCouponMessage] = useState<string>("");
@@ -54,6 +37,13 @@ const CheckoutForm = () => {
     discount: 0,
     coupon: "",
   });
+  const [addressData, setAddressData] = useState<address[]>([]);
+  const [cartDataContents, setCartDataContents] = useState<products[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [cartData, setCartData] = useState<cartData[]>([]);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [totalDiscount, setTotalDiscount] = useState<number>(0);
+  //coupon
   const fetchCoupon = async () => {
     await axios
       .get("../../api/Coupon/get")
@@ -89,7 +79,6 @@ const CheckoutForm = () => {
     }
   };
   //address fetching
-  const [addressData, setAddressData] = useState<address[]>([]);
   const fetchAddressData = () => {
     axios
       .get(`/api/users/${session?.user?._id}/addresses`)
@@ -117,12 +106,6 @@ const CheckoutForm = () => {
   };
 
   //amounts right side
-  const [cartDataContents, setCartDataContents] = useState([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [cartData, setCartData] = useState([]);
-  const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
-  const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [totalDiscount, setTotalDiscount] = useState<number>(0);
   useEffect(() => {
     if (sessionStatus === "loading") {
       return;
@@ -153,6 +136,7 @@ const CheckoutForm = () => {
         .post("./api/cart/cartData", { id: session?.user?._id })
         .then((res) => {
           const cartData = res.data;
+          console.log(cartData);
           setCartData(cartData);
           if (cartData.length === 0) {
             router.push("/products");
@@ -165,7 +149,7 @@ const CheckoutForm = () => {
           setLoading(false);
         });
     }
-  }, [reducerValue, cartDataContents]);
+  }, [cartDataContents]);
   useEffect(() => {
     let tp = 0;
     let dp = 0;
@@ -184,7 +168,7 @@ const CheckoutForm = () => {
       });
     }
     setTotalPrice(tp - dp);
-  }, [reducerValue, cartData, cartDataContents]);
+  }, [cartData, cartDataContents]);
   const addToOrders = async () => {
     try {
       let cart: any = [];
@@ -241,7 +225,9 @@ const CheckoutForm = () => {
       console.log(i);
       await axios
         .patch("/api/Orders/Edit/ReduceQty", i)
-        .then((res) => {})
+        .then((res) => {
+          console.log("Processed");
+        })
         .catch((err) => {
           console.log(err);
         });
@@ -263,7 +249,6 @@ const CheckoutForm = () => {
   };
   const makePayment = async () => {
     const res = await initializeRazorpay();
-
     if (!res) {
       alert("Razorpay SDK Failed to load");
       return;
@@ -283,10 +268,7 @@ const CheckoutForm = () => {
       description: "Thankyou for your test donation",
       image: circlelogo,
       handler: function(response: any) {
-        // // Validate payment at server - using webhooks is a better idea.
-        // alert(response.razorpay_payment_id);
-        // alert(response.razorpay_order_id);
-        // alert(response.razorpay_signature);
+        // // Validate payment at server - using webhooks is a better idea. // alert(response.razorpay_payment_id);  // alert(response.razorpay_order_id);  // alert(response.razorpay_signature);
         if (response.razorpay_payment_id) {
           addToOrders();
           reduceQty();

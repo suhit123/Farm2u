@@ -26,3 +26,8 @@ export interface ProductData {
     comments: Comment[];
     qty: number;
   }
+  export interface cartData{
+    productId:string,
+    quantity:number,
+    _id:string
+  }

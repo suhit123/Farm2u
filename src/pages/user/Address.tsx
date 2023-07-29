@@ -54,7 +54,6 @@ const Addresses = () => {
         console.log("Failed to add address:", err);
       });
   };
-
   const fetchAddressData = () => {
     axios
       .get(`/api/users/${session?.user?._id}/addresses`)
@@ -78,7 +77,6 @@ const Addresses = () => {
         console.log("Failed to delete address:", err);
       });
   };
-
   return (
     <>
       <Nav />

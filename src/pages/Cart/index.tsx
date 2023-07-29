@@ -9,16 +9,17 @@ import cartemptyimg from "@/resources/cartempty.png";
 import Nav from "../../components/nav";
 import Footer from "../../components/footer";
 import Loader_colorring from "../../components/Loader_colorring";
+import { cartData, products } from "@/Interfaces/Products";
 const Cart = () => {
   const router = useRouter();
   const { data: session, status: sessionStatus }: any = useSession();
-  const [cartDataContents, setCartDataContents]: any = useState([]);
+  const [cartDataContents, setCartDataContents] = useState<products[]>([]);
   const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [totalDiscount, setTotalDiscount] = useState(0);
-  const [cartData, setCartData]: any = useState([]);
-  const [loading, setLoading] = useState(false); // Initialize loading state
-  const [addressDataCheck, setAddressDataCheck] = useState(false);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [totalDiscount, setTotalDiscount] = useState<number>(0);
+  const [cartData, setCartData] = useState<cartData[]>([]);
+  const [loading, setLoading] = useState<boolean>(false); // Initialize loading state
+  const [addressDataCheck, setAddressDataCheck] = useState<boolean>(false);
   useEffect(() => {
     if (sessionStatus === "loading") {
       return;
@@ -63,7 +64,6 @@ const Cart = () => {
 
   const RemoveFromcart = async (productId: String) => {
     setLoading(true); // Start loading
-
     await axios
       .post("./api/cart/removeFromCart", {
         userId: session?.user?._id,

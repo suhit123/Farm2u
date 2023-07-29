@@ -7,7 +7,7 @@ import styles from "@/styles/videos.module.css";
 import { VideosProps, Video } from "@/Interfaces/Videos";
 const Videos: React.FC<VideosProps> = () => {
   const [videos, setVideos] = useState<Video[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
     setLoading(true);
     axios
@@ -22,7 +22,6 @@ const Videos: React.FC<VideosProps> = () => {
         setLoading(false);
       });
   }, []);
-
   return (
     <>
       <Loader time={1000} />

@@ -19,7 +19,7 @@ import bloghomestyles from "@/styles/home.module.css";
 import React from "react";
 import { Blog } from "@/Interfaces/Blogs";
 export default function Home() {
-  const [blogdata, setBlogData] = useState([]);
+  const [blogdata, setBlogData] = useState<Blog[]>([]);
   useEffect(() => {
     axios
       .get("../api/Blogs?start=0&end=2")
