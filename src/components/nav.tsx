@@ -45,7 +45,6 @@ const Nav = () => {
       .then((res) => {
         const productdata = res.data;
         setCartDataContents(productdata);
-        console.log(productdata);
       })
       .catch((err) => {
         console.log(err);

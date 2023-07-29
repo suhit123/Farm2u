@@ -13,7 +13,6 @@ import { useSession } from "next-auth/react";
 import Head from "next/head";
 import { ProductData,Comment } from "@/Interfaces/Products";
 import Custom404 from "../404";
-import { Metadata } from "next";
 const DetailedProduct = () => {
   const { data: session }: any = useSession();
   const router = useRouter();
@@ -158,8 +157,6 @@ const DetailedProduct = () => {
   useEffect(() => {
     if (productData) {
       const { heading, image1 } = productData;
-
-      // Update the meta tags with the fetched data
       const metaData: {
         title: string;
         meta: { property: string; content: string }[];
@@ -168,7 +165,6 @@ const DetailedProduct = () => {
         meta: [
           { property: "og:title", content: heading },
           { property: "og:image", content: image1 },
-          // Add other relevant meta tags here
         ],
       };
 
@@ -479,5 +475,4 @@ PROBLEMS, BRAIN POWER,ARTHRITIS"
     </>
   );
 };
-
 export default DetailedProduct;
