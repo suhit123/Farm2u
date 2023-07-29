@@ -13,6 +13,7 @@ import { useSession } from "next-auth/react";
 import Head from "next/head";
 import { ProductData, Comment } from "@/Interfaces/Products";
 import Custom404 from "../404";
+import logo from '@/resources/genmatrixlogo2.png'
 const DetailedProduct = () => {
   const { data: session }: any = useSession();
   const router = useRouter();
@@ -149,8 +150,8 @@ const DetailedProduct = () => {
   }>({
     title: "Default Title",
     meta: [
-      { property: "og:title", content: "Default Open Graph Title" },
-      { property: "og:image", content: "default-image.jpg" },
+      { property: "og:title", content: "GENMATRIX PRODUCT" },
+      { property: "og:image", content: `${logo}` },
       // Add other default meta tags here
     ],
   });
