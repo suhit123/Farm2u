@@ -10,6 +10,9 @@ import AdminRoute from "@/pages/admin/AdminRoute";
 import Admin from "../index";
 import AdminNav from "../../../components/AdminNav";
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import errorlogo from '@/resources/error.png'
 const Editblog = () => {
   const router = useRouter();
   let Productid = router.query.Productid;
@@ -25,12 +28,14 @@ const Editblog = () => {
     description: null,
     comments: [],
   });
+  
+  const [successLoader,setSuccessLoader]=useState<boolean>(false);
+  const [successMessage,setSuccessMessage]=useState<boolean>(false);
+  const [errorMessage,setErrorMessage]=useState<boolean>(false);
+  const [proceedMessage,setProceedMessage]=useState<boolean>(false);
   const { quill, quillRef }: any = useQuill();
-  const [alertmessage_publish, setAlertmessage_publish]: any = useState("");
-  const [selectedImage, setSelectedImage] = useState(null);
   const [initialContent, setInitialContent] = useState("");
   const [limitexceed, setLimitexceed] = useState(false);
-  const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
   useEffect(() => {
     if (quill) {
       quill.on("text-change", (delta: any, oldDelta: any, source: any) => {
@@ -68,6 +73,24 @@ const Editblog = () => {
     }));
   };
 
+  const handleSuccess=(e:any)=>{
+    setSuccessLoader(true);
+                  axios
+                  .patch(`../../api/products/${Productid}`, formData)
+                    .then(() => {
+                      console.log("posted successfully!");
+                      setSuccessMessage(true);
+                      setProceedMessage(false);
+                    })
+                    .catch((err) => {
+                      console.log("Something went wrong!");
+                      setErrorMessage(true);
+                      setProceedMessage(false);
+                    })
+                    .finally(()=>{
+                      setSuccessLoader(false);
+                    })
+  }
   const handlePublish = (e: any) => {
     e.preventDefault();
     if (formData.qty < 0) {
@@ -77,60 +100,12 @@ const Editblog = () => {
       }));
       return;
     }
-    console.log("Form Data:", formData);
     const sizeof = require("sizeof");
     const objectSizeBytes = sizeof.sizeof(formData);
-    const objectSizeMB = objectSizeBytes / (1024 * 1024); // Convert bytes to megabytes
-    console.log(objectSizeMB);
+    const objectSizeMB = objectSizeBytes / (1024 * 1024);
     if (objectSizeMB <= 100) {
-      setAlertmessage_publish(
-        <div className={styles.publishalert}>
-          <div className={styles.publish_conformation}>
-            <p>Are you sure you want to edit this product ?</p>
-            <div className={styles.publish_alert_buttons}>
-              <button
-                className={styles.publish_alert_button1}
-                onClick={() => {
-                  setAlertmessage_publish("");
-                }}
-              >
-                No
-              </button>
-              <button
-                className={styles.publish_alert_button2}
-                onClick={() => {
-                  console.log(formData);
-                  axios
-                    .patch(`../../api/products/${Productid}`, formData)
-                    .then(() => {
-                      console.log("posted successfully!");
-                    })
-                    .catch((err) => {
-                      console.log("Something went wrong!");
-                    });
-                  setAlertmessage_publish(
-                    <div className={styles.publish_confirm_alert}>
-                      <div className={styles.publish_confirm_redirection}>
-                        <Image src={successlogo} alt="" />
-                        <p>This product has been edited successfully!</p>
-                        <button
-                          onClick={() => {
-                            router.push("/admin/products/Inventory");
-                          }}
-                        >
-                          Done
-                        </button>
-                      </div>
-                    </div>
-                  );
-                }}
-              >
-                Yes
-              </button>
-            </div>
-          </div>
-        </div>
-      );
+      setLimitexceed(false);
+      setProceedMessage(true);
     } else {
       console.log("Limit exceeded");
       setLimitexceed(true);
@@ -142,6 +117,56 @@ const Editblog = () => {
       <div className={"admin_nav_adjustment"}>
         <AdminNav />
         <div>
+        {proceedMessage?<div className={styles.publishalert}>
+          <div className={styles.publish_conformation}>
+            <p>Are you sure you want to publish this post ?</p>
+            <div className={styles.publish_alert_buttons}>
+              <button
+                className={styles.publish_alert_button1}
+                onClick={() => {
+                  setProceedMessage(false);
+                }}
+              >
+                No
+              </button>
+              {successLoader?<button
+                className={styles.publish_alert_button2}>Wait <FontAwesomeIcon icon={faSpinner} className="fa-spin" /></button>:<button
+                className={styles.publish_alert_button2}
+                onClick={handleSuccess}
+              >
+                Yes
+              </button>}
+            </div>
+          </div>
+        </div>:<></>}
+          {successMessage?<div className={styles.publish_confirm_alert}>
+                          <div className={styles.publish_confirm_redirection}>
+                            <Image src={successlogo} alt="" />
+                            <p>This product has been posted successfully!</p>
+                            <button
+                              onClick={() => {
+                                document.location.href =
+                                  "/admin/products/Inventory";
+                              }}
+                            >
+                              Done
+                            </button>
+                          </div>
+                        </div>:<></>}
+          {errorMessage?<div className={styles.publish_confirm_alert}>
+                          <div className={styles.publish_confirm_redirection}>
+                            <Image src={errorlogo} alt="" />
+                            <p>Something gone wrong! Try again later.</p>
+                            <button
+                              onClick={() => {
+                                document.location.href =
+                                  "/admin/products/Inventory";
+                              }}
+                            >
+                              OK
+                            </button>
+                          </div>
+                        </div>:<></>}
           <div className={styles.publish_post_form_container}>
             <form onSubmit={handlePublish}>
               <div className={styles.publish_post_form_container_leftbox}>
@@ -324,7 +349,6 @@ const Editblog = () => {
           ) : (
             <p style={{ textAlign: "center" }}>No comments!</p>
           )}
-          {alertmessage_publish}
         </div>
       </div>
     </AdminRoute>
