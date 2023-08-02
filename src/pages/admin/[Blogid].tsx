@@ -11,7 +11,9 @@ import Admin from ".";
 import AdminNav from "../../components/AdminNav";
 import React from "react";
 import { Detailedblog } from "@/Interfaces/Blogs";
-
+import errorlogo from '@/resources/error.png'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 const Editblog = () => {
   const router = useRouter();
   let Blogid = router.query.Blogid;
@@ -29,7 +31,10 @@ const Editblog = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [initialContent, setInitialContent] = useState("");
   const [limitexceed, setLimitexceed] = useState(false);
-  const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
+  const [successLoader,setSuccessLoader]=useState<boolean>(false);
+  const [successMessage,setSuccessMessage]=useState<boolean>(false);
+  const [errorMessage,setErrorMessage]=useState<boolean>(false);
+  const [proceedMessage,setProceedMessage]=useState<boolean>(false);
   useEffect(() => {
     if (quill) {
       quill.on("text-change", (delta: any, oldDelta: any, source: any) => {
@@ -59,13 +64,6 @@ const Editblog = () => {
   useEffect(() => {
     fetchData();
   }, [Blogid, initialContent, quill]);
-  const toBase64 = (file: any) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
   const handleInputChange = async (e: any) => {
     if (e.target.name === "image") {
       const file = e.target.files[0];
@@ -89,7 +87,24 @@ const Editblog = () => {
       }));
     }
   };
-
+  const handleSuccess=(e:any)=>{
+    setSuccessLoader(true);
+                  axios
+                  .patch(`../api/Blogs/${Blogid}`, formData)
+                  .then(() => {
+                      console.log("posted successfully!");
+                      setSuccessMessage(true);
+                      setProceedMessage(false);
+                    })
+                    .catch((err) => {
+                      console.log("Something went wrong!");
+                      setErrorMessage(true);
+                      setProceedMessage(false);
+                    })
+                    .finally(()=>{
+                      setSuccessLoader(false);
+                    })
+  }
   const handlePublish = (e: any) => {
     e.preventDefault();
     console.log("Form Data:", formData);
@@ -98,54 +113,8 @@ const Editblog = () => {
     const objectSizeMB = objectSizeBytes / (1024 * 1024); // Convert bytes to megabytes
     console.log(objectSizeMB);
     if (objectSizeMB <= 100) {
-      setAlertmessage_publish(
-        <div className={styles.publishalert}>
-          <div className={styles.publish_conformation}>
-            <p>Are you sure you want to edit this post ?</p>
-            <div className={styles.publish_alert_buttons}>
-              <button
-                className={styles.publish_alert_button1}
-                onClick={() => {
-                  setAlertmessage_publish("");
-                }}
-              >
-                No
-              </button>
-              <button
-                className={styles.publish_alert_button2}
-                onClick={() => {
-                  console.log(formData);
-                  axios
-                    .patch(`../api/Blogs/${Blogid}`, formData)
-                    .then(() => {
-                      console.log("posted successfully!");
-                    })
-                    .catch((err) => {
-                      console.log("Something went wrong!");
-                    });
-                  setAlertmessage_publish(
-                    <div className={styles.publish_confirm_alert}>
-                      <div className={styles.publish_confirm_redirection}>
-                        <Image src={successlogo} alt="" />
-                        <p>This blog has been edited successfully!</p>
-                        <button
-                          onClick={() => {
-                            document.location.href = "/admin/Blogs";
-                          }}
-                        >
-                          Done
-                        </button>
-                      </div>
-                    </div>
-                  );
-                }}
-              >
-                Yes
-              </button>
-            </div>
-          </div>
-        </div>
-      );
+      setLimitexceed(false);
+      setProceedMessage(true);
     } else {
       console.log("Limit exceeded");
       setLimitexceed(true);
@@ -156,6 +125,56 @@ const Editblog = () => {
       <Admin />
       <div className={"admin_nav_adjustment"}>
         <AdminNav />
+        {proceedMessage?<div className={styles.publishalert}>
+          <div className={styles.publish_conformation}>
+            <p>Are you sure you want to publish this post ?</p>
+            <div className={styles.publish_alert_buttons}>
+              <button
+                className={styles.publish_alert_button1}
+                onClick={() => {
+                  setProceedMessage(false);
+                }}
+              >
+                No
+              </button>
+              {successLoader?<button
+                className={styles.publish_alert_button2}>Wait <FontAwesomeIcon icon={faSpinner} className="fa-spin" /></button>:<button
+                className={styles.publish_alert_button2}
+                onClick={handleSuccess}
+              >
+                Yes
+              </button>}
+            </div>
+          </div>
+        </div>:<></>}
+          {successMessage?<div className={styles.publish_confirm_alert}>
+                          <div className={styles.publish_confirm_redirection}>
+                            <Image src={successlogo} alt="" />
+                            <p>This product has been posted successfully!</p>
+                            <button
+                              onClick={() => {
+                                document.location.href =
+                                  "/admin/Blogs";
+                              }}
+                            >
+                              Done
+                            </button>
+                          </div>
+                        </div>:<></>}
+          {errorMessage?<div className={styles.publish_confirm_alert}>
+                          <div className={styles.publish_confirm_redirection}>
+                            <Image src={errorlogo} alt="" />
+                            <p>Something gone wrong! Try again later.</p>
+                            <button
+                              onClick={() => {
+                                document.location.href =
+                                  "/admin/products/Inventory";
+                              }}
+                            >
+                              OK
+                            </button>
+                          </div>
+                        </div>:<></>}
         <div>
           <div className={styles.publish_post_form_container}>
             <form onSubmit={handlePublish}>

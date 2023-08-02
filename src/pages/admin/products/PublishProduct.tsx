@@ -14,7 +14,7 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import errorlogo from '@/resources/error.png'
 const PublishProduct = () => {
   const { quill, quillRef }: any = useQuill();
-  const [limitexceed, setLimitexceed] = useState(false);
+  const [limitexceed, setLimitexceed] = useState<boolean>(false);
   const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
   const [successLoader,setSuccessLoader]=useState<boolean>(false);
   const [successMessage,setSuccessMessage]=useState<boolean>(false);

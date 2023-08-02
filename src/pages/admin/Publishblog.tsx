@@ -12,13 +12,16 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { DetailedblogPublish } from "@/Interfaces/Blogs";
+import errorlogo from '@/resources/error.png'
 const Publishblog = () => {
   const { quill, quillRef }: any = useQuill();
-  const [alertmessage_publish, setAlertmessage_publish]: any = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
-  const [publishLoading, setPublishLoading] = useState<boolean>(false);
-  const [limitexceed, setLimitexceed] = useState(false);
+  const [limitexceed, setLimitexceed] = useState<boolean>(false);
   const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
+  const [successLoader,setSuccessLoader]=useState<boolean>(false);
+  const [successMessage,setSuccessMessage]=useState<boolean>(false);
+  const [errorMessage,setErrorMessage]=useState<boolean>(false);
+  const [proceedMessage,setProceedMessage]=useState<boolean>(false);
   const [formData, setFormData] = useState<DetailedblogPublish>({
     title: "",
     publishDate: "",
@@ -39,13 +42,6 @@ const Publishblog = () => {
       forceUpdate();
     }
   }, [quill, reducerValue]);
-  const toBase64 = (file: any) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
   const handleInputChange = async (e: any) => {
     if (e.target.name === "image") {
       const file = e.target.files[0];
@@ -69,7 +65,24 @@ const Publishblog = () => {
       }));
     }
   };
-
+  const handleSuccess=(e:any)=>{
+    setSuccessLoader(true);
+                  axios
+                    .post("../api/Blogs", formData)
+                    .then(() => {
+                      console.log("posted successfully!");
+                      setSuccessMessage(true);
+                      setProceedMessage(false);
+                    })
+                    .catch((err) => {
+                      console.log("Something went wrong!");
+                      setErrorMessage(true);
+                      setProceedMessage(false);
+                    })
+                    .finally(()=>{
+                      setSuccessLoader(false);
+                    })
+  }
   const handlePublish = (e: any) => {
     e.preventDefault();
     console.log("Form Data:", formData);
@@ -79,72 +92,7 @@ const Publishblog = () => {
     console.log(objectSizeMB);
     if (objectSizeMB <= 100) {
       setLimitexceed(false);
-      setAlertmessage_publish(
-        <div className={styles.publishalert}>
-          <div className={styles.publish_conformation}>
-            <p>Are you sure you want to publish this post ?</p>
-            <div className={styles.publish_alert_buttons}>
-              <button
-                className={styles.publish_alert_button1}
-                onClick={() => {
-                  setAlertmessage_publish("");
-                }}
-              >
-                No
-              </button>
-              {publishLoading ? (
-                <button className={styles.publish_alert_button2}>
-                  Yes <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
-                </button>
-              ) : (
-                <button
-                  className={styles.publish_alert_button2}
-                  onClick={() => {
-                    console.log(formData);
-                    setPublishLoading(true);
-                    axios
-                      .post("../api/Blogs", formData)
-                      .then(() => {
-                        console.log("posted successfully!");
-                        setAlertmessage_publish(
-                          <div className={styles.publish_confirm_alert}>
-                            <div className={styles.publish_confirm_redirection}>
-                              <Image src={successlogo} alt="" />
-                              <p>This blog has been posted successfully!</p>
-                              <button
-                                onClick={() => {
-                                  document.location.href = "/admin/Blogs";
-                                }}
-                              >
-                                Done
-                              </button>
-                            </div>
-                          </div>
-                        );
-                        axios
-                          .post("/api/SMTP/Blogadded", formData)
-                          .then((res) => {
-                            console.log("Mails sent");
-                          })
-                          .catch((err) => {
-                            console.log("Mails sending failed");
-                          })
-                          .finally(() => {
-                            setPublishLoading(false);
-                          });
-                      })
-                      .catch((err) => {
-                        console.log("Something went wrong!");
-                      });
-                  }}
-                >
-                  Yes
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
-      );
+      setProceedMessage(true);
     } else {
       console.log("Limit exceeded");
       setLimitexceed(true);
@@ -156,6 +104,56 @@ const Publishblog = () => {
       <div className={"admin_nav_adjustment"}>
         <AdminNav />
         <div>
+        {proceedMessage?<div className={styles.publishalert}>
+          <div className={styles.publish_conformation}>
+            <p>Are you sure you want to publish this post ?</p>
+            <div className={styles.publish_alert_buttons}>
+              <button
+                className={styles.publish_alert_button1}
+                onClick={() => {
+                  setProceedMessage(false);
+                }}
+              >
+                No
+              </button>
+              {successLoader?<button
+                className={styles.publish_alert_button2}>Wait <FontAwesomeIcon icon={faSpinner} className="fa-spin" /></button>:<button
+                className={styles.publish_alert_button2}
+                onClick={handleSuccess}
+              >
+                Yes
+              </button>}
+            </div>
+          </div>
+        </div>:<></>}
+          {successMessage?<div className={styles.publish_confirm_alert}>
+                          <div className={styles.publish_confirm_redirection}>
+                            <Image src={successlogo} alt="" />
+                            <p>This product has been posted successfully!</p>
+                            <button
+                              onClick={() => {
+                                document.location.href =
+                                  "/admin/Blogs";
+                              }}
+                            >
+                              Done
+                            </button>
+                          </div>
+                        </div>:<></>}
+          {errorMessage?<div className={styles.publish_confirm_alert}>
+                          <div className={styles.publish_confirm_redirection}>
+                            <Image src={errorlogo} alt="" />
+                            <p>Something gone wrong! Try again later.</p>
+                            <button
+                              onClick={() => {
+                                document.location.href =
+                                  "/admin/products/Inventory";
+                              }}
+                            >
+                              OK
+                            </button>
+                          </div>
+                        </div>:<></>}
           <div className={styles.publish_post_form_container}>
             <form onSubmit={handlePublish}>
               <div className={styles.publish_post_form_container_leftbox}>
@@ -226,7 +224,6 @@ const Publishblog = () => {
               <div ref={quillRef} />
             </div>
           </div>
-          {alertmessage_publish}
         </div>
       </div>
     </AdminRoute>
