@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AdminRoute from "../AdminRoute";
 import Image from "next/image";
-import { faEdit, faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "@/styles/admin/admintable_managemnt.module.css";
-import { useRouter } from "next/router";
 import successlogo from "@/resources/successicon.png";
 import Admin from "..";
 import nodatafound from "@/resources/no_data_found.png";
@@ -13,12 +12,14 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import Loader_colorring from "../../../components/Loader_colorring";
 import AdminNav from "../../../components/AdminNav";
 import React from "react";
+import errorlogo from "@/resources/error.png";
+import { adminVideoData, formData } from "@/Interfaces/Videos";
 const Blogs = () => {
-  const router = useRouter();
-  const [data, setData]: any = useState([]);
-  const [loader, setLoader] = useState(false);
+  const [data, setData] = useState<adminVideoData[]>([]);
+  const [loader, setLoader] = useState<boolean>(false);
   const [alertmessage_delete, setAlertmessage_delete]: any = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<boolean>(false);
   let key = 1;
   const fetchData = () => {
     setLoader(true);
@@ -38,7 +39,7 @@ const Blogs = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<formData>({
     media: "youtube",
     url: "",
   });
@@ -61,6 +62,7 @@ const Blogs = () => {
         })
         .catch((err) => {
           console.log("something went wrong!");
+          setErrorMessage(true);
         })
         .finally(() => {
           setLoading(false);
@@ -79,6 +81,23 @@ const Blogs = () => {
       <Admin />
       <div className={"admin_nav_adjustment"}>
         <AdminNav />
+        {errorMessage ? (
+          <div className={styles.publish_confirm_alert}>
+            <div className={styles.publish_confirm_redirection}>
+              <Image src={errorlogo} alt="" />
+              <p>Something gone wrong! Try again later.</p>
+              <button
+                onClick={() => {
+                  setErrorMessage(false);
+                }}
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
         <div className={styles.invetory_entire}>
           <h2>Videos</h2>
           <form onSubmit={handleSubmit} className={styles.videoform}>

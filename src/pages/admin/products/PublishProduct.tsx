@@ -11,15 +11,15 @@ import AdminNav from "../../../components/AdminNav";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import errorlogo from '@/resources/error.png'
+import errorlogo from "@/resources/error.png";
 const PublishProduct = () => {
   const { quill, quillRef }: any = useQuill();
   const [limitexceed, setLimitexceed] = useState<boolean>(false);
   const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
-  const [successLoader,setSuccessLoader]=useState<boolean>(false);
-  const [successMessage,setSuccessMessage]=useState<boolean>(false);
-  const [errorMessage,setErrorMessage]=useState<boolean>(false);
-  const [proceedMessage,setProceedMessage]=useState<boolean>(false);
+  const [successLoader, setSuccessLoader] = useState<boolean>(false);
+  const [successMessage, setSuccessMessage] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<boolean>(false);
+  const [proceedMessage, setProceedMessage] = useState<boolean>(false);
   const [formData, setFormData]: any = useState({
     heading: "",
     image1: "",
@@ -50,24 +50,24 @@ const PublishProduct = () => {
       [name]: value,
     }));
   };
-  const handleSuccess=(e:any)=>{
+  const handleSuccess = (e: any) => {
     setSuccessLoader(true);
-                  axios
-                    .post("../../api/products", formData)
-                    .then(() => {
-                      console.log("posted successfully!");
-                      setSuccessMessage(true);
-                      setProceedMessage(false);
-                    })
-                    .catch((err) => {
-                      console.log("Something went wrong!");
-                      setErrorMessage(true);
-                      setProceedMessage(false);
-                    })
-                    .finally(()=>{
-                      setSuccessLoader(false);
-                    })
-  }
+    axios
+      .post("../../api/products", formData)
+      .then(() => {
+        console.log("posted successfully!");
+        setSuccessMessage(true);
+        setProceedMessage(false);
+      })
+      .catch((err) => {
+        console.log("Something went wrong!");
+        setErrorMessage(true);
+        setProceedMessage(false);
+      })
+      .finally(() => {
+        setSuccessLoader(false);
+      });
+  };
   const handlePublish = (e: any) => {
     e.preventDefault();
     if (formData.qty < 0) {
@@ -94,56 +94,72 @@ const PublishProduct = () => {
       <div className={"admin_nav_adjustment"}>
         <AdminNav />
         <div>
-          {proceedMessage?<div className={styles.publishalert}>
-          <div className={styles.publish_conformation}>
-            <p>Are you sure you want to publish this post ?</p>
-            <div className={styles.publish_alert_buttons}>
-              <button
-                className={styles.publish_alert_button1}
-                onClick={() => {
-                  setProceedMessage(false);
-                }}
-              >
-                No
-              </button>
-              {successLoader?<button
-                className={styles.publish_alert_button2}>Wait <FontAwesomeIcon icon={faSpinner} className="fa-spin" /></button>:<button
-                className={styles.publish_alert_button2}
-                onClick={handleSuccess}
-              >
-                Yes
-              </button>}
+          {proceedMessage ? (
+            <div className={styles.publishalert}>
+              <div className={styles.publish_conformation}>
+                <p>Are you sure you want to publish this post ?</p>
+                <div className={styles.publish_alert_buttons}>
+                  <button
+                    className={styles.publish_alert_button1}
+                    onClick={() => {
+                      setProceedMessage(false);
+                    }}
+                  >
+                    No
+                  </button>
+                  {successLoader ? (
+                    <button className={styles.publish_alert_button2}>
+                      Wait{" "}
+                      <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
+                    </button>
+                  ) : (
+                    <button
+                      className={styles.publish_alert_button2}
+                      onClick={handleSuccess}
+                    >
+                      Yes
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>:<></>}
-          {successMessage?<div className={styles.publish_confirm_alert}>
-                          <div className={styles.publish_confirm_redirection}>
-                            <Image src={successlogo} alt="" />
-                            <p>This product has been posted successfully!</p>
-                            <button
-                              onClick={() => {
-                                document.location.href =
-                                  "/admin/products/Inventory";
-                              }}
-                            >
-                              Done
-                            </button>
-                          </div>
-                        </div>:<></>}
-          {errorMessage?<div className={styles.publish_confirm_alert}>
-                          <div className={styles.publish_confirm_redirection}>
-                            <Image src={errorlogo} alt="" />
-                            <p>Something gone wrong! Try again later.</p>
-                            <button
-                              onClick={() => {
-                                document.location.href =
-                                  "/admin/products/Inventory";
-                              }}
-                            >
-                              OK
-                            </button>
-                          </div>
-                        </div>:<></>}
+          ) : (
+            <></>
+          )}
+          {successMessage ? (
+            <div className={styles.publish_confirm_alert}>
+              <div className={styles.publish_confirm_redirection}>
+                <Image src={successlogo} alt="" />
+                <p>This product has been posted successfully!</p>
+                <button
+                  onClick={() => {
+                    document.location.href = "/admin/products/Inventory";
+                  }}
+                >
+                  Done
+                </button>
+              </div>
+            </div>
+          ) : (
+            <></>
+          )}
+          {errorMessage ? (
+            <div className={styles.publish_confirm_alert}>
+              <div className={styles.publish_confirm_redirection}>
+                <Image src={errorlogo} alt="" />
+                <p>Something gone wrong! Try again later.</p>
+                <button
+                  onClick={() => {
+                    document.location.href = "/admin/products/Inventory";
+                  }}
+                >
+                  OK
+                </button>
+              </div>
+            </div>
+          ) : (
+            <></>
+          )}
           <div className={styles.publish_post_form_container}>
             <form onSubmit={handlePublish}>
               <div className={styles.publish_post_form_container_leftbox}>

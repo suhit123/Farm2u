@@ -15,8 +15,8 @@ import React from "react";
 import { Blog } from "@/Interfaces/Blogs";
 const Blogs = () => {
   const router = useRouter();
-  const [data, setData]: any = useState([]);
-  const [loader, setLoader] = useState(false);
+  const [data, setData] = useState<Blog[]>([]);
+  const [loader, setLoader] = useState<boolean>(false);
   const [alertmessage_delete, setAlertmessage_delete]: any = useState("");
   let key = 1;
   const fetchData = () => {
@@ -24,7 +24,7 @@ const Blogs = () => {
     axios
       .get("../api/Blogs")
       .then((res) => {
-        setData(res.data);
+        setData(res.data.reverse());
         setLoader(false);
       })
       .catch((err) => {
@@ -37,6 +37,57 @@ const Blogs = () => {
   useEffect(() => {
     fetchData();
   }, []);
+  const handleDelete = (id: any) => {
+    setAlertmessage_delete(
+      <div className={styles.publishalert}>
+        <div className={styles.publish_conformation}>
+          <p>Are you sure you want to delete this post ?</p>
+          <div className={styles.publish_alert_buttons}>
+            <button
+              className={styles.publish_alert_button1}
+              onClick={() => {
+                setAlertmessage_delete("");
+              }}
+            >
+              No
+            </button>
+            <button
+              className={styles.publish_alert_button2}
+              onClick={() => {
+                axios
+                  .delete(`../api/Blogs/${id}`)
+                  .then(() => {
+                    console.log("Deleted successfully!");
+                  })
+                  .catch((err) => {
+                    alert("Something gone wrong! Try again later.")
+                    console.log("Something went wrong!");
+                  });
+                setAlertmessage_delete(
+                  <div className={styles.publish_confirm_alert}>
+                    <div className={styles.publish_confirm_redirection}>
+                      <Image src={successlogo} alt="" />
+                      <p>This blog has been deleted successfully!</p>
+                      <button
+                        onClick={() => {
+                          fetchData();
+                          setAlertmessage_delete("");
+                        }}
+                      >
+                        Done
+                      </button>
+                    </div>
+                  </div>
+                );
+              }}
+            >
+              Yes
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
   return (
     <AdminRoute>
       <Admin />
@@ -85,69 +136,8 @@ const Blogs = () => {
                     <td>
                       <button
                         className={styles.deleteButton}
-                        onClick={(e: any) => {
-                          e.preventDefault();
-                          setAlertmessage_delete(
-                            <div className={styles.publishalert}>
-                              <div className={styles.publish_conformation}>
-                                <p>
-                                  Are you sure you want to delete this post ?
-                                </p>
-                                <div className={styles.publish_alert_buttons}>
-                                  <button
-                                    className={styles.publish_alert_button1}
-                                    onClick={() => {
-                                      setAlertmessage_delete("");
-                                    }}
-                                  >
-                                    No
-                                  </button>
-                                  <button
-                                    className={styles.publish_alert_button2}
-                                    onClick={() => {
-                                      axios
-                                        .delete(`../api/Blogs/${item._id}`)
-                                        .then(() => {
-                                          console.log("Deleted successfully!");
-                                        })
-                                        .catch((err) => {
-                                          console.log("Something went wrong!");
-                                        });
-                                      setAlertmessage_delete(
-                                        <div
-                                          className={
-                                            styles.publish_confirm_alert
-                                          }
-                                        >
-                                          <div
-                                            className={
-                                              styles.publish_confirm_redirection
-                                            }
-                                          >
-                                            <Image src={successlogo} alt="" />
-                                            <p>
-                                              This blog has been deleted
-                                              successfully!
-                                            </p>
-                                            <button
-                                              onClick={() => {
-                                                fetchData();
-                                                setAlertmessage_delete("");
-                                              }}
-                                            >
-                                              Done
-                                            </button>
-                                          </div>
-                                        </div>
-                                      );
-                                    }}
-                                  >
-                                    Yes
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          );
+                        onClick={() => {
+                          handleDelete(item._id);
                         }}
                       >
                         <FontAwesomeIcon icon={faTrash} /> Delete

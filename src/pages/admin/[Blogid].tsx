@@ -27,7 +27,6 @@ const Editblog = () => {
     comments: [],
   });
   const { quill, quillRef }: any = useQuill();
-  const [alertmessage_publish, setAlertmessage_publish]: any = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [initialContent, setInitialContent] = useState("");
   const [limitexceed, setLimitexceed] = useState(false);
@@ -304,7 +303,6 @@ const Editblog = () => {
           ) : (
             <p style={{ textAlign: "center" }}>No comments!</p>
           )}
-          {alertmessage_publish}
         </div>
       </div>
     </AdminRoute>

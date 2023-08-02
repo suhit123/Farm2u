@@ -9,12 +9,12 @@ import Admin from "..";
 import styles from "@/styles/admin/admintable_managemnt.module.css";
 import AdminNav from "../../../components/AdminNav";
 import React from "react";
+import { changePassword } from "@/Interfaces/user/changePassword";
 const AdminPasswordChange = () => {
   const { data: session }: any = useSession();
   const [checkConfirmPassword, setCheckConfirmPassword] = useState("text");
-  const [loading, setLoading] = useState(false);
-
-  const [formData, setFormData] = useState({
+  const [loading, setLoading] = useState<boolean>(false);
+  const [formData, setFormData] = useState<changePassword>({
     oldPassword: "",
     newPassword: "",
     confirmPassword: "",
@@ -33,10 +33,7 @@ const AdminPasswordChange = () => {
       setErrmsg({
         oldPassErr: "",
         notMatchErr: (
-          <p>
-            <span>&#9888;</span>
-            {`${" " + "Passwords doesn't match!"}`}
-          </p>
+          <p><span>&#9888;</span>{`${" " + "Passwords doesn't match!"}`}</p>
         ),
       });
       return;
@@ -67,20 +64,14 @@ const AdminPasswordChange = () => {
                   setErrmsg({
                     oldPassErr: "",
                     notMatchErr: (
-                      <p>
-                        <span>&#10004;</span>
-                        {`${" " + "Password changed succesfully"}`}
-                      </p>
+                      <p><span>&#10004;</span>{`${" " + "Password changed succesfully"}`}</p>
                     ),
                   });
                 } else {
                   setErrmsg({
                     oldPassErr: "",
                     notMatchErr: (
-                      <p>
-                        <span>&#9888;</span>
-                        {`${" " + "Something wen't wrong!"}`}
-                      </p>
+                      <p><span>&#9888;</span>{`${" " + "Something wen't wrong!"}`}</p>
                     ),
                   });
                 }
@@ -89,10 +80,7 @@ const AdminPasswordChange = () => {
                 setErrmsg({
                   oldPassErr: "",
                   notMatchErr: (
-                    <p>
-                      <span>&#9888;</span>
-                      {`${" " + "Something wen't wrong!"}`}
-                    </p>
+                    <p><span>&#9888;</span>{`${" " + "Something wen't wrong!"}`}</p>
                   ),
                 });
               })
@@ -102,10 +90,7 @@ const AdminPasswordChange = () => {
           } else {
             setErrmsg({
               oldPassErr: (
-                <p>
-                  <span>&#9888;</span>
-                  {`${" " + "Old password doesn't match!"}`}
-                </p>
+                <p><span>&#9888;</span>{`${" " + "Old password doesn't match!"}`}</p>
               ),
               notMatchErr: "",
             });
@@ -118,10 +103,7 @@ const AdminPasswordChange = () => {
       setErrmsg({
         oldPassErr: "",
         notMatchErr: (
-          <p>
-            <span>&#9888;</span>
-            {`${" " + "Something wen't wrong!"}`}
-          </p>
+          <p><span>&#9888;</span>{`${" " + "Something wen't wrong!"}`}</p>
         ),
       });
     }

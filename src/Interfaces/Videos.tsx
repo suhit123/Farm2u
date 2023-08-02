@@ -4,3 +4,12 @@ export interface Video {
 export interface VideosProps {
   initialVideos: Video[];
 }
+export interface adminVideoData{
+  media:string,
+  url:string,
+  _id:string
+}
+export interface formData{
+  media:string,
+  url:string
+}

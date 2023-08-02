@@ -13,14 +13,6 @@ import Loader from "../../components/loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { products } from "@/Interfaces/Products";
-// async function fetchProducts(){
-//   const products=await fetch(`${process.env.VERCEL_URL}/api/products`,{cache:"no-store"});
-//   return products.json();
-// }
-// export default async function Page(){
-//   const products=await fetchProducts();
-//   return <Products products={products}/>
-// }
 const Products = () => {
   const { data: session }: any = useSession();
   const [loading, setLoading] = useState<{ [key: string]: boolean }>({});

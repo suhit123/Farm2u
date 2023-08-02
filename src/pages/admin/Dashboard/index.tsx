@@ -23,6 +23,21 @@ const Dashboard = () => {
         <Admin />
         <div className={"admin_nav_adjustment"}>
           <AdminNav />
+          <div className={styles.overView}>
+            <div className={styles.overView_blocks}>
+              <h3>PRODUCTS</h3>
+              <p>100</p>
+            </div>
+            <div className={styles.overView_blocks}>
+              <h3>VIDEOS</h3>
+              <p>100</p>
+            </div>
+
+            <div className={styles.overView_blocks}>
+              <h3>BLOGS</h3>
+              <p>100</p>
+            </div>
+          </div>
           <div className={styles.nav_orders}>
             <ul>
               <li
@@ -83,7 +98,7 @@ const Dashboard = () => {
 export default Dashboard;
 
 const AllOrders = () => {
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState<boolean>(false);
   const [checkedit, setCheckedit] = useState<boolean[]>([]);
   const [checkedit2, setCheckedit2] = useState<boolean[]>([]);
   const [orders, setOrders] = useState([]);
@@ -495,7 +510,7 @@ const AllOrders = () => {
   );
 };
 const Custom = ({ element }: any) => {
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState<boolean>(false);
   const [checkedit, setCheckedit] = useState<boolean[]>([]);
   const [checkedit2, setCheckedit2] = useState<boolean[]>([]);
   const [orders, setOrders] = useState([]);

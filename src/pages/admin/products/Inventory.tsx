@@ -12,20 +12,14 @@ import Loader_colorring from "@/components/Loader_colorring";
 import nodatafound from "@/resources/no_data_found.png";
 import AdminNav from "../../../components/AdminNav";
 import React from "react";
-
-interface coupon {
-  _id: string;
-  amount: number;
-  discount: number;
-  coupon: string;
-}
-
+import { products } from "@/Interfaces/Products";
+import { coupon } from "@/Interfaces/user/orders";
 const Inventory = () => {
   let key = 1;
   const router = useRouter();
   const [alertmessage_delete, setAlertmessage_delete]: any = useState("");
   const [loader, setLoader] = useState<boolean>(false);
-  const [productsdata, setProductsData]: any = useState([]);
+  const [productsdata, setProductsData] = useState<products[]>([]);
   const [coupon, setCoupon] = useState<coupon>({
     _id: "",
     amount: 0,
@@ -38,7 +32,7 @@ const Inventory = () => {
     await axios
       .get("../../api/products")
       .then((res) => {
-        const productdata = res.data;
+        const productdata = res.data.reverse();
         setProductsData(productdata);
         console.log(productdata);
         setLoader(false);
@@ -85,6 +79,32 @@ const Inventory = () => {
         setCouponEdit(false);
         fetchCoupon();
       });
+  };
+  const handleDelete = (id: any) => {
+    axios
+      .delete(`../../api/products/${id}`)
+      .then(() => {
+        console.log("Deleted successfully!");
+      })
+      .catch((err) => {
+        console.log("Something went wrong!");
+      });
+    setAlertmessage_delete(
+      <div className={styles.publish_confirm_alert}>
+        <div className={styles.publish_confirm_redirection}>
+          <Image src={successlogo} alt="" />
+          <p>This blog has been deleted successfully!</p>
+          <button
+            onClick={() => {
+              fetchdata();
+              setAlertmessage_delete("");
+            }}
+          >
+            Done
+          </button>
+        </div>
+      </div>
+    );
   };
   return (
     <AdminRoute>
@@ -219,45 +239,7 @@ const Inventory = () => {
                                   </button>
                                   <button
                                     className={styles.publish_alert_button2}
-                                    onClick={() => {
-                                      axios
-                                        .delete(
-                                          `../../api/products/${item._id}`
-                                        )
-                                        .then(() => {
-                                          console.log("Deleted successfully!");
-                                        })
-                                        .catch((err) => {
-                                          console.log("Something went wrong!");
-                                        });
-                                      setAlertmessage_delete(
-                                        <div
-                                          className={
-                                            styles.publish_confirm_alert
-                                          }
-                                        >
-                                          <div
-                                            className={
-                                              styles.publish_confirm_redirection
-                                            }
-                                          >
-                                            <Image src={successlogo} alt="" />
-                                            <p>
-                                              This blog has been deleted
-                                              successfully!
-                                            </p>
-                                            <button
-                                              onClick={() => {
-                                                fetchdata();
-                                                setAlertmessage_delete("");
-                                              }}
-                                            >
-                                              Done
-                                            </button>
-                                          </div>
-                                        </div>
-                                      );
-                                    }}
+                                    onClick={() => {handleDelete(item._id)}}
                                   >
                                     Yes
                                   </button>
