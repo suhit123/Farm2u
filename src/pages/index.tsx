@@ -18,6 +18,18 @@ import Video_slider from "../components/Slider_video";
 import bloghomestyles from "@/styles/home.module.css";
 import React from "react";
 import { Blog } from "@/Interfaces/Blogs";
+import Marquee from "react-fast-marquee";
+import img1 from '@/resources/gallery/img1.jpg'
+import img2 from '@/resources/gallery/img2.jpg'
+import img3 from '@/resources/gallery/img3.jpg'
+import img4 from '@/resources/gallery/img4.jpg'
+import img5 from '@/resources/gallery/img5.jpg'
+import img6 from '@/resources/gallery/img6.jpg'
+import {
+  faCameraRetro
+} from "@fortawesome/free-solid-svg-icons";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function Home() {
   const [blogdata, setBlogData] = useState<Blog[]>([]);
   useEffect(() => {
@@ -139,6 +151,19 @@ export default function Home() {
               <Image src={ISO} alt="" width={100} height={100}/>
               <Image src={KOSHER} alt="" width={100} height={100}/>
             </div>
+          </div>
+          <div className={styles.image_gallery}><div className={styles.image_gallery_curosel}>
+            <h4><FontAwesomeIcon icon={faCameraRetro}/> IMAGE GALLERY</h4>
+            <p>With our range of nutraceutical supplements, we aim to empower you in your journey towards a healthier, happier life. </p>
+              <Marquee speed={40}>
+              <Image src={img1} alt="" width={500} height={500}/>
+              <Image src={img2} alt="" width={500} height={500}/>
+              <Image src={img3} alt="" width={500} height={500}/>
+              <Image src={img4} alt="" width={500} height={500}/>
+              <Image src={img5} alt="" width={500} height={500}/>
+              <Image src={img6} alt="" width={500} height={500}/>  
+              </Marquee>
+          </div>
           </div>
           <div className={styles.contact_us_banner}>
             <div className={styles.contact_us_banner_block}>
