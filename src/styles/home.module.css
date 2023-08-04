@@ -307,6 +307,9 @@ overflow: hidden;
   color: white;
 }
 @media screen and (max-width: 1200px) {
+  .landing_content {
+    height: 400px;
+  }
   .blogbox_container {
     margin: 0px;
     width: 80vw;
@@ -345,9 +348,6 @@ overflow: hidden;
   }
 }
 @media screen and (max-width: 950px) {
-  .landing_content {
-    height: 70vh;
-  }
   .landing_content_block {
     width: 80%;
   }
@@ -445,6 +445,33 @@ overflow: hidden;
   .image_gallery_curosel img{
     height: 160px;
   }
+  .product_blocks{
+  margin: 5px;  
+  width: 25vw;
+  height: 20vw;
+  box-shadow: 0px 0px 4px rgb(201, 201, 201);
+  }
+  .product_blocks img{
+    width: auto;
+    height: 20vw;
+  }
+  .product_hover_div{
+    height: 20vw;
+    padding: 0px 20px;
+    top:20vw;
+  }
+  .product_blocks:hover .product_hover_div{
+   top: 0px;
+   opacity: 1;
+  }
+  .product_hover_div h5{
+    margin-top: 10%;
+    font-size: 12px;
+  }
+  .product_hover_div button{
+    font-size: 13px;
+    padding: 5px 10px;
+  }
 }
 @media screen and (max-width: 550px) {
   .landing_content {
@@ -460,7 +487,7 @@ overflow: hidden;
     font-size: 17px;
   }
   .landing_content_block h3 {
-    font-size: 28px;
+    font-size: 25px;
   }
 
   .landing_content_block p {
@@ -565,55 +592,33 @@ overflow: hidden;
     height: 100px;
   }
   .landingPage_Products{
-    display: grid;
-    grid-template-columns: auto auto;
-    width: max-content;
-    margin: auto;
+    grid-template-columns: auto;
   }
   .product_blocks{
-    position: relative;
-  margin: 10px;  
-  width: 40vw;
-  height: 100px;
-  box-shadow: 0px 0px 10px rgb(201, 201, 201);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius:5px;
-  overflow: hidden;
+  margin: 5px;  
+  width: 75vw;
+  height: 50vw;
+  box-shadow: 0px 0px 4px rgb(201, 201, 201);
   }
   .product_blocks img{
     width: auto;
-    height: 100px;
+    height: 60vw;
   }
   .product_hover_div{
-    width: 100%;
-    height: 100px;
-    background-color: rgba(36, 36, 36, 0.883);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position:absolute;
-    padding: 10px 40px;
-    top:250px;
-    transition:0.3s all ease-in;
-    opacity: 0;
+    height: 50vw;
+    padding: 0px 20px;
+    top:50vw;
   }
   .product_blocks:hover .product_hover_div{
    top: 0px;
    opacity: 1;
   }
   .product_hover_div h5{
-    color: white;
-    margin-top: 30%;
+    margin-top: 10%;
+    font-size: 12px;
   }
   .product_hover_div button{
-    width: max-content;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    margin: 10px 0px;
-    background-color: #0c6c84;
-    color: white;
+    font-size: 13px;
+    padding: 5px 10px;
   }
 }

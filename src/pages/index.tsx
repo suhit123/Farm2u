@@ -32,8 +32,9 @@ import {
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import emptyimage from "@/resources/emptyimage.png";
-
+import { useRouter } from "next/router";
 export default function Home() {
+  const router:any=useRouter();
   const [blogdata, setBlogData] = useState<Blog[]>([]);
   useEffect(() => {
     axios
@@ -94,42 +95,42 @@ export default function Home() {
               <Image src={img1} alt=""/>
               <div className={styles.product_hover_div}>
                 <h5>ZIPPER | The Miracle Healer</h5>
-                <button>VIEW</button>
+                <button onClick={()=>{router.push('/products/64c008fc228fa3c2c29607dd')}}>VIEW</button>
               </div>
             </div>
             <div className={styles.product_blocks}>
               <Image src={img2} alt=""/>
               <div className={styles.product_hover_div}>
                 <h5>TRUYNG | That Turns To Your Younger Days</h5>
-                <button>VIEW</button>
+                <button onClick={()=>{router.push('/products/64b29866dd82f1e5842e817c')}}>VIEW</button>
               </div>
             </div>
             <div className={styles.product_blocks}>
               <Image src={img3} alt=""/>
               <div className={styles.product_hover_div}>
                 <h5>ROREND or SNOOZER | THE ROYAL GATEWAY THAT ENDS THE RUBBISH ROAR</h5>
-                <button>VIEW</button>
+                <button onClick={()=>{router.push('/products/64b293c476ffdcafe799fd2b')}}>VIEW</button>
               </div>
             </div>
             <div className={styles.product_blocks}>
               <Image src={img7} alt=""/>
               <div className={styles.product_hover_div}>
                 <h5>IGNITE | It fans the spark in u</h5>
-                <button>VIEW</button>
+                <button onClick={()=>{router.push('/products/64cbd52dd30a088c117c1a7d')}}>VIEW</button>
               </div>
             </div>
             <div className={styles.product_blocks}>
               <Image src={img5} alt=""/>
               <div className={styles.product_hover_div}>
                 <h5>TURMAX | THAT TURNS & MAXIMIZES TO YOUR TEENS</h5>
-                <button>VIEW</button>
+                <button onClick={()=>{router.push('/products/64b296dadd82f1e5842e807c')}}>VIEW</button>
               </div>
             </div>
             <div className={styles.product_blocks}>
               <Image src={img6} alt=""/>
               <div className={styles.product_hover_div}>
                 <h5>GOWISTRUM</h5>
-                <button>VIEW</button>
+                <button onClick={()=>{router.push('/products/64b298c3dd82f1e5842e8180')}}>VIEW</button>
               </div>
             </div>
           </div>

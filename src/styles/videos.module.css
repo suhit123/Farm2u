@@ -21,8 +21,8 @@
   animation: shimmer 2s infinite;
 }
 .video_block_empty {
-  width: 420px;
-  height: 230px;
+  width: 22vw;
+  height: 12vw;
   margin: 10px 0px;
   border-radius: 5px;
   background-image: linear-gradient(
@@ -37,8 +37,8 @@
   animation: shimmer 2s infinite;
 }
 .video_block iframe {
-  width: 420px;
-  height: 230px;
+  width: 22vw;
+  height: 12vw;
   margin: 10px 0px;
   border-radius: 5px;
   background-color: #f1f1f1;

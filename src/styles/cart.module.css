@@ -41,7 +41,7 @@
   position: absolute;
   top: 25px;
   left: 25px;
-  font-size: 18px;
+  font-size: 15px;
 }
 .sidecartcontainer {
   z-index: 12;
@@ -76,7 +76,7 @@
   font-weight: 700;
 }
 .cart_subtotal h5 {
-  font-size: 16px;
+  font-size: 15px;
   color: rgb(186, 81, 20);
 }
 .cart_checkout {
@@ -131,6 +131,15 @@
 .cart_empty_div img {
   width: 80%;
   height: auto;
+}
+
+@media screen and (max-width: 1350px) {
+  .sidecart {
+    width: 350px;
+  }
+}
+@media screen and (max-width: 950px) {
+
 }
 @media screen and (max-width: 550px) {
   .sidecart {
