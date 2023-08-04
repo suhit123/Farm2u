@@ -25,11 +25,14 @@ import img3 from '@/resources/gallery/img3.jpg'
 import img4 from '@/resources/gallery/img4.jpg'
 import img5 from '@/resources/gallery/img5.jpg'
 import img6 from '@/resources/gallery/img6.jpg'
+import img7 from '@/resources/gallery/img7.jpg'
 import {
   faCameraRetro
 } from "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import emptyimage from "@/resources/emptyimage.png";
+
 export default function Home() {
   const [blogdata, setBlogData] = useState<Blog[]>([]);
   useEffect(() => {
@@ -79,6 +82,55 @@ export default function Home() {
                 ></Typewriter>
               </h3>
               <p>Marching Towards Gene Matrix</p>
+            </div>
+          </div>
+          <div className={styles.products_top}>
+              <div className={styles.products_line}></div>
+              <h4>OUR PRODUCTS</h4>
+              <div className={styles.products_line}></div>
+            </div>
+          <div className={styles.landingPage_Products}>
+            <div className={styles.product_blocks}>
+              <Image src={img1} alt=""/>
+              <div className={styles.product_hover_div}>
+                <h5>ZIPPER | The Miracle Healer</h5>
+                <button>VIEW</button>
+              </div>
+            </div>
+            <div className={styles.product_blocks}>
+              <Image src={img2} alt=""/>
+              <div className={styles.product_hover_div}>
+                <h5>TRUYNG | That Turns To Your Younger Days</h5>
+                <button>VIEW</button>
+              </div>
+            </div>
+            <div className={styles.product_blocks}>
+              <Image src={img3} alt=""/>
+              <div className={styles.product_hover_div}>
+                <h5>ROREND or SNOOZER | THE ROYAL GATEWAY THAT ENDS THE RUBBISH ROAR</h5>
+                <button>VIEW</button>
+              </div>
+            </div>
+            <div className={styles.product_blocks}>
+              <Image src={img7} alt=""/>
+              <div className={styles.product_hover_div}>
+                <h5>IGNITE | It fans the spark in u</h5>
+                <button>VIEW</button>
+              </div>
+            </div>
+            <div className={styles.product_blocks}>
+              <Image src={img5} alt=""/>
+              <div className={styles.product_hover_div}>
+                <h5>TURMAX | THAT TURNS & MAXIMIZES TO YOUR TEENS</h5>
+                <button>VIEW</button>
+              </div>
+            </div>
+            <div className={styles.product_blocks}>
+              <Image src={img6} alt=""/>
+              <div className={styles.product_hover_div}>
+                <h5>GOWISTRUM</h5>
+                <button>VIEW</button>
+              </div>
             </div>
           </div>
           <div className={styles.landingpage_blogs}>
@@ -153,7 +205,7 @@ export default function Home() {
             </div>
           </div>
           <div className={styles.image_gallery}><div className={styles.image_gallery_curosel}>
-            <h4><FontAwesomeIcon icon={faCameraRetro}/> IMAGE GALLERY</h4>
+            <h4><FontAwesomeIcon icon={faCameraRetro}/> PRODUCT GALLERY</h4>
             <p>With our range of nutraceutical supplements, we aim to empower you in your journey towards a healthier, happier life. </p>
               <Marquee speed={40}>
               <Image src={img1} alt="" width={500} height={500}/>
