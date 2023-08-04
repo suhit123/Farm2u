@@ -61,6 +61,7 @@
   padding: 10px 15px;
   border-radius: 5px;
   font-size: 15px;
+  margin-top: 20px;
 }
 .landing_blog_seemore:hover {
   color: white;
@@ -89,7 +90,7 @@
   width: 100%;
 }
 .products_top{
-  margin: 40px 0px;
+  margin: 40px 0px 20px 0px;
 }
 .company_certifications_top h4,
 .blogs_top h4
@@ -112,7 +113,7 @@
 }
 .contact_us_banner {
   width: 100%;
-  height: 30vh;
+  height: 300px;
   background-image: url("../resources/contactusbanner.jpg");
   background-repeat: no-repeat;
   background-size: cover;
