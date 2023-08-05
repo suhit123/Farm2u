@@ -6,6 +6,7 @@ import Nav from "../../components/nav";
 import styles from "@/styles/videos.module.css";
 import { VideosProps, Video } from "@/Interfaces/Videos";
 import Head from "next/head";
+import { NextSeo } from "next-seo";
 const Videos: React.FC<VideosProps> = () => {
   const [videos, setVideos] = useState<Video[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -25,12 +26,45 @@ const Videos: React.FC<VideosProps> = () => {
   }, []);
   return (
     <>
-    <Head>
-        <title>
-          Videos
-        </title>
+   <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <NextSeo
+        title="Genmatrix Remedies - Videos"
+        additionalMetaTags={[
+          {
+            property: "keywords",
+            content:
+              "Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's FSSAI, GMP, HACCP, HALAL, ISO, KOSHER",
+          },
+          {
+            name: "distribution",
+            content: "global",
+          },
+          {
+            name: "rating",
+            content: "general",
+          },
+          {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1",
+          },
+        ]}
+        openGraph={{
+          type: "website",
+          url: "https://genmatrix.vercel.app/videos",
+          title: "Genmatrix Remedies - About us",
+          images: [
+            {
+              url:
+                "https://user-images.githubusercontent.com/105535366/258575801-4a10d747-83fa-48ae-af92-5027a37eb49c.png",
+              width: 600,
+              height: 600,
+              alt: "Og Image Alt",
+            },
+          ],
+        }}
+      />
       <Loader time={1000} />
       <Nav />
       {loading ? (

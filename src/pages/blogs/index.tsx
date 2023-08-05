@@ -11,6 +11,8 @@ import blogboxstyles from "@/styles/blogbox.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { BlogsProps, Blog } from "@/Interfaces/Blogs";
+import Head from "next/head";
+import { NextSeo } from "next-seo";
 const Blogs: React.FC<BlogsProps> = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [shownum, setShownum] = useState<number>(0);
@@ -56,6 +58,51 @@ const Blogs: React.FC<BlogsProps> = () => {
   }, []);
   return (
     <>
+    <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <NextSeo
+        title="Genmatrix Remedies - Blogs"
+        description="We, at GENMATRIX REMEDIES, strive to build a bond of Love and Trust
+      with our valued customers worldwide. With our range of nutraceutical
+      supplements, we aim to empower you in your journey towards a
+      healthier, happier life."
+        additionalMetaTags={[
+          {
+            property: "keywords",
+            content:
+              "Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's FSSAI, GMP, HACCP, HALAL, ISO, KOSHER",
+          },
+          {
+            name: "distribution",
+            content: "global",
+          },
+          {
+            name: "rating",
+            content: "general",
+          },
+          {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1",
+          },
+        ]}
+        openGraph={{
+          type: "website",
+          url: "https://genmatrix.vercel.app/blogs",
+          title: "Genmatrix Remedies - Blogs",
+          description:
+            "We, at GENMATRIX REMEDIES, strive to build a bond of Love and Trust with our valued customers worldwide. With our range of nutraceutical supplements, we aim to empower you in your journey towards a healthier, happier life.",
+          images: [
+            {
+              url:
+                "https://user-images.githubusercontent.com/105535366/258575801-4a10d747-83fa-48ae-af92-5027a37eb49c.png",
+              width: 600,
+              height: 600,
+              alt: "Og Image Alt",
+            },
+          ],
+        }}
+      />
       <Loader time={1000} />
       <Nav />
       <div className={styles.blogbox_container}>

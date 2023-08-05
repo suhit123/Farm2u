@@ -9,6 +9,8 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { contact } from "@/Interfaces/contactUs";
+import Head from "next/head";
+import { NextSeo } from "next-seo";
 const Contactus = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
@@ -45,6 +47,51 @@ const Contactus = () => {
   };
   return (
     <>
+    <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <NextSeo
+        title="Genmatrix Remedies - Contact us"
+        description="We, at GENMATRIX REMEDIES, strive to build a bond of Love and Trust
+      with our valued customers worldwide. With our range of nutraceutical
+      supplements, we aim to empower you in your journey towards a
+      healthier, happier life."
+        additionalMetaTags={[
+          {
+            property: "keywords",
+            content:
+              "Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's FSSAI, GMP, HACCP, HALAL, ISO, KOSHER",
+          },
+          {
+            name: "distribution",
+            content: "global",
+          },
+          {
+            name: "rating",
+            content: "general",
+          },
+          {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1",
+          },
+        ]}
+        openGraph={{
+          type: "website",
+          url: "https://genmatrix.vercel.app/contactus",
+          title: "Genmatrix Remedies - Contact us",
+          description:
+            "We, at GENMATRIX REMEDIES, strive to build a bond of Love and Trust with our valued customers worldwide. With our range of nutraceutical supplements, we aim to empower you in your journey towards a healthier, happier life.",
+          images: [
+            {
+              url:
+                "https://user-images.githubusercontent.com/105535366/258575801-4a10d747-83fa-48ae-af92-5027a37eb49c.png",
+              width: 600,
+              height: 600,
+              alt: "Og Image Alt",
+            },
+          ],
+        }}
+      />
       <Nav />
       <div className={styles.contactuspage_container_block1}>
         <div className={styles.contactuspage_container_block1_box1}>
