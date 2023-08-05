@@ -13,10 +13,8 @@ import { useSession } from "next-auth/react";
 import Head from "next/head";
 import { ProductData, Comment } from "@/Interfaces/Products";
 import Custom404 from "../404";
-import logo from '@/resources/genmatrixlogo2.png'
 import { NextSeo } from "next-seo";
-const DetailedProduct = ({message}:any) => {
-  console.log(message)
+const DetailedProduct = () => {
   const { data: session }: any = useSession();
   const router = useRouter();
   let ProductId = router.query.ProductId;
@@ -467,9 +465,5 @@ const DetailedProduct = ({message}:any) => {
     </>
   );
 };
-export function getServerSideProps() {
-  return {
-      props: { message: "Welcome to the About Page" },
-  };
-}
+
 export default DetailedProduct;
