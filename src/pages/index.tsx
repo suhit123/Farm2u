@@ -26,6 +26,7 @@ import img4 from '@/resources/gallery/img4.jpg'
 import img5 from '@/resources/gallery/img5.jpg'
 import img6 from '@/resources/gallery/img6.jpg'
 import img7 from '@/resources/gallery/img7.jpg'
+import ogimage from '@/resources/genmatrixlogo2.png'
 import {
   faCameraRetro
 } from "@fortawesome/free-solid-svg-icons";
@@ -33,6 +34,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import emptyimage from "@/resources/emptyimage.png";
 import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
 export default function Home() {
   const router:any=useRouter();
   const [blogdata, setBlogData] = useState<Blog[]>([]);
@@ -49,13 +51,6 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>
-          Genmatrix Remedies - Nutraceutical Supplements for a Healthier Life
-        </title>
-        <meta
-          name="description"
-          content="Discover a wide range of nutraceutical supplements at Genmatrix Remedies. Our products aim to empower you in your journey towards a healthier, happier life by providing essential minerals and nutrients. Join us in promoting health and well-being."
-        />
         <meta
           name="keywords"
           content="Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's FSSAI, GMP, HACCP, HALAL, ISO, KOSHER"
@@ -65,6 +60,24 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <NextSeo
+      title="Genmatrix Remedies - Nutraceutical Supplements for a Healthier Life"
+      description="Discover a wide range of nutraceutical supplements at Genmatrix Remedies. Our products aim to empower you in your journey towards a healthier, happier life by providing essential minerals and nutrients. Join us in promoting health and well-being."
+      openGraph={{
+        type: 'website',
+        url: 'https://genmatrix.vercel.app/',
+        title: 'Genmatrix Remedies - Nutraceutical Supplements for a Healthier Life',
+        description: 'Discover a wide range of nutraceutical supplements at Genmatrix Remedies. Our products aim to empower you in your journey towards a healthier, happier life by providing essential minerals and nutrients. Join us in promoting health and well-being.',
+        images: [
+          {
+            url: "https://user-images.githubusercontent.com/105535366/258575801-4a10d747-83fa-48ae-af92-5027a37eb49c.png",
+            width: 600,
+            height: 600,
+            alt: 'Og Image Alt',
+          }
+        ],
+      }}
+    />
       <main>
         <Loader time={1000} />
         <div className={styles.entire_landing_page}>
