@@ -36,7 +36,11 @@
   display: flex;
   width: 300px;
 }
-
+.image_and_title img{
+  width: 80px;
+  height: auto;
+  margin:0px 20px 0px 10px;
+}
 .companyname {
   color: rgb(189, 105, 16);
 }

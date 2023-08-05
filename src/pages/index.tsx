@@ -26,7 +26,7 @@ import img4 from '@/resources/gallery/img4.jpg'
 import img5 from '@/resources/gallery/img5.jpg'
 import img6 from '@/resources/gallery/img6.jpg'
 import img7 from '@/resources/gallery/img7.jpg'
-import ogimage from '@/resources/genmatrixlogo2.png'
+import dna_back from '@/resources/dna_back.jpg'
 import {
   faCameraRetro
 } from "@fortawesome/free-solid-svg-icons";

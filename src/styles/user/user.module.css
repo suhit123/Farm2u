@@ -233,7 +233,9 @@
 }
 .order_block_products img {
   width: 80px;
-  height: 80px;
+  height: auto;
+  margin:0px 5px;
+  border-radius: 10px;
 }
 .order_block_product {
   margin: 10px 0px;

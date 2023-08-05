@@ -175,6 +175,7 @@ const Products = () => {
                           >
                             {loading[item._id] ? (
                               <FontAwesomeIcon
+                              width={12}
                                 icon={faSpinner}
                                 className="fa-spin"
                               />
