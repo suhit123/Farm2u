@@ -14,6 +14,7 @@ import Head from "next/head";
 import { ProductData, Comment } from "@/Interfaces/Products";
 import Custom404 from "../404";
 import logo from '@/resources/genmatrixlogo2.png'
+import { NextSeo } from "next-seo";
 const DetailedProduct = () => {
   const { data: session }: any = useSession();
   const router = useRouter();
@@ -149,62 +150,42 @@ const DetailedProduct = () => {
       router.push("/signup");
     }
   };
-  const [metaData, setMetaData] = useState<{
-    title: string;
-    meta: { property: string; content: string }[];
-  }>({
-    title: "Default Title",
-    meta: [
-      { property: "og:title", content: "GENMATRIX PRODUCT" },
-      { property: "og:image", content: `${logo}` },
-      // Add other default meta tags here
-    ],
-  });
-  useEffect(() => {
-    if (productData) {
-      const { heading, image1 } = productData;
-      const metaData: {
-        title: string;
-        meta: { property: string; content: string }[];
-      } = {
-        title: heading,
-        meta: [
-          { property: "og:title", content: heading },
-          { property: "og:image", content: image1 },
-          { property:"og:url",content:`${process.env.VERCEL_URL}/products/${ProductId}`}
-        ],
-      };
-
-      setMetaData(metaData);
-    }
-  }, [productData]);
   return (
     <>
       <Head>
-        <title>{productData?.heading}</title>
-        <link
-          rel="canonical"
-          href={`${process.env.VERCEL_URL}/products/${ProductId}`}
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="robots" content="noindex, follow" />
-        <meta
-          name="keywords"
-          content="Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's,Sleep Apnea,Heart Attacks,Snoring,Cerebral Stroke,Nasal Pathway,Noisy Breathing,Sleeping Disorder,Nasal problems,ALZHEIMERS,AGEINGPROBLEMS, BRAIN POWER,ARTHRITIS"
-        />
-        {metaData.meta.map((meta) => (
-          <meta
-            key={meta.property}
-            property={meta.property}
-            content={meta.content}
-          />
-        ))}
-        <meta
-          property="og:url"
-          content={`${process.env.VERCEL_URL}/products/${ProductId}`}
-        />
-        <meta property="og:type" content="website" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
+      <NextSeo
+      title={productData?.heading}
+      description="Discover a wide range of nutraceutical supplements at Genmatrix Remedies. Our products aim to empower you in your journey towards a healthier, happier life by providing essential minerals and nutrients. Join us in promoting health and well-being."
+      additionalMetaTags={[{
+        property:'keywords',
+        content:"Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's,Sleep Apnea,Heart Attacks,Snoring,Cerebral Stroke,Nasal Pathway,Noisy Breathing,Sleeping Disorder,Nasal problems,ALZHEIMERS,AGEINGPROBLEMS, BRAIN POWER,ARTHRITIS"
+      },{
+        name:"distribution",
+        content:"global"
+      },{
+        name:"rating",
+        content:"general"
+      },{
+        name:"viewport",
+        content:"width=device-width, initial-scale=1"
+      }]}
+      openGraph={{
+        type: 'website',
+        url: `https://genmatrix.vercel.app/products/${ProductId}`,
+        title: `${productData?.heading}`,
+        description: 'Discover a wide range of nutraceutical supplements at Genmatrix Remedies. Our products aim to empower you in your journey towards a healthier, happier life by providing essential minerals and nutrients. Join us in promoting health and well-being.',
+        images: [
+          {
+            url: `${productData?.image1}`,
+            width: 600,
+            height: 600,
+            alt: 'Og Image Alt',
+          }
+        ],
+      }}
+    />
       {checkId ? <Custom404 /> : <></>}
       {isLoading && productData ? (
         <>

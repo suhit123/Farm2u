@@ -51,18 +51,24 @@ export default function Home() {
   return (
     <>
       <Head>
-        <meta
-          name="keywords"
-          content="Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's FSSAI, GMP, HACCP, HALAL, ISO, KOSHER"
-        />
-        <meta name="distribution" content="global" />
-        <meta name="rating" content="general" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NextSeo
       title="Genmatrix Remedies - Nutraceutical Supplements for a Healthier Life"
       description="Discover a wide range of nutraceutical supplements at Genmatrix Remedies. Our products aim to empower you in your journey towards a healthier, happier life by providing essential minerals and nutrients. Join us in promoting health and well-being."
+      additionalMetaTags={[{
+        property:'keywords',
+        content:"Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's FSSAI, GMP, HACCP, HALAL, ISO, KOSHER"
+      },{
+        name:"distribution",
+        content:"global"
+      },{
+        name:"rating",
+        content:"general"
+      },{
+        name:"viewport",
+        content:"width=device-width, initial-scale=1"
+      }]}
       openGraph={{
         type: 'website',
         url: 'https://genmatrix.vercel.app/',

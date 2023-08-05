@@ -13,6 +13,8 @@ import Loader from "../../components/loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { products } from "@/Interfaces/Products";
+import { NextSeo } from "next-seo";
+import Head from "next/head";
 const Products = () => {
   const { data: session }: any = useSession();
   const [loading, setLoading] = useState<{ [key: string]: boolean }>({});
@@ -56,6 +58,40 @@ const Products = () => {
   };
   return (
     <>
+    <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <NextSeo
+      title="Genmatrix Remedies - Products"
+      description="Discover a wide range of nutraceutical supplements at Genmatrix Remedies. Our products aim to empower you in your journey towards a healthier, happier life by providing essential minerals and nutrients. Join us in promoting health and well-being."
+      additionalMetaTags={[{
+        property:'keywords',
+        content:"Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's,Ignite,Turmax"
+      },{
+        name:"distribution",
+        content:"global"
+      },{
+        name:"rating",
+        content:"general"
+      },{
+        name:"viewport",
+        content:"width=device-width, initial-scale=1"
+      }]}
+      openGraph={{
+        type: 'website',
+        url: 'https://genmatrix.vercel.app/products',
+        title: 'Genmatrix Remedies - Products',
+        description: 'Discover a wide range of nutraceutical supplements at Genmatrix Remedies. Our products aim to empower you in your journey towards a healthier, happier life by providing essential minerals and nutrients. Join us in promoting health and well-being.',
+        images: [
+          {
+            url: "https://user-images.githubusercontent.com/105535366/258575801-4a10d747-83fa-48ae-af92-5027a37eb49c.png",
+            width: 600,
+            height: 600,
+            alt: 'Og Image Alt',
+          }
+        ],
+      }}
+    />
       <Loader time={1000} />
       <Nav />
       <div className={styles.products_container}>

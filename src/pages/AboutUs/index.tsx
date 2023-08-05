@@ -10,15 +10,55 @@ import {
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Head from "next/head";
+import { NextSeo } from "next-seo";
 const Aboutus = () => {
   return (
     <>
-    <Head>
-        <title>
-          Aboutus
-        </title>
+      <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <NextSeo
+        title="Genmatrix Remedies - About us"
+        description="We, at GENMATRIX REMEDIES, strive to build a bond of Love and Trust
+      with our valued customers worldwide. With our range of nutraceutical
+      supplements, we aim to empower you in your journey towards a
+      healthier, happier life."
+        additionalMetaTags={[
+          {
+            property: "keywords",
+            content:
+              "Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's FSSAI, GMP, HACCP, HALAL, ISO, KOSHER",
+          },
+          {
+            name: "distribution",
+            content: "global",
+          },
+          {
+            name: "rating",
+            content: "general",
+          },
+          {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1",
+          },
+        ]}
+        openGraph={{
+          type: "website",
+          url: "https://genmatrix.vercel.app/AboutUs",
+          title: "Genmatrix Remedies - About us",
+          description:
+            "We, at GENMATRIX REMEDIES, strive to build a bond of Love and Trust with our valued customers worldwide. With our range of nutraceutical supplements, we aim to empower you in your journey towards a healthier, happier life.",
+          images: [
+            {
+              url:
+                "https://user-images.githubusercontent.com/105535366/258575801-4a10d747-83fa-48ae-af92-5027a37eb49c.png",
+              width: 600,
+              height: 600,
+              alt: "Og Image Alt",
+            },
+          ],
+        }}
+      />
       <Nav />
       <div className={styles.aboutusPage}>
         <div className={styles.aboutusPage_heading}>
