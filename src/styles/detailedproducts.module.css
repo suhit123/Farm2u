@@ -93,7 +93,7 @@
   border-radius: 10px;
 }
 .imageshow_block_right img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
 }
 .detailedproduct_main_details h6 {
@@ -144,8 +144,8 @@
   padding: 10px;
   color: white;
   border: none;
-  background-color: #29395a;
-  transition: 0.3s all ease;
+  border-radius: 5px;
+  background-image: -webkit-linear-gradient(0deg, #29395a 0%, #1f6a92 100%);
 }
 .comment_section_addacomment p {
   margin: 0px;
@@ -201,13 +201,13 @@
   border: 1px solid rgba(41, 57, 90, 1);
   padding: 10px 20px;
   margin-top: 20px;
-  transition: 0.3s all ease-in-out;
   font-size: 14px;
   border-radius: 5px;
 }
 .blogcommentform .comment_section_submit:hover {
   color: white;
-  background-color: #29395a;
+  background-image: -webkit-linear-gradient(0deg, #29395a 0%, #1f6a92 100%);
+
 }
 .blogcommentform .comment_section_close {
   color: white;
@@ -216,7 +216,6 @@
   padding: 10px 20px;
   margin-top: 20px;
   border: 1px solid rgba(41, 57, 90, 1);
-  transition: 0.3s all ease-in-out;
   margin-left: 1vw;
   font-size: 14px;
   border-radius: 5px;

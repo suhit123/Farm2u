@@ -277,11 +277,11 @@
     display: flex;
   }
   .products_list_item_image {
-    width: 100;
+    width: 230px;
     height: 170px;
   }
   .products_list_item_image img {
-    height: 170px;
+    height: 100%;
     width: auto;
   }
   .products_list_item:hover img {
