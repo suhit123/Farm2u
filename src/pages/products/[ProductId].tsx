@@ -332,14 +332,12 @@ const DetailedProduct = () => {
                 <div className={styles.maufactured_and_marketed}>
                   <h6>Manufactured & Marketed by :</h6>
                   <p>
-                    Genmatrix remedies. 227, Building No.5-B, Andheri Kurla
-                    Road, Mittal Industrial Estate Rd, Andheri East, Mumbai,
-                    Maharashtra 400059.
+                  Genmatrix remedies. F115, PADMADHAM APARTMENTS, VIJAYAPURI COLONY,
+            TARNAKA, SECUNDERABAD -500017
                   </p>
                   <p>
-                    For any consumer complaints, queries and feedback, contact
-                    our customer care executive on above manufacturer's address
-                    or +91-999999999 | Genmatrix@gmail.com
+                    For any consumer complaints, queries and feedback, contact our
+                    customer care executive on above manufacturer's address or{" "} 7569444410 |{" "} gnxremedys@gmail.com
                   </p>
                 </div>
               </div>
