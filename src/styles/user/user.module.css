@@ -459,4 +459,8 @@
     margin: 13px;
     font-size: 12px;
   }
+  .orders_datanotfound {
+  width:150px;
+    height:auto;
+}
 }
