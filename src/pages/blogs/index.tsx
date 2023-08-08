@@ -188,7 +188,7 @@ const Blogs: React.FC<BlogsProps> = () => {
             />
             <button type="submit">
               {loader2 ? (
-                <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
+                <FontAwesomeIcon width={14} icon={faSpinner} className="fa-spin" />
               ) : (
                 !loader2 && (emailSent ? <>Sent</> : <>Notify</>)
               )}
