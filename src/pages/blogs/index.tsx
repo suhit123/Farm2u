@@ -163,7 +163,7 @@ const Blogs: React.FC<BlogsProps> = () => {
         ) : (
           <button onClick={loadMoreBlogs} disabled={loader1}>
             {loader1 ? (
-              <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
+              <FontAwesomeIcon width={14} icon={faSpinner} className="fa-spin" />
             ) : (
               "Load more"
             )}

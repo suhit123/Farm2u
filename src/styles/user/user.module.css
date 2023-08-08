@@ -268,7 +268,7 @@
   height: 100%;
 }
 .orders_datanotfound img {
-  width: 400px;
+  width: 300px;
   height: auto;
 }
 .extendeddiv {
@@ -459,8 +459,8 @@
     margin: 13px;
     font-size: 12px;
   }
-  .orders_datanotfound {
-  width:150px;
-    height:auto;
-}
+  .orders_datanotfound img {
+    width: 150px;
+    height: auto;
+  }
 }
