@@ -459,6 +459,9 @@
     margin: 13px;
     font-size: 12px;
   }
+  .orders_blocks button{
+    margin: 5px;
+  }
   .orders_datanotfound img {
     width: 150px;
     height: auto;

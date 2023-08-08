@@ -45,7 +45,8 @@
 }
 .image_and_title img {
   height: 60px;
-  width: auto;
+  width: 50px;
+  margin :5px;
 }
 .quantity p {
   text-align: center;
@@ -165,7 +166,7 @@
   }
   .image_and_title img {
     height: 40px;
-    width: auto;
+    width: 30px;
   }
   .cart_total,
   .cart_discount,
