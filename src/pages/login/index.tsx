@@ -110,7 +110,7 @@ const Login = () => {
         </div>
         <button type="submit">
           {changeLoad ? (
-            <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
+            <FontAwesomeIcon width={14} icon={faSpinner} className="fa-spin" />
           ) : (
             <>Submit</>
           )}
