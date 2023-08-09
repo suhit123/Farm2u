@@ -10,6 +10,7 @@
 }
 .cart_main_block {
   display: flex;
+  position: relative;
 }
 .table {
   width: 800px;
@@ -102,6 +103,7 @@
   width: 100%;
   border: 1px solid #1e2940;
   font-size: 15px;
+  margin: 5px 0px;
 }
 .cart_back {
   color: #1e2940;
@@ -193,6 +195,12 @@
   height: 100px;
   margin: 10px 0px;
   background-color: #e2e2e262;
+}
+.loader{
+  position: absolute;
+   top:50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
 }
 @media screen and (max-width: 1150px) {
   .empty_loader {

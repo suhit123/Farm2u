@@ -572,7 +572,7 @@ const CheckoutForm = () => {
                     />
                     <button onClick={handleCouponSubmit}>Apply</button>
                   </div>
-                  {couponMessage}
+                  <div className={cartstyles.couponmessage}>{couponMessage}</div>
                   <div className={cartstyles.cart_total}>
                     <p>Subtotal</p>
                     <p className={cartstyles.priceamounts}>{totalPrice}</p>

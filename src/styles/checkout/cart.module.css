@@ -132,6 +132,52 @@
   justify-content: center;
   align-items: center;
 }
+.couponmessage{
+  margin: 10px 0px;
+}
+@media screen and (max-width: 1350px) {
+  .rightbox {
+    min-width: 300px;
+    margin-left: 100px;
+  }
+  .cartpage_entire h4 {
+    margin: 20px 0px;
+    color: #1e2940;
+    width: max-content;
+  }
+  .table th,
+  .table td {
+    font-size: 14px;
+  }
+  .cart_total,
+  .cart_discount,
+  .cart_subtotal {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0px;
+    align-items: center;
+  }
+  .coupon_discount_section {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .coupon_discount_section input {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+  .coupon_discount_section button {
+    padding: 10px 15px;
+    font-size: 14px;
+
+  }
+  .cart_total p,
+  .cart_discount p,
+  .cart_subtotal p{
+    font-size: 14px;
+  }
+}
 @media screen and (max-width: 950px) {
   .grey_box {
     display: none;
@@ -224,5 +270,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  .couponmessage{
+    margin: 10px 5px;
   }
 }
