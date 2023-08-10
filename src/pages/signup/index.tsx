@@ -93,7 +93,15 @@ const Signup = () => {
           });
         }
       })
-      .finally(() => {
+      .finally(async() => {
+      await axios
+      .post("../api/notifyemails", { email: user.email })
+      .then((res) => {
+        console.log("Successfully registered!");
+      })
+      .catch((err) => {
+        console.log("Already registered!");
+      })
         setChangeLoad(false);
       });
   };

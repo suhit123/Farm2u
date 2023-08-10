@@ -26,11 +26,6 @@ const Dashboard = () => {
   }, [router, status]);
   return (
     <>
-    <NextSeo
-      title="USER"
-      nofollow={true}
-      noindex={true}
-    />
       <Nav />
       <div className={styles.container}>
         <div className={styles.block}>

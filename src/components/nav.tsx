@@ -14,7 +14,7 @@ import cartemptyimg from "@/resources/cartempty.png";
 import { useSession, signOut } from "next-auth/react";
 import Loader_colorring from "./Loader_colorring";
 import facebooklogo from "@/resources/facebooklogo.png";
-import whatsapplogo from "@/resources/whatsapplogo.png";
+import whatsapplogo from "@/resources/whatsapp.png";
 import React from "react";
 import { cartData, products } from "@/Interfaces/Products";
 import { coupon } from "@/Interfaces/user/orders";
@@ -376,7 +376,12 @@ const Nav = () => {
         )}
       </div>
       <div className={styles.facebook_link}>
-        <a href="https://wa.me/7569444410" style={{ marginBottom: "5px" }}>
+        <a href="https://www.facebook.com/profile.php?id=100093098380347">
+          <Image width="40" height="40" src={facebooklogo} alt="facebook--v1" />
+        </a>
+      </div>
+      <div className={styles.whatsapp_link}>
+      <a href="https://wa.me/7569444410" style={{ marginBottom: "5px" }}>
           <Image
             width="40"
             height="40"
@@ -384,9 +389,6 @@ const Nav = () => {
             src={whatsapplogo}
             alt="whatsapp--v1"
           />
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=100093098380347">
-          <Image width="40" height="40" src={facebooklogo} alt="facebook--v1" />
         </a>
       </div>
     </div>

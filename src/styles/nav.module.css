@@ -139,13 +139,20 @@
 }
 .facebook_link {
   z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   position: fixed;
   top: 70%;
   border-radius: 5px 0px 0px 5px;
+}
+.whatsapp_link{
+  z-index: 10;
+  position: fixed;
+  bottom: 1%;
+  right: 1%;
+  border-radius: 5px 0px 0px 5px;
+}
+.whatsapp_link img{
+  width: 80px;
+  height: auto;
 }
 .login_signup {
   font-size: 15px;
@@ -234,6 +241,10 @@
   .facebook_link img {
     width: 30px;
     height: 30px;
+  }
+  .whatsapp_link img{
+    width: 70px;
+    height: auto;
   }
   .login_signup {
     font-size: 13px;
@@ -352,4 +363,5 @@
     width: 30px;
     height: 30px;
   }
+  
 }
