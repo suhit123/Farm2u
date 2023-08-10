@@ -21,7 +21,7 @@ const Orders = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loader, setLoader] = useState(true);
   const [expandedOrders, setExpandedOrders] = useState<boolean[]>([]);
-  useEffect(() => {
+  const fetchData=()=>{
     setLoader(true);
     axios
       .get(`/api/Orders/${session?.user?._id}`)
@@ -31,11 +31,17 @@ const Orders = () => {
         setExpandedOrders(new Array(orders.length).fill(false));
         setTimeout(()=>{
           setLoader(false);
-        },500);
+        },1000);
       })
       .catch((err) => {
         console.log(err);
       })
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
+  useEffect(() => {
+    fetchData();
   }, [status, router]);
   const toggleExtendedDiv = (index: any) => {
     const expandedCopy = [...expandedOrders];
