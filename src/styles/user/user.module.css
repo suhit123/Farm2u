@@ -231,8 +231,12 @@
   display: flex;
   height: max-content;
 }
-.order_block_products img {
+.order_block_products_image{
   width: 80px;
+  height: 80px;
+}
+.order_block_products_image img {
+  width: 100%;
   height: auto;
   margin:0px 5px;
   border-radius: 10px;
@@ -466,4 +470,12 @@
     width: 150px;
     height: auto;
   }
+  .order_block_products_image{
+    width: 50px;
+    height: 50px;
+  }
+  .order_block_products_image{
+    width: 100%;
+    height: auto;
+  }  
 }

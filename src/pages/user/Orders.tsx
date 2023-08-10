@@ -67,12 +67,13 @@ const Orders = () => {
                                 className={styles.order_block_products}
                                 key={i._id}
                               >
-                                <Image
+                                <div className={styles.order_block_products_image}><Image
                                   src={i.productId.image1}
                                   alt="image"
                                   width={100}
                                   height={100}
                                 />
+                                </div>
                                 <div className={styles.order_block_product}>
                                   <h6>{i.productId.heading}</h6>
                                   <p>Qty : {i.quantity}</p>
