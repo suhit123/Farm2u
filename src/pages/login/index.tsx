@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { NextSeo } from "next-seo";
 const Login = () => {
   const router = useRouter();
   const [changeLoad, setChangeLoad] = useState(false);
@@ -71,6 +72,9 @@ const Login = () => {
   };
   return (
     <>
+     <NextSeo
+      title="Login"
+    />
       <Loader time={500} />
       <Nav />
       <form className={styles.signupform} onSubmit={handleSubmit}>

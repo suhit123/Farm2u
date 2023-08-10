@@ -13,6 +13,7 @@ import { useSession } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import Head from "next/head";
+import { NextSeo } from "next-seo";
 const Signup = () => {
   const { data: session, status } = useSession();
   const [changeLoad, setChangeLoad] = useState(false);
@@ -98,12 +99,11 @@ const Signup = () => {
   };
   return (
     <>
-    <Head>
-        <title>
-          Signup
-        </title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <NextSeo
+      title="Signup"
+      nofollow={true}
+      noindex={true}
+    />
       <Loader time={500} />
       <Nav />
       <form className={styles.signupform} onSubmit={userSubmit}>

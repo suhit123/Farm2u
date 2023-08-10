@@ -12,6 +12,7 @@ import Loader_colorring from "../../components/Loader_colorring";
 import { cartData, products } from "@/Interfaces/Products";
 import { calculatePrices } from "@/components/priceCalculator";
 import Head from "next/head";
+import { NextSeo } from "next-seo";
 const Cart = () => {
   const router = useRouter();
   const { data: session, status: sessionStatus }: any = useSession();
@@ -114,12 +115,11 @@ const Cart = () => {
 
   return (
     <>
-    <Head>
-        <title>
-          Cart
-        </title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+     <NextSeo
+      title="Cart"
+      nofollow={true}
+      noindex={true}
+    />
       {!session ? (
         <></>
       ) : (

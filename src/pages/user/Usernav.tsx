@@ -9,9 +9,15 @@ import styles from "@/styles/user/user.module.css";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
+import { NextSeo } from "next-seo";
 const Usernav = () => {
   return (
     <div className={styles.usernav}>
+      <NextSeo
+      title="User"
+      nofollow={true}
+      noindex={true}
+    />
       <ul>
         <li>
           <Link href="/user">

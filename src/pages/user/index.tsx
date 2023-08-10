@@ -8,6 +8,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { address } from "@/Interfaces/user/orders";
+import { NextSeo } from "next-seo";
 const Dashboard = () => {
   const router = useRouter();
   const { data: session, status }: any = useSession();
@@ -25,6 +26,11 @@ const Dashboard = () => {
   }, [router, status]);
   return (
     <>
+    <NextSeo
+      title="USER"
+      nofollow={true}
+      noindex={true}
+    />
       <Nav />
       <div className={styles.container}>
         <div className={styles.block}>
