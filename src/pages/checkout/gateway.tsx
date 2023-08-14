@@ -9,10 +9,10 @@ import Loader_colorring from "../../components/Loader_colorring";
 import { useRouter } from "next/router";
 import genmatrixlogo from "@/resources/logo_text.png";
 import Head from "next/head";
-import circlelogo from "@/resources/genmatrixlogo2.png";
 import Congrats from "@/components/congrats";
 import { products, cartData } from "@/Interfaces/Products";
 import { address, coupon } from "@/Interfaces/user/orders";
+import gpayImage from '@/resources/gpay_genmatrix.jpg';
 const CheckoutForm = () => {
   const router = useRouter();
   const { data: session, status: sessionStatus }: any = useSession();
@@ -46,7 +46,7 @@ const CheckoutForm = () => {
   //coupon
   const fetchCoupon = async () => {
     await axios
-      .get("../../api/Coupon/get")
+      .get("/api/Coupon/get")
       .then((res) => {
         setCoupon(res.data);
       })
@@ -118,7 +118,7 @@ const CheckoutForm = () => {
   useEffect(() => {
     const fetchdata = async () => {
       await axios
-        .get("./api/products")
+        .get("/api/products")
         .then((res) => {
           const productdata = res.data;
           setCartDataContents(productdata);
@@ -133,7 +133,7 @@ const CheckoutForm = () => {
     if (session) {
       setLoading(true);
       axios
-        .post("./api/cart/cartData", { id: session?.user?._id })
+        .post("/api/cart/cartData", { id: session?.user?._id })
         .then((res) => {
           const cartData = res.data;
           console.log(cartData);
@@ -194,7 +194,7 @@ const CheckoutForm = () => {
         email: session?.user?.email,
         products: cart,
         totalAmount: totalPrice - totalDiscount,
-        paymentStatus: "paid",
+        paymentStatus: "unpaid",
       };
       console.log(data);
       await axios
@@ -209,7 +209,7 @@ const CheckoutForm = () => {
               alert("Something gone wrong reseting the cart items!");
             })
             .finally(() => {
-              router.push("/user/Orders");
+              window.location.replace("https://wa.me/7569444410");
             });
         })
         .catch((err) => {
@@ -233,6 +233,11 @@ const CheckoutForm = () => {
         });
     });
   };
+  const handleSubmit=async (e:any)=>{
+    e.preventDefault();
+    addToOrders();
+    reduceQty();
+  }
   return (
     <>
       <Head>
@@ -255,7 +260,7 @@ const CheckoutForm = () => {
               />
               <div className={styles.checkout_form_container}>
                 <h3>Shipping Address</h3>
-                <form className={styles.checkout_form}>
+                <form className={styles.checkout_form} onSubmit={handleSubmit}>
                   <div className={styles.f_l_names}>
                     <div className={styles.form_group}>
                       <label htmlFor="firstName">First Name</label>
@@ -433,8 +438,15 @@ const CheckoutForm = () => {
                       );
                     })}
                   </div>
+                  <div className={styles.qr_div}>
+                    <Image className={styles.gpay_qr} src={gpayImage} alt="qr"/>
+                  </div>
+                  <p>Note : On submit our whatsapp page will open you are requested to share a screenshot of your payment and the name you used for your address. Your order will be confirmed in 2-3 working days. Thank you.</p>
                   <div className={styles.info_form_back_submit}>
                     <Link href="/Cart"> Return to cart</Link>
+                    <button className={styles.info_submit} type="submit">
+                      Submit
+                    </button>
                   </div>
                 </form>
               </div>

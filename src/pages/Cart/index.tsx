@@ -246,7 +246,7 @@ const Cart = () => {
                   <button
                     className={styles.cart_checkout}
                     onClick={() => {
-                      router.push("#");
+                      router.push("/checkout/gateway");
                     }}
                   >
                     PAYMENT GATEWAY 1

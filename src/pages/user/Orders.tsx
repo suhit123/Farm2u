@@ -96,7 +96,7 @@ const Orders = () => {
                               ) : item.status === "cancelled" ? (
                                 <>Cancelled</>
                               ) : (
-                                <>Completed</>
+                                <>Confirmed</>
                               )}
                             </span>
                           </p>
