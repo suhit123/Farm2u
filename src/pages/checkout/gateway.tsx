@@ -233,63 +233,6 @@ const CheckoutForm = () => {
         });
     });
   };
-  const initializeRazorpay = () => {
-    return new Promise((resolve) => {
-      const script = document.createElement("script");
-      script.src = "https://checkout.razorpay.com/v1/checkout.js";
-      script.onload = () => {
-        resolve(true);
-      };
-      script.onerror = () => {
-        resolve(false);
-      };
-
-      document.body.appendChild(script);
-    });
-  };
-  const makePayment = async () => {
-    const res = await initializeRazorpay();
-    if (!res) {
-      alert("Razorpay SDK Failed to load");
-      return;
-    }
-    let amount = totalPrice - totalDiscount;
-    // Make API call to the serverless API
-    const data = await fetch("/api/razorpay", {
-      method: "POST",
-      body: JSON.stringify(amount),
-    }).then((t) => t.json());
-    var options = {
-      key: process.env.RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
-      name: "GENMATRIX REMEDIES",
-      currency: data.currency,
-      amount: data.amount,
-      order_id: data.id,
-      description: "Thankyou for your test donation",
-      image: circlelogo,
-      handler: function(response: any) {
-        // // Validate payment at server - using webhooks is a better idea. // alert(response.razorpay_payment_id);  // alert(response.razorpay_order_id);  // alert(response.razorpay_signature);
-        if (response.razorpay_payment_id) {
-          addToOrders();
-          reduceQty();
-        } else {
-          console.log("Payment failed");
-        }
-      },
-      prefill: {
-        name: "Manu Arora",
-        email: "manuarorawork@gmail.com",
-        contact: "9999999999",
-      },
-    };
-
-    const paymentObject = new window.Razorpay(options);
-    paymentObject.open();
-  };
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    makePayment();
-  };
   return (
     <>
       <Head>
@@ -312,7 +255,7 @@ const CheckoutForm = () => {
               />
               <div className={styles.checkout_form_container}>
                 <h3>Shipping Address</h3>
-                <form className={styles.checkout_form} onSubmit={handleSubmit}>
+                <form className={styles.checkout_form}>
                   <div className={styles.f_l_names}>
                     <div className={styles.form_group}>
                       <label htmlFor="firstName">First Name</label>
@@ -492,9 +435,6 @@ const CheckoutForm = () => {
                   </div>
                   <div className={styles.info_form_back_submit}>
                     <Link href="/Cart"> Return to cart</Link>
-                    <button className={styles.info_submit} type="submit">
-                      Submit
-                    </button>
                   </div>
                 </form>
               </div>
