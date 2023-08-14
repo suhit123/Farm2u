@@ -13,6 +13,7 @@ import circlelogo from "@/resources/genmatrixlogo2.png";
 import Congrats from "@/components/congrats";
 import { products, cartData } from "@/Interfaces/Products";
 import { address, coupon } from "@/Interfaces/user/orders";
+import { NextSeo } from "next-seo";
 const CheckoutForm = () => {
   const router = useRouter();
   const { data: session, status: sessionStatus }: any = useSession();
@@ -292,11 +293,11 @@ const CheckoutForm = () => {
   };
   return (
     <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Checkout</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <NextSeo
+      title="Checkout"
+      nofollow={true}
+      noindex={true}
+    />
       {!session ? (
         <></>
       ) : (
@@ -570,7 +571,7 @@ const CheckoutForm = () => {
                     />
                     <button onClick={handleCouponSubmit}>Apply</button>
                   </div>
-                  {couponMessage}
+                  <div className={cartstyles.couponmessage}>{couponMessage}</div>
                   <div className={cartstyles.cart_total}>
                     <p>Subtotal</p>
                     <p className={cartstyles.priceamounts}>{totalPrice}</p>

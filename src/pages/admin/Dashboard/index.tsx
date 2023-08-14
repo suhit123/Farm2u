@@ -15,6 +15,7 @@ import Loader_colorring from "../../../components/Loader_colorring";
 import nodatafound from "@/resources/no_data_found.png";
 import AdminRoute from "../AdminRoute";
 import AdminNav from "../../../components/AdminNav";
+import { useRouter } from "next/router";
 const Dashboard = () => {
   const [view, setView] = useState("all");
   return (
@@ -23,21 +24,6 @@ const Dashboard = () => {
         <Admin />
         <div className={"admin_nav_adjustment"}>
           <AdminNav />
-          <div className={styles.overView}>
-            <div className={styles.overView_blocks}>
-              <h3>PRODUCTS</h3>
-              <p>100</p>
-            </div>
-            <div className={styles.overView_blocks}>
-              <h3>VIDEOS</h3>
-              <p>100</p>
-            </div>
-
-            <div className={styles.overView_blocks}>
-              <h3>BLOGS</h3>
-              <p>100</p>
-            </div>
-          </div>
           <div className={styles.nav_orders}>
             <ul>
               <li
@@ -103,7 +89,7 @@ const AllOrders = () => {
   const [checkedit2, setCheckedit2] = useState<boolean[]>([]);
   const [orders, setOrders] = useState([]);
   const [expandedRows, setExpandedRows] = useState<boolean[]>([]);
-
+  const router=useRouter();
   const fetchData = () => {
     try {
       setLoader(true);
@@ -114,7 +100,6 @@ const AllOrders = () => {
           setExpandedRows(new Array(res.data.data.length).fill(false));
           setCheckedit(new Array(res.data.data.length).fill(false));
           setCheckedit2(new Array(res.data.data.length).fill(false));
-          setLoader(false);
         })
         .catch((err) => {
           console.log("Something went wrong!");
@@ -130,7 +115,9 @@ const AllOrders = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
+  useEffect(() => {
+    fetchData();
+  }, [router]);
   const toggleRow = (index: any) => {
     const newExpandedRows = [...expandedRows];
     newExpandedRows[index] = !newExpandedRows[index];
@@ -515,7 +502,7 @@ const Custom = ({ element }: any) => {
   const [checkedit2, setCheckedit2] = useState<boolean[]>([]);
   const [orders, setOrders] = useState([]);
   const [expandedRows, setExpandedRows] = useState<boolean[]>([]);
-
+  const router=useRouter();
   const fetchData = () => {
     try {
       setLoader(true);
@@ -542,7 +529,9 @@ const Custom = ({ element }: any) => {
   useEffect(() => {
     fetchData();
   }, []);
-
+  useEffect(() => {
+    fetchData();
+  }, [router]);
   const toggleRow = (index: any) => {
     const newExpandedRows = [...expandedRows];
     newExpandedRows[index] = !newExpandedRows[index];

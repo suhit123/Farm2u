@@ -16,6 +16,7 @@
 .checkout_form_container h3 {
   margin: 10px 0px;
   font-weight: 500;
+  font-size: 17px
 }
 .checkout_form {
   width: 600px;
@@ -38,6 +39,12 @@
 .c_s_p_blocksiinput {
   width: 100px;
 }
+.form_group label{
+  font-size: 14px;
+  margin: 5px 0px;
+  font-weight: 500;
+  color: rgba(41, 57, 90, 1);
+}
 .input {
   padding: 15px 20px;
   border: none;
@@ -45,6 +52,7 @@
   border-radius: 5px;
   outline: none;
   margin: 5px 0px;
+  font-size: 14px;
 }
 .input_ {
   padding: 15px 0px;
@@ -53,6 +61,7 @@
   border-radius: 5px;
   outline: none;
   margin: 5px 0px;
+  font-size: 14px;
 }
 .state {
   margin-left: 10px;
@@ -75,6 +84,7 @@
   color: white;
   margin: 10px 0px;
   cursor: pointer;
+  font-size: 14px;
 }
 .info_submit:hover {
   color: #29395a;
@@ -88,11 +98,7 @@
 }
 .info_form_back_submit a {
   text-decoration: none;
-}
-.form_group label {
-  margin: 5px 0px;
-  font-weight: 500;
-  color: rgba(41, 57, 90, 1);
+  font-size: 14px;
 }
 .form_group_checkbox {
   display: flex;
@@ -116,6 +122,7 @@
 .savedadress {
   margin: 10px 0px;
   font-weight: 500;
+  font-size: 14px;
 }
 .selectaddress {
   margin: 5px 0px;
@@ -135,10 +142,81 @@
 .selectaddress input {
   margin: 10px;
 }
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1350px) {
   .checkout_form {
     width: 500px;
   }
+  .input {
+    padding: 10px 15px;
+  }
+  .input_ {
+    padding: 10px 0px;
+    width:100%;
+    }
+  .state {
+    margin-left: 5px;
+    margin-right: 10px;
+    width: 150px;
+  }
+  .info_submit {
+    float: right;
+    padding: 10px 15px;
+  }
+  .info_form_back_submit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .info_form_back_submit a {
+    text-decoration: none;
+  }
+  .form_group label {
+    margin: 5px 0px;
+    font-weight: 500;
+    color: rgba(41, 57, 90, 1);
+  }
+  .form_group_checkbox {
+    display: flex;
+    align-items: center;
+    margin: 10px 0px;
+  }
+  .checkbox {
+    width: 20px;
+    height: 20px;
+    margin: 5px 0px;
+    border-radius: 5px;
+  }
+  .checkbox:checked {
+    background-color: #29395a;
+  }
+  .form_group_checkbox p {
+    margin: 0px 10px;
+    font-weight: 500;
+    color: rgba(41, 57, 90, 1);
+  }
+  .savedadress {
+    margin: 10px 0px;
+    font-weight: 500;
+  }
+  .selectaddress {
+    margin: 5px 0px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    border: 1px solid rgba(128, 128, 128, 0.331);
+    border-radius: 5px;
+  }
+  .selectaddress .shipto {
+    padding: 10px;
+    color: grey;
+  }
+  .selectaddress .shiptoaddress {
+    padding: 10px;
+  }
+  .selectaddress input {
+    margin: 10px;
+  }
+  
 }
 @media screen and (max-width: 950px) {
   .company_logo {
@@ -231,6 +309,6 @@
     width: 50%;
   }
   .c_s_p_div {
-    width: 33%;
+    width: 100%;
   }
 }

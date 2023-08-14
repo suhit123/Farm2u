@@ -19,7 +19,6 @@ export default async (req:NextApiRequest,res:NextApiResponse)=>{
             else{
                 return res.status(400).send("Already added!")
             }
-            break;
         default:
             return res.status(400).json({success:false});
     }

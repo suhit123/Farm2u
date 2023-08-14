@@ -13,6 +13,7 @@ import { useSession } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import Head from "next/head";
+import { NextSeo } from "next-seo";
 const Signup = () => {
   const { data: session, status } = useSession();
   const [changeLoad, setChangeLoad] = useState(false);
@@ -92,18 +93,25 @@ const Signup = () => {
           });
         }
       })
-      .finally(() => {
+      .finally(async() => {
+      await axios
+      .post("../api/notifyemails", { email: user.email })
+      .then((res) => {
+        console.log("Successfully registered!");
+      })
+      .catch((err) => {
+        console.log("Already registered!");
+      })
         setChangeLoad(false);
       });
   };
   return (
     <>
-    <Head>
-        <title>
-          Signup
-        </title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <NextSeo
+      title="Signup"
+      nofollow={true}
+      noindex={true}
+    />
       <Loader time={500} />
       <Nav />
       <form className={styles.signupform} onSubmit={userSubmit}>
@@ -161,7 +169,7 @@ const Signup = () => {
         </div>
         <button type="submit">
           {changeLoad ? (
-            <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
+            <FontAwesomeIcon width={14} icon={faSpinner} className="fa-spin" />
           ) : (
             <>Submit</>
           )}

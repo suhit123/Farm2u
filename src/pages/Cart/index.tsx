@@ -12,6 +12,7 @@ import Loader_colorring from "../../components/Loader_colorring";
 import { cartData, products } from "@/Interfaces/Products";
 import { calculatePrices } from "@/components/priceCalculator";
 import Head from "next/head";
+import { NextSeo } from "next-seo";
 const Cart = () => {
   const router = useRouter();
   const { data: session, status: sessionStatus }: any = useSession();
@@ -114,12 +115,11 @@ const Cart = () => {
 
   return (
     <>
-    <Head>
-        <title>
-          Cart
-        </title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+     <NextSeo
+      title="Cart"
+      nofollow={true}
+      noindex={true}
+    />
       {!session ? (
         <></>
       ) : (
@@ -129,7 +129,7 @@ const Cart = () => {
             <h4 className={styles.heading}>Shopping Cart</h4>
             {cartData.length !== 0 && cartDataContents.length !== 0 ? (
               <div className={styles.cart_main_block}>
-                {loading ? <Loader_colorring /> : <p></p>}
+                {loading ? <div className={styles.loader}><Loader_colorring/></div> : <p></p>}
                 <div className={styles.cart_items}>
                   <div className={styles.cart_items_list}>
                     <table className={styles.table}>
@@ -246,10 +246,18 @@ const Cart = () => {
                   <button
                     className={styles.cart_checkout}
                     onClick={() => {
+                      router.push("#");
+                    }}
+                  >
+                    PAYMENT GATEWAY 1
+                  </button>
+                  <button
+                    className={styles.cart_checkout}
+                    onClick={() => {
                       router.push("/checkout");
                     }}
                   >
-                    PROCEED TO CHECKOUT
+                    PAYMENT GATEWAY 2
                   </button>
                   <button
                     className={styles.cart_back}

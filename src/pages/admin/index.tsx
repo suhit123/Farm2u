@@ -14,10 +14,16 @@ import Image from "next/image";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import React from "react";
+import { NextSeo } from "next-seo";
 const Admin = () => {
   const router = useRouter();
   return (
     <AdminRoute>
+      <NextSeo
+      title="Admin"
+      nofollow={true}
+      noindex={true}
+    />
       <div className={styles.adminContainer}>
         <div className={styles.nav_btm}>
           <Image className={styles.logo} src={logo} alt="" />

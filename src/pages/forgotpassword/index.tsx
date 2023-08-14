@@ -9,6 +9,7 @@ import { useSession } from "next-auth/react";
 import React, { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { NextSeo } from "next-seo";
 const Forgotpassword = () => {
   const router = useRouter();
   const { data: session, status } = useSession();
@@ -200,6 +201,11 @@ const Forgotpassword = () => {
   };
   return (
     <div>
+      <NextSeo
+      title="Forgot password"
+      nofollow={true}
+      noindex={true}
+    />
       <Nav />
       <form className={styles.signupform} onSubmit={handleSubmit}>
         <h3>FORGOT PASSWORD</h3>

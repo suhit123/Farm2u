@@ -21,7 +21,7 @@ const Orders = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loader, setLoader] = useState(true);
   const [expandedOrders, setExpandedOrders] = useState<boolean[]>([]);
-  useEffect(() => {
+  const fetchData=()=>{
     setLoader(true);
     axios
       .get(`/api/Orders/${session?.user?._id}`)
@@ -31,11 +31,17 @@ const Orders = () => {
         setExpandedOrders(new Array(orders.length).fill(false));
         setTimeout(()=>{
           setLoader(false);
-        },500);
+        },1000);
       })
       .catch((err) => {
         console.log(err);
       })
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
+  useEffect(() => {
+    fetchData();
   }, [status, router]);
   const toggleExtendedDiv = (index: any) => {
     const expandedCopy = [...expandedOrders];
@@ -67,12 +73,13 @@ const Orders = () => {
                                 className={styles.order_block_products}
                                 key={i._id}
                               >
-                                <Image
+                                <div className={styles.order_block_products_image}><Image
                                   src={i.productId.image1}
                                   alt="image"
                                   width={100}
                                   height={100}
                                 />
+                                </div>
                                 <div className={styles.order_block_product}>
                                   <h6>{i.productId.heading}</h6>
                                   <p>Qty : {i.quantity}</p>
