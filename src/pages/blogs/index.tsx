@@ -42,7 +42,7 @@ const Blogs: React.FC<BlogsProps> = () => {
     setLoader1(true);
     try {
       const response = await axios.get(
-        `/api/Blogs?start=${shownum}&end=${shownum + 2}`
+        `/api/Blogs?start=${shownum}&end=${shownum + 3}`
       );
       const newBlogs = response.data;
       setBlogs((prevBlogs) => [...prevBlogs, ...newBlogs]);
