@@ -47,7 +47,7 @@ export default async (req:NextApiRequest,res:NextApiResponse) => {
             </tr>
             <tr>
               <td>Product:</td>
-              <td><a href="https://Genmatrix/Products/${Productid}">https://Genmatrix/Products/${Productid}</a></td>
+              <td><a href="https://genmatrix.in/Products/${Productid}">https://genmatrix.in/Products/${Productid}</a></td>
             </tr>
             <tr>
               <td>Name:</td>

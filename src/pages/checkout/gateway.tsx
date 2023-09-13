@@ -197,6 +197,11 @@ const CheckoutForm = () => {
         paymentStatus: "unpaid",
       };
       console.log(data);
+      await axios.get('/api/SMTP/productOrder')
+                .then((res)=>{
+                  console.log("success")
+                })
+                .catch((err) => { console.log("something gone wrong!") })
       await axios
         .post("/api/Orders", data)
         .then(async (res) => {

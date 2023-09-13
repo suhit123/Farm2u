@@ -89,7 +89,7 @@ const CheckoutForm = () => {
       .catch((err) => {
         console.log("Something went wrong");
       })
-      .finally(() => {});
+      .finally(() => { });
   };
   useEffect(() => {
     if (sessionStatus === "authenticated") {
@@ -183,7 +183,7 @@ const CheckoutForm = () => {
             quantity: item.quantity,
             price: Math.floor(
               dataelement.price -
-                (dataelement.discount * dataelement.price) / 100
+              (dataelement.discount * dataelement.price) / 100
             ),
           });
         }
@@ -198,6 +198,11 @@ const CheckoutForm = () => {
         paymentStatus: "paid",
       };
       console.log(data);
+      await axios.get('/api/SMTP/productOrder')
+                .then((res)=>{
+                  console.log("success")
+                })
+                .catch((err) => { console.log("something gone wrong!") })
       await axios
         .post("/api/Orders", data)
         .then(async (res) => {
@@ -268,7 +273,7 @@ const CheckoutForm = () => {
       order_id: data.id,
       description: "Thankyou for your test donation",
       image: circlelogo,
-      handler: function(response: any) {
+      handler: function (response: any) {
         // // Validate payment at server - using webhooks is a better idea. // alert(response.razorpay_payment_id);  // alert(response.razorpay_order_id);  // alert(response.razorpay_signature);
         if (response.razorpay_payment_id) {
           addToOrders();
@@ -293,11 +298,11 @@ const CheckoutForm = () => {
   };
   return (
     <>
-    <NextSeo
-      title="Checkout"
-      nofollow={true}
-      noindex={true}
-    />
+      <NextSeo
+        title="Checkout"
+        nofollow={true}
+        noindex={true}
+      />
       {!session ? (
         <></>
       ) : (
@@ -547,9 +552,9 @@ const CheckoutForm = () => {
                                       Rs.{" "}
                                       {Math.floor(
                                         dataelement.price -
-                                          (dataelement.discount *
-                                            dataelement.price) /
-                                            100
+                                        (dataelement.discount *
+                                          dataelement.price) /
+                                        100
                                       ) * item.quantity}
                                     </td>
                                   </tr>

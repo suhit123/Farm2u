@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 export default async (req:NextApiRequest,res:NextApiResponse) => {
-  const { name, comment,blogid,Blogtitle} = req.body;
   try {
     // Create a nodemailer transporter using your email provider's SMTP settings
     const transporter = nodemailer.createTransport({
@@ -17,53 +16,33 @@ export default async (req:NextApiRequest,res:NextApiResponse) => {
     const mailOptions = {
       from: process.env.ADMIN_EMAIL,
       to: process.env.ADMIN_EMAIL,
-      subject: 'Someone commented',
+      subject: 'New order recieved for checkout.',
       html:`
       <html>
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Contact Form Submission</title>
+          <title>New order recieved for checkout.</title>
           <style>
               body {
                 font-family: Arial, sans-serif;
               }
-              table {
-                max-width: 600px;
-                border-collapse: collapse;
-                margin-top: 20px;
-              }
-              td {
-                padding: 10px;
-                border: 1px solid #ccc;
+              h1 {
+                color: #333;
               }
             </style>
         </head>
         <body>
-          <table>
-          <tr>
-              <td> Blog title:</td>
-              <td>${Blogtitle}</td>
-            </tr>
-            <tr>
-              <td>Blog:</td>
-              <td><a href="https://genmatrix.in/blogs/${blogid}">https://genmatrix.in/blogs/${blogid}</a></td>
-            </tr>
-            <tr>
-              <td>Name:</td>
-              <td>${name}</td>
-            </tr>
-            <tr>
-              <td>Comment:</td>
-              <td>${comment}</td>
-            </tr>
-          </table>
+          <h1>New order recieved for checkout.</h1>
+          <a href="https://genmatrix.in">https://genmatrix.in</a>
         </body>
       </html>
     `
     };
+
     // Send the email
     await transporter.sendMail(mailOptions);
+
     // Return a success response
     return res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {
