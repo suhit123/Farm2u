@@ -52,6 +52,7 @@
     "react-stars": "^2.2.5",
     "react-web-share": "^2.0.2",
     "react-youtube": "^10.1.0",
+    "sharp": "^0.32.5",
     "shortid": "^2.2.16",
     "sizeof": "^1.0.0",
     "slick-carousel": "^1.8.1",
