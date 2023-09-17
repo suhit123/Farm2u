@@ -60,12 +60,6 @@ export default function Home() {
         property:'keywords',
         content:"Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's FSSAI, GMP, HACCP, HALAL, ISO, KOSHER"
       },{
-        name:"distribution",
-        content:"global"
-      },{
-        name:"rating",
-        content:"general"
-      },{
         name:"viewport",
         content:"width=device-width, initial-scale=1"
       }]}
