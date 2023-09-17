@@ -52,7 +52,7 @@ const Videos: React.FC<VideosProps> = () => {
         ]}
         openGraph={{
           type: "website",
-          url: "https://genmatrix.vercel.app/videos",
+          url: "https://genmatrix.in/videos",
           title: "Genmatrix Remedies - About us",
           images: [
             {

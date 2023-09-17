@@ -71,7 +71,7 @@ export default function Home() {
       }]}
       openGraph={{
         type: 'website',
-        url: 'https://genmatrix.vercel.app/',
+        url: 'https://genmatrix.in/',
         title: 'Genmatrix Remedies - Nutraceutical Supplements for a Healthier Life',
         description: 'Discover a wide range of nutraceutical supplements at Genmatrix Remedies. Our products aim to empower you in your journey towards a healthier, happier life by providing essential minerals and nutrients. Join us in promoting health and well-being.',
         images: [

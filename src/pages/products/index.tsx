@@ -79,7 +79,7 @@ const Products = () => {
       }]}
       openGraph={{
         type: 'website',
-        url: 'https://genmatrix.vercel.app/products',
+        url: 'https://genmatrix.in/products',
         title: 'Genmatrix Remedies - Products',
         description: 'Discover a wide range of nutraceutical supplements at Genmatrix Remedies. Our products aim to empower you in your journey towards a healthier, happier life by providing essential minerals and nutrients. Join us in promoting health and well-being.',
         images: [

@@ -88,7 +88,7 @@ const Blogs: React.FC<BlogsProps> = () => {
         ]}
         openGraph={{
           type: "website",
-          url: "https://genmatrix.vercel.app/blogs",
+          url: "https://genmatrix.in/blogs",
           title: "Genmatrix Remedies - Blogs",
           description:
             "We, at GENMATRIX REMEDIES, strive to build a bond of Love and Trust with our valued customers worldwide. With our range of nutraceutical supplements, we aim to empower you in your journey towards a healthier, happier life.",

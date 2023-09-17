@@ -44,7 +44,7 @@ const Aboutus = () => {
         ]}
         openGraph={{
           type: "website",
-          url: "https://genmatrix.vercel.app/AboutUs",
+          url: "https://genmatrix.in/AboutUs",
           title: "Genmatrix Remedies - About us",
           description:
             "We, at GENMATRIX REMEDIES, strive to build a bond of Love and Trust with our valued customers worldwide. With our range of nutraceutical supplements, we aim to empower you in your journey towards a healthier, happier life.",
