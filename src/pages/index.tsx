@@ -20,7 +20,7 @@ import React from "react";
 import { Blog } from "@/Interfaces/Blogs";
 import Marquee from "react-fast-marquee";
 import img1 from '@/resources/gallery/img1.jpg'
-import img2 from '@/resources/gallery/img2.jpg'
+import img2 from '@/resources/gallery/truying.jpg'
 import img3 from '@/resources/gallery/img3.jpg'
 import img4 from '@/resources/gallery/img4.jpg'
 import img5 from '@/resources/gallery/img5.jpg'
