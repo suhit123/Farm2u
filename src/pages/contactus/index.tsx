@@ -144,7 +144,7 @@ const Contactus = () => {
             )}
             <button type="submit">
               {loading ? (
-                <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
+                <FontAwesomeIcon icon={faSpinner} style={{fontSize:'17px'}} className="fa-spin" />
               ) : (
                 <p>Submit</p>
               )}
