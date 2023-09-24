@@ -26,13 +26,11 @@ import img4 from '@/resources/gallery/img4.jpg'
 import img5 from '@/resources/gallery/img5.jpg'
 import img6 from '@/resources/gallery/img6.jpg'
 import img7 from '@/resources/gallery/img7.jpg'
-import dna_back from '@/resources/dna_back.jpg'
 import {
   faCameraRetro
 } from "@fortawesome/free-solid-svg-icons";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import emptyimage from "@/resources/emptyimage.png";
 import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
 export default function Home() {
