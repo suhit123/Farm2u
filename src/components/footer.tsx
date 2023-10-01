@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <div className={styles.footer_container}>
       <div className={styles.footer_top}>
-        <Image src={logo} alt="" />
+        <h1 className={styles.heading_logo}>FORM2U</h1>
         <div className={styles.quicklinks}>
           <p className={styles.heading}>Quick Pages</p>
           <ul>
@@ -21,39 +21,32 @@ const Footer = () => {
               <Link href={"/"}>HOME</Link>
             </li>
             <li>
-              <Link href={"/AboutUs"}>ABOUT</Link>
-            </li>
-            <li>
-              <Link href={"/products"}>PRODUCTS</Link>
-            </li>
-            <li>
-              <Link href={"/videos"}>VIDEOS</Link>
-            </li>
-            <li>
-              <Link href={"/blogs"}>BLOG</Link>
-            </li>
-            <li>
               <Link href={"/contactus"}>CONTACT US</Link>
+            </li>
+            <li>
+              <Link href={"/login"}>SIGNUP</Link>
+            </li>
+            <li>
+              <Link href={"/signup"}>LOGIN</Link>
             </li>
           </ul>
         </div>
         <div className={`${styles.quicklinks} ${styles.contactus}`}>
           <p className={styles.heading}>Contact us</p>
           <p>
-            Genmatrix remedies. F115, PADMADHAM APARTMENTS, VIJAYAPURI COLONY,
-            TARNAKA, SECUNDERABAD -500017
+            GITAM UNIVERSITY. NH 207, Nagadenehalli Doddaballapur, taluk, Bengaluru, Karnataka 561203
           </p>
           <p>
             For any consumer complaints, queries and feedback, contact our
             customer care executive on above manufacturer's address or{" "}
-            <a href="tel:7569444410">7569444410</a> |{" "}
-            <a href="mailto:gnxremedys@gmail.com">gnxremedys@gmail.com</a>
+            <a href="tel:9999999999">9999999999</a> |{" "}
+            <a href="mailto:farm2uwebapp@gmail.com">farm2uwebapp@gmail.com</a>
           </p>
         </div>
         <div className={styles.quicklinks}>
           <iframe
             className={styles.contactusmap}
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.477600397684!2d78.52954141392536!3d17.48470024909373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9baa5cca5a41%3A0x745662c3aad3b3b7!2sGenmatrix%20Remedies!5e0!3m2!1sen!2sin!4v1686063691834!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248656.72720345494!2d77.41768331094438!3d13.145906951428493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3df04c9efe91%3A0x74ef0f7e2f81d564!2sGitam%20University%20Bengaluru!5e0!3m2!1sen!2sin!4v1695906688724!5m2!1sen!2sin"
             width="600"
             height="450"
             loading="lazy"
@@ -61,7 +54,7 @@ const Footer = () => {
         </div>
       </div>
       <div className={styles.footer_btm}>
-        <p>© 2023 , GENMATRIX REMEDIES</p>
+        <p>© 2023 , FARM2U</p>
         <p className={styles.gototop} onClick={scrollToTop}>
           Go to Top
         </p>

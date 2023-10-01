@@ -2,7 +2,7 @@ import { useState } from "react";
 import React from "react";
 import styles from "@/styles/contactus.module.css";
 import Image from "next/image";
-import contactpageimage from "@/resources/contactpagebanner.png";
+import contactpageimage from "@/resources/contact.png";
 import Nav from "../../components/nav";
 import Footer from "../../components/footer";
 import axios from "axios";
@@ -51,46 +51,7 @@ const Contactus = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NextSeo
-        title="Genmatrix Remedies - Contact us"
-        description="We, at GENMATRIX REMEDIES, strive to build a bond of Love and Trust
-      with our valued customers worldwide. With our range of nutraceutical
-      supplements, we aim to empower you in your journey towards a
-      healthier, happier life."
-        additionalMetaTags={[
-          {
-            property: "keywords",
-            content:
-              "Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's FSSAI, GMP, HACCP, HALAL, ISO, KOSHER",
-          },
-          {
-            name: "distribution",
-            content: "global",
-          },
-          {
-            name: "rating",
-            content: "general",
-          },
-          {
-            name: "viewport",
-            content: "width=device-width, initial-scale=1",
-          },
-        ]}
-        openGraph={{
-          type: "website",
-          url: "https://genmatrix.in/contactus",
-          title: "Genmatrix Remedies - Contact us",
-          description:
-            "We, at GENMATRIX REMEDIES, strive to build a bond of Love and Trust with our valued customers worldwide. With our range of nutraceutical supplements, we aim to empower you in your journey towards a healthier, happier life.",
-          images: [
-            {
-              url:
-                "https://user-images.githubusercontent.com/105535366/258575801-4a10d747-83fa-48ae-af92-5027a37eb49c.png",
-              width: 600,
-              height: 600,
-              alt: "Og Image Alt",
-            },
-          ],
-        }}
+        title="FORM2U - Contact us"
       />
       <Nav />
       <div className={styles.contactuspage_container_block1}>
@@ -162,9 +123,9 @@ const Contactus = () => {
               <p>
                 <a
                   style={{ textDecoration: "none", color: "grey" }}
-                  href="tel:7569444410"
+                  href="tel:9999999999"
                 >
-                  7569444410
+                  9999999999
                 </a>
               </p>
             </div>
@@ -174,26 +135,24 @@ const Contactus = () => {
               <p>
                 <a
                   style={{ textDecoration: "none", color: "grey" }}
-                  href="mailto:gnxremedys@gmail.com"
+                  href="mailto:farm2uwebapp@gmail.com"
                 >
-                  gnxremedys@gmail.com
+                  farm2uwebapp@gmail.com
                 </a>
               </p>
               <p>and we'll get back soon</p>
             </div>
             <div className={styles.contactuspage_container_block1_box2_block}>
               <h4>Our Address</h4>
-              <p>GENMATRIX Remedies,</p>
-              <p>F115, PADMADHAM APARTMENTS,</p>
-              <p>VIJAYAPURI COLONY,</p>
-              <p>SECUNDERABAD, 500017</p>
+              <p>FORM 2 U,</p>
+              <p>NH 207, Nagadenehalli Doddaballapur, taluk, Bengaluru, Karnataka 561203</p>
             </div>
           </div>
         </div>
       </div>
       <iframe
         className={styles.contactusmap}
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.477600397684!2d78.52954141392536!3d17.48470024909373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9baa5cca5a41%3A0x745662c3aad3b3b7!2sGenmatrix%20Remedies!5e0!3m2!1sen!2sin!4v1686063691834!5m2!1sen!2sin"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248656.72720345494!2d77.41768331094438!3d13.145906951428493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3df04c9efe91%3A0x74ef0f7e2f81d564!2sGitam%20University%20Bengaluru!5e0!3m2!1sen!2sin!4v1695906688724!5m2!1sen!2sin"
         width="600"
         height="450"
         loading="lazy"

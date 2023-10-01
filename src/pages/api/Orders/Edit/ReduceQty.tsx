@@ -1,5 +1,5 @@
 import dbConnect from '@/utils/dbConnect';
-import Product from '@/models/Product';
+import Product from '@/models/Product_s';
 import { getToken } from 'next-auth/jwt';
 dbConnect();
 export const config = { api: { bodyParser: { sizeLimit: '100mb' } } };

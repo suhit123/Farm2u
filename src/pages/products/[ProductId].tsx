@@ -57,7 +57,7 @@ const DetailedProduct = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const fetchData=async()=>{
+  const fetchData = async () => {
     if (ProductId) {
       await axios
         .get<ProductData>(`../api/products/${ProductId}`)
@@ -91,9 +91,9 @@ const DetailedProduct = () => {
         });
     }
   }
-  useEffect(()=>{
+  useEffect(() => {
     fetchData();
-  },[])
+  }, [])
   useEffect(() => {
     fetchData();
   }, [ProductId, reducerValue]);
@@ -155,36 +155,8 @@ const DetailedProduct = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NextSeo
-      title={productData?.heading}
-      description="Discover a wide range of nutraceutical supplements at Genmatrix Remedies. Our products aim to empower you in your journey towards a healthier, happier life by providing essential minerals and nutrients. Join us in promoting health and well-being."
-      additionalMetaTags={[{
-        property:'keywords',
-        content:"Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's,Sleep Apnea,Heart Attacks,Snoring,Cerebral Stroke,Nasal Pathway,Noisy Breathing,Sleeping Disorder,Nasal problems,ALZHEIMERS,AGEINGPROBLEMS, BRAIN POWER,ARTHRITIS"
-      },{
-        name:"distribution",
-        content:"global"
-      },{
-        name:"rating",
-        content:"general"
-      },{
-        name:"viewport",
-        content:"width=device-width, initial-scale=1"
-      }]}
-      openGraph={{
-        type: 'website',
-        url: `https://genmatrix.vercel.app/products/${ProductId}`,
-        title: `${productData?.heading}`,
-        description: 'Discover a wide range of nutraceutical supplements at Genmatrix Remedies. Our products aim to empower you in your journey towards a healthier, happier life by providing essential minerals and nutrients. Join us in promoting health and well-being.',
-        images: [
-          {
-            url: `${productData?.image1}`,
-            width: 600,
-            height: 600,
-            alt: 'Og Image Alt',
-          }
-        ],
-      }}
-    />
+        title={productData?.heading}
+      />
       {checkId ? <Custom404 /> : <></>}
       {isLoading && productData ? (
         <>
@@ -332,12 +304,11 @@ const DetailedProduct = () => {
                 <div className={styles.maufactured_and_marketed}>
                   <h6>Manufactured & Marketed by :</h6>
                   <p>
-                  Genmatrix remedies. F115, PADMADHAM APARTMENTS, VIJAYAPURI COLONY,
-            TARNAKA, SECUNDERABAD -500017
+                   FARM2UNH 207, Nagadenehalli Doddaballapur, taluk, Bengaluru, Karnataka 561203
                   </p>
                   <p>
                     For any consumer complaints, queries and feedback, contact our
-                    customer care executive on above manufacturer's address or{" "} 7569444410 |{" "} gnxremedys@gmail.com
+                    customer care executive on above manufacturer's address or{" "} 9999999999 |{" "} farm2uwebapp@gmail.com
                   </p>
                 </div>
               </div>

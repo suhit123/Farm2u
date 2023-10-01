@@ -35,13 +35,13 @@
   border: none;
   background-color: white;
   border-radius: 5px;
-  color: #192543;
-  border: 1px solid #192543;
+  color: #042b04;
+  border: 1px solid #042b04;
 }
 .bottom_bar_container button:hover {
-  border: 1px solid #192543;
+  border: 1px solid #042b04;
   color: white;
-  background: -webkit-linear-gradient(0deg, #172831 0%, #1f6a92 100%);
+  background: -webkit-linear-gradient(0deg, #172831 0%, #1f924f 100%);
 }
 .detailed_product_page {
   width: 55%;
@@ -108,16 +108,16 @@
 }
 .detailedproduct_main_details button {
   padding: 15px;
-  border: 1px solid #192543;
-  background: -webkit-linear-gradient(0deg, #172831 0%, #1f6a92 100%);
+  border: 1px solid #042b04;
+  background: -webkit-linear-gradient(0deg, #172831 0%, #1f9249 100%);
   border-radius: 5px;
   color: white;
   position: relative;
   font-size: 14px;
 }
 .detailedproduct_main_details button:hover {
-  border: 1px solid #192543;
-  color: #192543;
+  border: 1px solid #042b04;
+  color: #042b04;
   background: white;
 }
 .description {
@@ -135,7 +135,7 @@
   font-weight: 700;
   font-size: 18px;
   padding: 20px;
-  color: #192543;
+  color: #042b04;
 }
 .description p {
   font-size: 14px;
@@ -145,7 +145,7 @@
   color: white;
   border: none;
   border-radius: 5px;
-  background-image: -webkit-linear-gradient(0deg, #29395a 0%, #1f6a92 100%);
+  background-image: -webkit-linear-gradient(0deg, #042b04 0%, #1f924b 100%);
 }
 .comment_section_addacomment p {
   margin: 0px;
@@ -155,12 +155,12 @@
   margin: 50px auto;
 }
 .comment_section_addacomment:hover {
-  color: #29395a;
+  color: #042b04;
   background-color: white;
-  border: 1px solid #29395a;
+  border: 1px solid #042b04;
 }
 .comment_section_heading {
-  color: #29395a;
+  color: #042b04;
   margin: 1vw 0px;
   font-size: 18px;
 }
@@ -173,7 +173,7 @@
 .blogcommentform h3 {
   text-align: center;
   margin: 20px;
-  color: rgba(41, 57, 90, 1);
+  color: #042b04;
 }
 .blogcommentform input {
   padding: 15px 20px;
@@ -196,9 +196,9 @@
 }
 .blogcommentform .comment_section_submit {
   background-color: white;
-  color: rgba(41, 57, 90, 1);
+  color: #042b04;
   width: max-content;
-  border: 1px solid rgba(41, 57, 90, 1);
+  border: 1px solid #042b04;
   padding: 10px 20px;
   margin-top: 20px;
   font-size: 14px;
@@ -206,22 +206,22 @@
 }
 .blogcommentform .comment_section_submit:hover {
   color: white;
-  background-image: -webkit-linear-gradient(0deg, #29395a 0%, #1f6a92 100%);
+  background-image: -webkit-linear-gradient(0deg, #042b04 0%, #1f9262 100%);
 
 }
 .blogcommentform .comment_section_close {
   color: white;
-  background-color: #29395a;
+  background-color: #042b04;
   border: none;
   padding: 10px 20px;
   margin-top: 20px;
-  border: 1px solid rgba(41, 57, 90, 1);
+  border: 1px solid #042b04;
   margin-left: 1vw;
   font-size: 14px;
   border-radius: 5px;
 }
 .blogcommentform .comment_section_close:hover {
-  color: #29395a;
+  color: #042b04;
   background-color: white;
 }
 .comment_block {

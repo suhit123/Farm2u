@@ -1,4 +1,4 @@
-import pagenotfound from "@/resources/Pagenotfound_image.jpg";
+import pagenotfound from "@/resources/pagenf.png";
 import styles from "@/styles/custom404.module.css";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
@@ -10,7 +10,6 @@ const Custom404 = () => {
     <div className={styles.pagenotfound}>
       <NextSeo
       title="Page not found"
-      description="Discover a wide range of nutraceutical supplements at Genmatrix Remedies. Our products aim to empower you in your journey towards a healthier, happier life by providing essential minerals and nutrients. Join us in promoting health and well-being."
       nofollow={true}
       noindex={true}
     />

@@ -80,16 +80,16 @@
   box-shadow: 0px 0px 20px rgba(193, 193, 193, 0.25);
   border-radius: 5px;
   outline: none;
-  background-image: -webkit-linear-gradient(0deg, #29395a 0%, #1f6a92 100%);
+  background-image: -webkit-linear-gradient(0deg, #042b04 0%, #094009 100%);
   color: white;
   margin: 10px 0px;
   cursor: pointer;
   font-size: 14px;
 }
 .info_submit:hover {
-  color: #29395a;
+  color: #042b04;
   background: white;
-  border: 1px solid #29395a;
+  border: 1px solid #042b04;
 }
 .info_form_back_submit {
   display: flex;
@@ -112,12 +112,12 @@
   border-radius: 5px;
 }
 .checkbox:checked {
-  background-color: #29395a;
+  background-color: #042b04;
 }
 .form_group_checkbox p {
   margin: 0px 10px;
   font-weight: 500;
-  color: rgba(41, 57, 90, 1);
+  color: 042b04;
 }
 .savedadress {
   margin: 10px 0px;

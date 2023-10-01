@@ -6,20 +6,21 @@ import Link from "next/link";
 import ReactStars from "react-stars";
 import axios from "axios";
 import Image from "next/image";
-import Footer from "../../components/footer";
-import Nav from "../../components/nav";
 import styles from "@/styles/products.module.css";
-import Loader from "../../components/loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { products } from "@/Interfaces/Products";
 import { NextSeo } from "next-seo";
+import banner from '@/resources/fandv.png'
 import Head from "next/head";
 const Products = () => {
+  const [search, setSearch] = useState("");
+  const [dataload, setDataLoad] = useState(false);
   const { data: session }: any = useSession();
   const [loading, setLoading] = useState<{ [key: string]: boolean }>({});
   const router = useRouter();
   const [productsData, setProductData] = useState<products[]>([]);
+  const [category,setCategory]=useState("all");
   useEffect(() => {
     axios
       .get("/api/products")
@@ -30,6 +31,32 @@ const Products = () => {
         console.log(err);
       });
   }, []);
+  const handleCategory=async(e:any)=>{
+    console.log(e.target.value)
+    setCategory(e.target.value)
+  }
+  useEffect(()=>{
+    if(category==="all"){
+      axios
+      .get("/api/products")
+      .then((res) => {
+        setProductData(res.data.reverse());
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+    else{
+    axios
+      .get(`/api/products/category/${category}`)
+      .then((res) => {
+        setProductData(res.data.reverse());
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+  },[category])
   const addToCart = async (productId: any) => {
     if (session) {
       setLoading((prevLoading) => ({
@@ -55,6 +82,37 @@ const Products = () => {
     } else {
       router.push("/signup");
     }
+  };const handleSearch = async (e:any) => {
+    setSearch(e.target.value);
+    console.log(e.target.value);
+    const len = e.target.value.length;
+    if (len > 0) {
+      setDataLoad(true);
+      await axios
+        .get(`/api/products/search/${e.target.value}`)
+        .then((res) => {
+          setProductData(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          setDataLoad(false);
+        });
+    } else {
+      setDataLoad(true);
+      axios
+        .get(`/api/products`)
+        .then((res) => {
+          setDataLoad(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          setDataLoad(false);
+        });
+    }
   };
   return (
     <>
@@ -62,39 +120,31 @@ const Products = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NextSeo
-      title="Genmatrix Remedies - Products"
-      description="Discover a wide range of nutraceutical supplements at Genmatrix Remedies. Our products aim to empower you in your journey towards a healthier, happier life by providing essential minerals and nutrients. Join us in promoting health and well-being."
-      additionalMetaTags={[{
-        property:'keywords',
-        content:"Genmatrix Remedies,genmatrix,remedies,gene,matrix,Gene Matrix, Rorend,Zipper,Snoozer,Truying,Turqmax,Gowistrum,Re30's,Ignite,Turmax"
-      },{
-        name:"distribution",
-        content:"global"
-      },{
-        name:"rating",
-        content:"general"
-      },{
-        name:"viewport",
-        content:"width=device-width, initial-scale=1"
-      }]}
-      openGraph={{
-        type: 'website',
-        url: 'https://genmatrix.in/products',
-        title: 'Genmatrix Remedies - Products',
-        description: 'Discover a wide range of nutraceutical supplements at Genmatrix Remedies. Our products aim to empower you in your journey towards a healthier, happier life by providing essential minerals and nutrients. Join us in promoting health and well-being.',
-        images: [
-          {
-            url: "https://user-images.githubusercontent.com/105535366/258575801-4a10d747-83fa-48ae-af92-5027a37eb49c.png",
-            width: 600,
-            height: 600,
-            alt: 'Og Image Alt',
-          }
-        ],
-      }}
+      title="FORM2U - Products"
     />
-      <Loader time={1000} />
-      <Nav />
       <div className={styles.products_container}>
+      <div className={styles.search_under_gradient_div}>
+        <div className={styles.banner_mainpage}>
+          <Image src={banner} alt=""/>
+        </div>
+            <input
+              type="text"
+              placeholder="🔍 search"
+              name="search"
+              value={search}
+              onChange={handleSearch}
+              autoComplete="off"
+            />
+            <select name="category" onChange={handleCategory}>
+              <option value="all">Shop by Category</option>
+              <option value="all">All</option>
+              <option value="vegetables">Vegetables</option>
+              <option value="fruits">Fruits</option>
+              <option value="dryfruits">Dryfruits</option>
+              <option value="leafygreens">Leafygreens</option>
+              <option value="spices">Spices</option>
+            </select>
+          </div>
         <div className={styles.products_page}>
           {productsData.length === 0
             ? [0, 1, 2, 3].map((item: any, Index: Number) => {
@@ -146,7 +196,7 @@ const Products = () => {
                         />
                       </div>
                       <div className={styles.products_list_items_content}>
-                        <p>Genmatrix remedies</p>
+                        <p>{item.sellerName}</p>
                         <Link href={`/products/${item._id}`}>
                           <h3>{item.heading}</h3>
                         </Link>
@@ -194,7 +244,6 @@ const Products = () => {
               })}
         </div>
       </div>
-      <Footer />
     </>
   );
 };

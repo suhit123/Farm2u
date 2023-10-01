@@ -16,8 +16,7 @@ export default async (req:NextApiRequest,res:NextApiResponse)=>{
                     lastname:req.body.lastname,
                     email:req.body.email,
                     password:await bcrypt.hash(req.body.password,12),
-                    role:"user",
-                    
+                    role:req.body.role
                 }
                 const user=await UserB.create(userdetails);
                 return res.status(201).json({success:true,data:user})

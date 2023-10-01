@@ -12,7 +12,7 @@ const AdminRoute = ({ children }: any) => {
   useEffect(() => {
     const checkSession = async () => {
       const session: any = await getSession();
-      if (session && session.user && session.user.role === "admin") {
+      if (session && session.user && session.user.role === "seller") {
         setLoading(false);
       } else {
         router.push("/");
@@ -26,7 +26,7 @@ const AdminRoute = ({ children }: any) => {
     return <div></div>;
   }
 
-  if (session && session.user && session.user.role === "admin") {
+  if (session && session.user && session.user.role === "seller") {
     return (
       <>
         <div className={styles.norotate}>{children}</div>

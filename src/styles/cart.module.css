@@ -70,7 +70,7 @@
 .cart_total p,
 .cart_discount p {
   font-size: 14px;
-  color: #0d1c3a;
+  color: #042b04;
 }
 .cart_subtotal p {
   font-weight: 700;
@@ -82,14 +82,14 @@
 .cart_checkout {
   width: 100%;
   padding: 10px;
-  border: 1px solid #29395a;
+  border: 1px solid #042b04;
   background: white;
-  color: #29395a;
+  color: #042b04;
   font-weight: 600;
   font-size: 14px;
 }
 .cart_checkout:hover {
-  background-image: -webkit-linear-gradient(0deg, #29395a 0%, #1f6a92 100%);
+  background-image: -webkit-linear-gradient(0deg, #042b04 0%, #1f9236 100%);
   color: white;
 }
 .cart_bottom_container {

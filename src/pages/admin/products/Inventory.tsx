@@ -10,10 +10,11 @@ import Image from "next/image";
 import successlogo from "@/resources/successicon.png";
 import Loader_colorring from "@/components/Loader_colorring";
 import nodatafound from "@/resources/no_data_found.png";
-import AdminNav from "../../../components/AdminNav";
+import SellerNav from "../../../components/sellerNav";
 import React from "react";
 import { products } from "@/Interfaces/Products";
 import { coupon } from "@/Interfaces/user/orders";
+import { useSession } from "next-auth/react";
 const Inventory = () => {
   let key = 1;
   const router = useRouter();
@@ -26,11 +27,12 @@ const Inventory = () => {
     discount: 0,
     coupon: "",
   });
+  const {data:session}:any=useSession();
   const [couponEdit, setCouponEdit] = useState<boolean>(false);
   const fetchdata = async () => {
     setLoader(true);
     await axios
-      .get("../../api/products")
+      .get(`../../api/products/seller/${session?.user?._id}`)
       .then((res) => {
         const productdata = res.data.reverse();
         setProductsData(productdata);
@@ -110,7 +112,7 @@ const Inventory = () => {
     <AdminRoute>
       <Admin />
       <div className="admin_nav_adjustment">
-        <AdminNav />
+        <SellerNav />
         {couponEdit ? (
           <div className={styles.coupon_div}>
             <p>coupon</p>

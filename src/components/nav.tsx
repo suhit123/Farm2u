@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from "@/resources/logo_text.png";
+import logo from "@/resources/form2u_logo.jpg";
 import "bootstrap/dist/css/bootstrap.css";
 import styles from "@/styles/nav.module.css";
 import profile from "@/resources/profile.png";
@@ -13,8 +13,6 @@ import cartcomponentstyles from "@/styles/cartcomponent.module.css";
 import cartemptyimg from "@/resources/cartempty.png";
 import { useSession, signOut } from "next-auth/react";
 import Loader_colorring from "./Loader_colorring";
-import facebooklogo from "@/resources/facebooklogo.png";
-import whatsapplogo from "@/resources/whatsapp.png";
 import React from "react";
 import { cartData, products } from "@/Interfaces/Products";
 import { coupon } from "@/Interfaces/user/orders";
@@ -127,24 +125,6 @@ const Nav = () => {
   }, [reducerValue, cartData, cartState, cartDataContents]);
   return (
     <div className={styles.entirenav}>
-      {discountBarState ? (
-        <div className={styles.discount_nav_bar}>
-          <p>
-            Get {coupon.discount}% Discount for Purchase above Rs.{" "}
-            {coupon.amount}/- Use Coupon : {coupon.coupon}
-          </p>
-          <a
-            className={cartstyles.closebtn}
-            onClick={() => {
-              setDiscountBarState(!discountBarState);
-            }}
-          >
-            &times;
-          </a>
-        </div>
-      ) : (
-        <></>
-      )}
       <div className={styles.main_nav_bar_p}>
         <Image className={styles.logo} src={logo} alt="" />
         <div className={styles.main_nav_bar_r_p}>
@@ -154,7 +134,7 @@ const Nav = () => {
                 <button
                   className={styles.profile_drop_click}
                   onClick={() => {
-                    if (session?.user?.role === "admin") {
+                    if (session?.user?.role === "seller") {
                       router.push("/admin/Dashboard");
                     } else {
                       router.push("/user");
@@ -193,7 +173,7 @@ const Nav = () => {
           </div>
         </div>
       </div>
-      <div className={styles.nav_bar_private}>
+      {/* <div className={styles.nav_bar_private}>
         <nav className="navbar navbar-expand-lg bg-body-tertiary navbar-dark">
           <div className="container-fluid">
             <div className={styles.nav_btm}>
@@ -232,7 +212,7 @@ const Nav = () => {
             </div>
           </div>
         </nav>
-      </div>
+      </div> */}
       <div
         className={`${cartstyles.sidecartcontainer} ${
           cartState
@@ -374,22 +354,6 @@ const Nav = () => {
             </div>
           </div>
         )}
-      </div>
-      <div className={styles.facebook_link}>
-        <a href="https://www.facebook.com/profile.php?id=100093098380347">
-          <Image width="40" height="40" src={facebooklogo} alt="facebook--v1" />
-        </a>
-      </div>
-      <div className={styles.whatsapp_link}>
-      <a href="https://wa.me/7569444410" style={{ marginBottom: "5px" }}>
-          <Image
-            width="40"
-            height="40"
-            style={{ borderRadius: "3px" }}
-            src={whatsapplogo}
-            alt="whatsapp--v1"
-          />
-        </a>
       </div>
     </div>
   );

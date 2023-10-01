@@ -1,6 +1,7 @@
 .entirenav {
   width: 100vw;
   overflow-x: hidden;
+  box-shadow: 5px 5px 10px grey;
 }
 .discount_nav_bar {
   padding: 5px;
@@ -8,7 +9,7 @@
   font-size: 15px;
   font-weight: 500;
   color: white;
-  background-image: -webkit-linear-gradient(0deg, #1d2b47 0%, #175170 100%);
+  background-image: -webkit-linear-gradient(0deg, #042b04 0%, #177026 100%);
   display: flex;
   justify-content: center;
 }
@@ -26,14 +27,14 @@
 }
 .nav_bar_private {
   width: 100%;
-  background-color: #1e2940;
+  background-color: #042b04;
 }
 .nav_alink_p {
   color: white;
 }
 .logo {
   margin: 10px;
-  width: 230px;
+  width: 180px;
   height: auto;
 }
 .main_nav_bar_p {
@@ -110,23 +111,23 @@
   background-color: white;
   font-size: 15px;
   font-weight: 500;
-  color: #1e2940;
+  color: #042b04;
 }
 .profile_logout {
   border: none;
-  color: #1e2940;
+  color: #042b04;
   padding: 7px 15px;
   font-size: 15px;
   border-radius: 5px;
   margin: 0px 0px 0px 1vw;
   font-weight: 500;
   background-color: white;
-  border: 1px solid #1e2940;
+  border: 1px solid #042b04;
   transition: 0.3s all ease-in-out;
 }
 .profile_logout:hover {
   color: white;
-  background-color: #1e2940;
+  background-color: #042b04;
 }
 .cartPng_nav img {
   margin: 10px 20px;
@@ -136,23 +137,6 @@
 .cartPng_nav {
   background: none;
   border: none;
-}
-.facebook_link {
-  z-index: 10;
-  position: fixed;
-  top: 70%;
-  border-radius: 5px 0px 0px 5px;
-}
-.whatsapp_link{
-  z-index: 10;
-  position: fixed;
-  bottom: 1%;
-  right: 1%;
-  border-radius: 5px 0px 0px 5px;
-}
-.whatsapp_link img{
-  width: 80px;
-  height: auto;
 }
 .login_signup {
   font-size: 15px;
@@ -234,17 +218,6 @@
     margin: 4px 5px;
     width: 20px;
     height: 20px;
-  }
-  .facebook_link {
-    top: 70%;
-  }
-  .facebook_link img {
-    width: 30px;
-    height: 30px;
-  }
-  .whatsapp_link img{
-    width: 70px;
-    height: auto;
   }
   .login_signup {
     font-size: 13px;
@@ -355,13 +328,6 @@
   .mobile_display {
     display: none;
   }
-  .facebook_link {
-    top: 30vh;
-    right: 0px;
-  }
-  .facebook_link img {
-    width: 30px;
-    height: 30px;
-  }
+
   
 }

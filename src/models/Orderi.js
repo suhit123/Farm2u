@@ -53,7 +53,7 @@ const OrderiSchema = new mongoose.Schema({
     {
       productId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
+        ref: "Product_s",
         required: true,
       },
       quantity: {

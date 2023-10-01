@@ -7,8 +7,7 @@ import Image from "next/image";
 import cartstyles from "@/styles/checkout/cart.module.css";
 import Loader_colorring from "../../components/Loader_colorring";
 import { useRouter } from "next/router";
-import genmatrixlogo from "@/resources/logo_text.png";
-import Head from "next/head";
+import form2u from "@/resources/form2u_logo.jpg";
 import circlelogo from "@/resources/genmatrixlogo2.png";
 import Congrats from "@/components/congrats";
 import { products, cartData } from "@/Interfaces/Products";
@@ -267,7 +266,7 @@ const CheckoutForm = () => {
     }).then((t) => t.json());
     var options = {
       key: process.env.RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
-      name: "GENMATRIX REMEDIES",
+      name: "FORM2U",
       currency: data.currency,
       amount: data.amount,
       order_id: data.id,
@@ -313,8 +312,8 @@ const CheckoutForm = () => {
             <div>
               <Image
                 className={styles.company_logo}
-                src={genmatrixlogo}
-                alt="genmatrix_logo"
+                src={form2u}
+                alt="form2u"
               />
               <div className={styles.checkout_form_container}>
                 <h3>Shipping Address</h3>

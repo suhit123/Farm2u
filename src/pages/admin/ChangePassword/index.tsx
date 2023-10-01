@@ -7,7 +7,7 @@ import axios from "axios";
 import AdminRoute from "../AdminRoute";
 import Admin from "..";
 import styles from "@/styles/admin/admintable_managemnt.module.css";
-import AdminNav from "../../../components/AdminNav";
+import SellerNav from "../../../components/sellerNav";
 import React from "react";
 import { changePassword } from "@/Interfaces/user/changePassword";
 const AdminPasswordChange = () => {
@@ -114,7 +114,7 @@ const AdminPasswordChange = () => {
     <AdminRoute>
       <Admin />
       <div className={"admin_nav_adjustment"}>
-        <AdminNav />
+        <SellerNav />
         <div className={styles.changePassword}>
           <div className={changePassstyles.changePassword}>
             <h5>CHANGE PASSWORD</h5>

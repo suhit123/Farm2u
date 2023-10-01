@@ -1,9 +1,8 @@
 import Link from "next/link";
 import React from "react";
 import axios, { AxiosError } from "axios";
-import Footer from "../../components/footer";
-import Nav from "../../components/nav";
 import styles from "@/styles/signup.module.css";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import Loader from "../../components/loader";
 import { loginUser } from "../../../helpers";
@@ -12,6 +11,8 @@ import { useSession } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { NextSeo } from "next-seo";
+import sigup_farm from '@/resources/sigup_farm.jpg'
+import form2u_logo from '@/resources/form2u_logo.jpg'
 const Login = () => {
   const router = useRouter();
   const [changeLoad, setChangeLoad] = useState(false);
@@ -76,9 +77,11 @@ const Login = () => {
       title="Login"
     />
       <Loader time={500} />
-      <Nav />
+      <div className={styles.signuppage}>
+      <Image src={sigup_farm} alt=""/>
       <form className={styles.signupform} onSubmit={handleSubmit}>
-        <h3>LOG IN</h3>
+        <Image className={styles.signup_logo} src={form2u_logo} alt=""/>
+        <h3>Welcome back, Sign in</h3>
         <p>Email</p>
         <input
           type="email"
@@ -126,7 +129,7 @@ const Login = () => {
           Don't have an account? <Link href="/signup">Sign Up</Link>
         </p>
       </form>
-      <Footer />
+      </div>
     </>
   );
 };

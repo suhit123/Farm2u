@@ -9,7 +9,7 @@ import {
   faVideo,
   faKey,
 } from "@fortawesome/free-solid-svg-icons";
-import logo from "@/resources/logo_text.png";
+import logo from "@/resources/form2u_logo.jpg";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -45,24 +45,6 @@ const Admin = () => {
             >
               <FontAwesomeIcon icon={faShoppingCart} />
               <span>Products</span>
-            </li>
-            <li
-              className={`${styles.nav_li}`}
-              onClick={() => {
-                router.push("/admin/Videos");
-              }}
-            >
-              <FontAwesomeIcon icon={faVideo} />
-              <span>Videos</span>
-            </li>
-            <li
-              className={`${styles.nav_li}`}
-              onClick={() => {
-                router.push("/admin/Blogs");
-              }}
-            >
-              <FontAwesomeIcon icon={faNewspaper} />
-              <span>Blogs</span>
             </li>
             <li
               className={`${styles.nav_li}`}

@@ -20,7 +20,7 @@ export default async (req:any,res:any)=>{
         case 'GET':
             try{
                 const session:any=await getToken({req});
-                if(!session || session.user.role!=="admin"){
+                if(!session || session.user.role!=="seller"){
                     return res.status(401).json({message:"unauthorized"})
                 }
                 const orders=await Orderi.find().populate('products.productId', 'image1 heading');

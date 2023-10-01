@@ -7,7 +7,7 @@ import successlogo from "@/resources/successicon.png";
 import axios from "axios";
 import AdminRoute from "../AdminRoute";
 import Admin from "..";
-import AdminNav from "../../../components/AdminNav";
+import SellerNav from "../../../components/sellerNav";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -29,6 +29,7 @@ const PublishProduct = () => {
     qty: 0,
     price: 0,
     discount: 0,
+    category:"",
     description: null,
   });
   useEffect(() => {
@@ -92,7 +93,7 @@ const PublishProduct = () => {
     <AdminRoute>
       <Admin />
       <div className={"admin_nav_adjustment"}>
-        <AdminNav />
+        <SellerNav />
         <div>
           {proceedMessage ? (
             <div className={styles.publishalert}>
@@ -265,6 +266,19 @@ const PublishProduct = () => {
                       onChange={handleInputChange}
                       required
                     />
+                  </div>
+                </div>
+                <div className={styles.publish_post_form_container_leftbox_div}>
+                  Category:
+                  <div>
+                    <select className={styles.publish_blog_input} name="category" onChange={handleInputChange}>
+                      <option>Select a option</option>
+                      <option value="fruits">Fruits</option>
+                      <option value="vegetables">Vegetables</option>
+                      <option value="spices">Spices</option>
+                      <option value="leafygreens">Leafygreens</option>
+                      <option value="dryfruits">Dryfruits</option>
+                    </select>
                   </div>
                 </div>
                 {limitexceed ? (

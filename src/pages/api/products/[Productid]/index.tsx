@@ -1,5 +1,5 @@
 import dbConnect from '@/utils/dbConnect';
-import Product from '@/models/Product';
+import Product from '@/models/Product_s';
 import { getToken } from 'next-auth/jwt';
 dbConnect();
 export const config = { api: { bodyParser: { sizeLimit: '100mb' } } }
@@ -32,7 +32,7 @@ export default async (req:any,res:any)=>{
         case 'DELETE':
             try{
                 const session:any=await getToken({req});
-                if(!session || session.user.role!=="admin"){
+                if(!session || session.user.role!=="seller"){
                     return res.status(401).json({message:"unauthorized"})
                 }
                 await Product.findByIdAndDelete(Productid);
@@ -44,7 +44,7 @@ export default async (req:any,res:any)=>{
         case 'PATCH':
             try{
                 const session:any=await getToken({req});
-                if(!session || session.user.role!=="admin"){
+                if(!session || session.user.role!=="seller"){
                     return res.status(401).json({message:"unauthorized"})
                 }
                 await Product.findByIdAndUpdate(Productid,req.body);

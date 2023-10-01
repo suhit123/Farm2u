@@ -8,7 +8,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import AdminRoute from "@/pages/admin/AdminRoute";
 import Admin from "../index";
-import AdminNav from "../../../components/AdminNav";
+import SellerNav from "../../../components/sellerNav";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -117,7 +117,7 @@ const Editblog = () => {
     <AdminRoute>
       <Admin />
       <div className={"admin_nav_adjustment"}>
-        <AdminNav />
+        <SellerNav />
         <div>
           {proceedMessage ? (
             <div className={styles.publishalert}>

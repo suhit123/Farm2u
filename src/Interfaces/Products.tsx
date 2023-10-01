@@ -5,6 +5,8 @@ export interface products{
     qty:number,
     price:number,
     discount:number,
+    sellerName:string,
+    seller:string,
     comments:Comment[]
 }
 export interface Comment{

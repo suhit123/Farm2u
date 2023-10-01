@@ -7,7 +7,7 @@ import Image from "next/image";
 import cartstyles from "@/styles/checkout/cart.module.css";
 import Loader_colorring from "../../components/Loader_colorring";
 import { useRouter } from "next/router";
-import genmatrixlogo from "@/resources/logo_text.png";
+import farm2u from "@/resources/form2u_logo.jpg";
 import Head from "next/head";
 import Congrats from "@/components/congrats";
 import { products, cartData } from "@/Interfaces/Products";
@@ -260,7 +260,7 @@ const CheckoutForm = () => {
             <div>
               <Image
                 className={styles.company_logo}
-                src={genmatrixlogo}
+                src={farm2u}
                 alt="genmatrix_logo"
               />
               <div className={styles.checkout_form_container}>

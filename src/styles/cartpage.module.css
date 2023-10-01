@@ -1,10 +1,11 @@
 .cartpage_entire {
   width: max-content;
   margin: 0px auto;
+  min-height: 60vh;
 }
 .cartpage_entire h4 {
   margin: 20px 0px;
-  color: #1e2940;
+  color: #042b04;
   width: max-content;
   font-size: 18px;
 }
@@ -25,7 +26,7 @@
 .table th {
   width: max-content;
   text-align: left;
-  background-color: #1e2940;
+  background-color: #032703;
   font-size: 15px;
   color: white;
   padding: 10px;
@@ -98,29 +99,29 @@
 }
 .cart_checkout {
   color: white;
-  background-image: -webkit-linear-gradient(0deg, #29395a 0%, #1f6a92 100%);
+  background-image: -webkit-linear-gradient(0deg, #000e00 0%, #0f6443 100%);
   padding: 15px;
   width: 100%;
-  border: 1px solid #1e2940;
+  border: 1px solid #042b04;
   font-size: 15px;
   margin: 5px 0px;
 }
 .cart_back {
-  color: #1e2940;
+  color: #042b04;
   background: white;
   padding: 15px;
   width: 100%;
-  border: 1px solid #1e2940;
+  border: 1px solid #042b04;
   font-size: 15px;
   margin: 10px 0px;
 }
 .cart_checkout:hover {
-  color: #1e2940;
+  color: #042b04;
   background: white;
 }
 .cart_back:hover {
   color: white;
-  background-image: -webkit-linear-gradient(0deg, #29395a 0%, #1f6a92 100%);
+  background-image: -webkit-linear-gradient(0deg, #042b04 0%, #042b04 100%);
 }
 .cart_empty_div {
   width: 1100px;
@@ -141,11 +142,11 @@
 }
 .cart_continue_shopping {
   color: white;
-  background-color: #1e2940;
+  background-color: #042b04;
   padding: 15px;
   width: 400px;
   margin: 20px;
-  border: 1px solid #1e2940;
+  border: 1px solid #042b04;
   font-size: 15px;
   transition: 0.3s all ease-in-out;
 }
@@ -154,7 +155,7 @@
   font-weight: 500;
 }
 .cart_continue_shopping:hover {
-  color: #1e2940;
+  color: #042b04;
   background-color: white;
 }
 .desktop {

@@ -14,7 +14,7 @@ import Image from "next/image";
 import Loader_colorring from "../../../components/Loader_colorring";
 import nodatafound from "@/resources/no_data_found.png";
 import AdminRoute from "../AdminRoute";
-import AdminNav from "../../../components/AdminNav";
+import SellerNav from "../../../components/sellerNav";
 import { useRouter } from "next/router";
 const Dashboard = () => {
   const [view, setView] = useState("all");
@@ -23,7 +23,7 @@ const Dashboard = () => {
       <div className={styles.admin_orders_page}>
         <Admin />
         <div className={"admin_nav_adjustment"}>
-          <AdminNav />
+          <SellerNav />
           <div className={styles.nav_orders}>
             <ul>
               <li

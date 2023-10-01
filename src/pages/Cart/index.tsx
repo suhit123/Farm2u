@@ -168,7 +168,7 @@ const Cart = () => {
                                       <p
                                         className={`${styles.companyname} ${styles.mobile}`}
                                       >
-                                        Genmatrix remedies
+                                        {dataelement.sellerName}
                                       </p>
                                     </div>
                                   </div>

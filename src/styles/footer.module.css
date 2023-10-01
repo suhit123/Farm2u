@@ -1,12 +1,18 @@
 .footer_container {
-  background-color: #1e2940;
+  background-color: #000000;
   padding-top: 20px;
+}
+.heading_logo{
+  color: white;
+
 }
 .footer_top {
   display: flex;
   width: 75%;
   margin: auto;
   padding: 15px;
+  align-items: center;
+  justify-content: center;
 }
 .footer_top img {
   width: 300px;

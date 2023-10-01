@@ -12,12 +12,16 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import Head from "next/head";
+import buyer from '@/resources/buyer.png'
+import seller from '@/resources/seller_.png'
+import sigup_farm from '@/resources/sigup_farm.jpg'
+import form2u_logo from '@/resources/form2u_logo.jpg'
 import { NextSeo } from "next-seo";
 const Signup = () => {
   const { data: session, status } = useSession();
   const [changeLoad, setChangeLoad] = useState(false);
   const router = useRouter();
+  const [roleSelection,setRoleSelection]=useState(false)
   const [showpass, setShowpass] = useState("password");
   const [redirection_login, setRedirection_login]: any = useState("");
   const [responseerr, setResponseerr]: any = useState({
@@ -29,6 +33,7 @@ const Signup = () => {
     lastname: "",
     email: "",
     password: "",
+    role:""
   });
   useEffect(() => {
     if (status === "authenticated") {
@@ -113,9 +118,30 @@ const Signup = () => {
       noindex={true}
     />
       <Loader time={500} />
-      <Nav />
+      {roleSelection?<></>:<div className={styles.role_selection}>
+        <h2>Select your role</h2>
+      <div className={styles.role_question}>
+        <button className={styles.role_question_divs} onClick={()=>{
+          setUser({ ...user, role:"seller" });
+          setRoleSelection(true);
+        }}>
+          <Image className={styles.role_question_divs_img} src={seller} alt=""/>
+          <h3>Sales Man</h3>
+        </button>
+        <button className={styles.role_question_divs} onClick={()=>{
+          setUser({ ...user, role:"user" });
+          setRoleSelection(true);
+        }}>
+          <Image className={styles.role_question_divs_img}src={buyer} alt=""/>
+          <h3>Buyer</h3>
+        </button>
+      </div>
+      </div>}
+      <div className={styles.signuppage}>
+      <Image src={sigup_farm} alt=""/>
       <form className={styles.signupform} onSubmit={userSubmit}>
-        <h3>CREATE ACCOUNT</h3>
+        <Image className={styles.signup_logo} src={form2u_logo} alt=""/>
+        <h3>Welcome to Farm2U where we sell directly from farms.</h3>
         <p>First Name</p>
         <input
           type="text"
@@ -179,7 +205,7 @@ const Signup = () => {
         </p>
       </form>
       {redirection_login}
-      <Footer />
+      </div>
     </>
   );
 };

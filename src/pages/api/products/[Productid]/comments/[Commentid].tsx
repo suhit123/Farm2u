@@ -1,5 +1,5 @@
 import dbConnect from '@/utils/dbConnect';
-import Product from '@/models/Product';
+import Product from '@/models/Product_s';
 import { getToken } from 'next-auth/jwt';
 
 dbConnect();
@@ -13,7 +13,7 @@ console.log("hi")
     case 'DELETE':
       try {
         const session:any=await getToken({req});
-                if(!session || session.user.role!=="admin"){
+                if(!session || session.user.role!=="seller"){
                     return res.status(401).json({message:"unauthorized"})
                 }
         const product = await Product.findById(Productid);

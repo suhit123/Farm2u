@@ -15,7 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     case 'PATCH':
       try {
         const session:any=await getToken({req});
-                if(!session || session.user.role!=="admin"){
+                if(!session || session.user.role!=="seller"){
                     return res.status(401).json({message:"unauthorized"})
                 }
         const updatedOrder = await Orderi.findByIdAndUpdate(
