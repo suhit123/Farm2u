@@ -138,7 +138,9 @@ const Signup = () => {
       </div>
       </div>}
       <div className={styles.signuppage}>
-      <Image src={sigup_farm} alt=""/>
+      <div className={styles.signuppage_img_div}>
+        <Image className={styles.signuppage_img} src={sigup_farm} alt=""/>
+      </div>
       <form className={styles.signupform} onSubmit={userSubmit}>
         <Image className={styles.signup_logo} src={form2u_logo} alt=""/>
         <h3>Welcome to Farm2U where we sell directly from farms.</h3>

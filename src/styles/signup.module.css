@@ -155,7 +155,7 @@
 }
 @media screen and (max-width: 950px) {
   .signupform {
-    width: 50%;
+    width: 40%;
     margin-top: 10px;
     margin-bottom: 10px;
   }
@@ -222,11 +222,51 @@
     font-size: 13px;
     padding: 10px 15px;
   }
+  .signuppage_img_div{
+    height:100vh ;
+    width: 50vw;
+    overflow: hidden;
+  }
+  .signuppage_img{
+    width: 100%;
+  }
+  .signuppage{
+    overflow: scroll;
+  }
+}
+@media screen and (max-height: 500px) {
+ .signuppage{
+  height: max-content;
+ }
+ .signuppage_img_div{
+  height:170vh ;
+  width: 50vw;
+  overflow: hidden;
+}
+.signuppage_img{
+  width: 100%;
+}
 }
 @media screen and (max-width: 550px) {
+  .signuppage{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .signupform {
     width: 90%;
     margin-top: 10px;
     margin-bottom: 10px;
+  }
+  .signuppage_img_div{
+    height: 25vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+  .signuppage_img{
+    width: 100%;
   }
 }

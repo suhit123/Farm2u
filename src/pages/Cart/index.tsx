@@ -246,18 +246,10 @@ const Cart = () => {
                   <button
                     className={styles.cart_checkout}
                     onClick={() => {
-                      router.push("/checkout/gateway");
-                    }}
-                  >
-                    PAYMENT GATEWAY 1
-                  </button>
-                  <button
-                    className={styles.cart_checkout}
-                    onClick={() => {
                       router.push("/checkout");
                     }}
                   >
-                    PAYMENT GATEWAY 2
+                    PAYMENT GATEWAY
                   </button>
                   <button
                     className={styles.cart_back}

@@ -17,6 +17,7 @@ import React from "react";
 import { cartData, products } from "@/Interfaces/Products";
 import { coupon } from "@/Interfaces/user/orders";
 import { calculatePrices } from "./priceCalculator";
+import { Cursor } from "mongoose";
 const Nav = () => {
   const router = useRouter();
   const { data: session }: any = useSession();
@@ -126,7 +127,7 @@ const Nav = () => {
   return (
     <div className={styles.entirenav}>
       <div className={styles.main_nav_bar_p}>
-        <Image className={styles.logo} src={logo} alt="" />
+        <Image className={styles.logo} src={logo} alt="" onClick={()=>{router.push('/')}}/>
         <div className={styles.main_nav_bar_r_p}>
           <div className={styles.main_nav_bar_r_p_profile}>
             {session ? (

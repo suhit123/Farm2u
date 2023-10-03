@@ -33,6 +33,7 @@
   color: white;
 }
 .logo {
+  cursor: pointer;
   margin: 10px;
   width: 180px;
   height: auto;

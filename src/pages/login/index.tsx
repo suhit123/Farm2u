@@ -78,7 +78,9 @@ const Login = () => {
     />
       <Loader time={500} />
       <div className={styles.signuppage}>
-      <Image src={sigup_farm} alt=""/>
+      <div className={styles.signuppage_img_div}>
+        <Image className={styles.signuppage_img} src={sigup_farm} alt=""/>
+      </div>
       <form className={styles.signupform} onSubmit={handleSubmit}>
         <Image className={styles.signup_logo} src={form2u_logo} alt=""/>
         <h3>Welcome back, Sign in</h3>
