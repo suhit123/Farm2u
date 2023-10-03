@@ -17,14 +17,12 @@ import React from "react";
 import { cartData, products } from "@/Interfaces/Products";
 import { coupon } from "@/Interfaces/user/orders";
 import { calculatePrices } from "./priceCalculator";
-import { Cursor } from "mongoose";
 const Nav = () => {
   const router = useRouter();
   const { data: session }: any = useSession();
   const [cartData, setCartData] = useState<cartData[]>([]);
   const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
   const [cartState, setCartState] = useState<boolean>(false);
-  const [discountBarState, setDiscountBarState] = useState<boolean>(true);
   const [cartDataContents, setCartDataContents] = useState<products[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [totalDiscount, setTotalDiscount] = useState<number>(0);
@@ -174,46 +172,6 @@ const Nav = () => {
           </div>
         </div>
       </div>
-      {/* <div className={styles.nav_bar_private}>
-        <nav className="navbar navbar-expand-lg bg-body-tertiary navbar-dark">
-          <div className="container-fluid">
-            <div className={styles.nav_btm}>
-              <ul className={styles.nav_ul}>
-                <li className={styles.nav_li}>
-                  <Link className={styles.nav_li_a} href="/">
-                    HOME
-                  </Link>
-                </li>
-                <li className={styles.nav_li}>
-                  <a className={styles.nav_li_a} href="/AboutUs">
-                    ABOUT
-                  </a>
-                </li>
-                <li className={styles.nav_li}>
-                  <a className={styles.nav_li_a} href="/products">
-                    PRODUCTS
-                  </a>
-                </li>
-                <li className={styles.nav_li}>
-                  <a className={styles.nav_li_a} href="/videos">
-                    VIDEOS
-                  </a>
-                </li>
-                <li className={styles.nav_li}>
-                  <a className={styles.nav_li_a} href="/blogs">
-                    BLOG
-                  </a>
-                </li>
-                <li className={styles.nav_li}>
-                  <a className={styles.nav_li_a} href="/contactus">
-                    CONTACT US
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </div> */}
       <div
         className={`${cartstyles.sidecartcontainer} ${
           cartState

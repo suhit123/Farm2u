@@ -1,5 +1,4 @@
-import Link from "next/link";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import Footer from "../../components/footer";
 import Nav from "../../components/nav";
 import styles from "@/styles/signup.module.css";

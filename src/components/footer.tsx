@@ -1,6 +1,4 @@
-import Image from "next/image";
 import styles from "@/styles/footer.module.css";
-import logo from "@/resources/genmatrixwhitelogo.png";
 import React from "react";
 import Link from "next/link";
 const Footer = () => {

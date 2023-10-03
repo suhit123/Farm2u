@@ -11,7 +11,6 @@ import Footer from "../../components/footer";
 import Loader_colorring from "../../components/Loader_colorring";
 import { cartData, products } from "@/Interfaces/Products";
 import { calculatePrices } from "@/components/priceCalculator";
-import Head from "next/head";
 import { NextSeo } from "next-seo";
 const Cart = () => {
   const router = useRouter();
