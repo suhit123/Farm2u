@@ -48,6 +48,7 @@ const CheckoutForm = () => {
     await axios
       .get("../../api/Coupon/get")
       .then((res) => {
+        console.log("coupon",res.data);
         setCoupon(res.data);
       })
       .catch((err) => {
@@ -63,8 +64,8 @@ const CheckoutForm = () => {
     }, 2000);
   };
   const handleCouponSubmit = () => {
-    if (couponInput === coupon.coupon) {
-      if (totalPrice < coupon.amount) {
+    if (couponInput === "OFFER200") {
+      if (totalPrice < 200) {
         setTotalDiscount(0);
         setCouponMessage("⛔ Oops! Order more to validate this coupon.");
         return;
